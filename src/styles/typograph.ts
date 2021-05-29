@@ -1,6 +1,4 @@
-interface ITypograph {
-  [key: string]: string;
-}
+import { ITypograph } from 'styles';
 
 const typograph: ITypograph = {
   h1: `font-size : 36px; line-height: 54px;`,

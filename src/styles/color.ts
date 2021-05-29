@@ -1,6 +1,4 @@
-interface IColor {
-  [key: string]: string;
-}
+import { IColor } from 'styles';
 
 const palette: IColor = {
   white: '#ffffff',
