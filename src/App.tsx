@@ -7,7 +7,7 @@ import { ThemeProvider } from '@material-ui/styles';
 
 import { CssBaseline, createMuiTheme } from '@material-ui/core';
 import { blue } from '@material-ui/core/colors';
-import { MainPage } from 'pages';
+import { MainPage, LoginPage } from 'pages';
 
 const theme = createMuiTheme({
   palette: {
@@ -26,6 +26,7 @@ const App = () => {
       <Router>
         <Switch>
           <Route exact path="/" component={MainPage} />
+          <Route exact path="/login" component={LoginPage} />
         </Switch>
       </Router>
       <GlobalStyles />

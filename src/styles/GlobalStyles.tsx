@@ -33,7 +33,7 @@ const GlobalStyles = createGlobalStyle`
     html {
       font-size: 8px;
     }
-}
+  }
 `;
 
 export default GlobalStyles;
