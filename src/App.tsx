@@ -6,14 +6,14 @@ import GlobalStyles from 'styles/GlobalStyles';
 import { ThemeProvider } from '@material-ui/styles';
 
 import { CssBaseline, createMuiTheme } from '@material-ui/core';
-import { blue } from '@material-ui/core/colors';
-import { MainPage, LoginPage } from 'pages';
+import indigo from '@material-ui/core/colors/indigo';
+import { MainPage, LoginPage, DashboardPage } from 'pages';
 
 const theme = createMuiTheme({
   palette: {
     type: 'dark',
     primary: {
-      main: blue[600],
+      main: indigo[500],
     },
   },
 });
@@ -27,6 +27,7 @@ const App = () => {
         <Switch>
           <Route exact path="/" component={MainPage} />
           <Route exact path="/login" component={LoginPage} />
+          <Route exact path="/dashboard" component={DashboardPage} />
         </Switch>
       </Router>
       <GlobalStyles />
