@@ -15,7 +15,7 @@ const DashboardPage: React.FC = () => {
   ];
   return (
     <AdminTemplate>
-      <DashboardTemplate chartData={chartData} />
+      <DashboardTemplate chartData={chartData} participationCount={34000} />
     </AdminTemplate>
   );
 };

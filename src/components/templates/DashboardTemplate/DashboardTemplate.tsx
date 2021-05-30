@@ -2,9 +2,12 @@ import React from 'react';
 import { IDashboardTemplateProps } from 'template-props';
 import * as S from './DashboardTemplateStyles';
 import { Container, Grid, Paper } from '@material-ui/core';
-import { LineChart } from 'components';
+import { LineChart, Participation } from 'components';
 
-const DashboardTemplate: React.FC<IDashboardTemplateProps> = ({ chartData }) => {
+const DashboardTemplate: React.FC<IDashboardTemplateProps> = ({
+  chartData,
+  participationCount,
+}) => {
   return (
     <S.DashboardTemplate>
       <S.Container maxWidth="lg">
@@ -15,7 +18,7 @@ const DashboardTemplate: React.FC<IDashboardTemplateProps> = ({ chartData }) => 
           </Grid>
           {/* Recent Deposits */}
           <Grid item xs={12} md={4}>
-            <Paper>누적</Paper>
+            <Participation participationCount={participationCount} />
           </Grid>
           {/* Recent Orders */}
           <Grid item xs={12}>
