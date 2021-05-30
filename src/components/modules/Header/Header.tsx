@@ -11,7 +11,7 @@ const Header: React.FC<IHeaderProps> = ({ isSideBarOpened, onOpenSideBar }) => {
   return (
     <S.Header position="sticky" open={isSideBarOpened} theme={theme}>
       <Toolbar>
-        {isSideBarOpened || (
+        {isSideBarOpened ? null : (
           <IconButton edge="start" color="inherit" aria-label="open drawer" onClick={onOpenSideBar}>
             <MenuIcon />
           </IconButton>
