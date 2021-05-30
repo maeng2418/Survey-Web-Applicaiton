@@ -19,4 +19,13 @@ declare module 'template-props' {
       count: number;
     }[];
   }
+
+  interface ISurveyListTemplateProps {
+    surveyData: {
+      id: number;
+      date: string;
+      title: string;
+      count: number;
+    }[];
+  }
 }

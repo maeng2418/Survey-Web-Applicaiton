@@ -4,7 +4,7 @@ import { AdminTemplate, SurveyListTemplate } from 'components';
 const SurveyListPage: React.FC = () => {
   return (
     <AdminTemplate>
-      <SurveyListTemplate />
+      <SurveyListTemplate surveyData={[]} />
     </AdminTemplate>
   );
 };
