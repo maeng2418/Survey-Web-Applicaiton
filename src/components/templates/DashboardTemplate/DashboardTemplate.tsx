@@ -1,17 +1,20 @@
 import React from 'react';
+import { IDashboardTemplateProps } from 'template-props';
 import * as S from './DashboardTemplateStyles';
 import { Container, Grid, Paper } from '@material-ui/core';
-const DashboardTemplate: React.FC = () => {
+import { LineChart } from 'components';
+
+const DashboardTemplate: React.FC<IDashboardTemplateProps> = ({ chartData }) => {
   return (
     <S.DashboardTemplate>
       <S.Container maxWidth="lg">
         <Grid container spacing={3}>
           {/* Chart */}
-          <Grid item xs={12} md={8} lg={9}>
-            <Paper>차트</Paper>
+          <Grid item xs={12} md={8}>
+            <LineChart data={chartData} />
           </Grid>
           {/* Recent Deposits */}
-          <Grid item xs={12} md={4} lg={3}>
+          <Grid item xs={12} md={4}>
             <Paper>누적</Paper>
           </Grid>
           {/* Recent Orders */}

@@ -4,14 +4,14 @@ import { AppBar, Typography, Button } from '@material-ui/core';
 
 export const AdminTemplate = styled.div``;
 
-export const Header = styled(AppBar)<{ isSideBarOpened: boolean; theme: Theme }>`
+export const Header = styled(AppBar)<{ open: boolean; theme: Theme }>`
   display: flex;
   align-content: center;
   z-index: ${({ theme }) => theme.zIndex.drawer + 1};
-  margin-left: ${({ isSideBarOpened }) => (isSideBarOpened ? '260px' : 0)};
-  width: ${({ isSideBarOpened }) => (isSideBarOpened ? 'calc(100% - 260px)' : '100%')};
-  transition: ${({ theme, isSideBarOpened }) =>
-    isSideBarOpened
+  margin-left: ${({ open }) => (open ? '260px' : 0)};
+  width: ${({ open }) => (open ? 'calc(100% - 260px)' : '100%')};
+  transition: ${({ theme, open }) =>
+    open
       ? theme.transitions.create(['margin', 'width'], {
           easing: theme.transitions.easing.sharp,
           duration: theme.transitions.duration.enteringScreen,

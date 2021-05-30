@@ -6,6 +6,7 @@ export { default as ListItemButton } from './atoms/ListItemButton';
 export { default as LoginForm } from './modules/LoginForm';
 export { default as Header } from './modules/Header';
 export { default as SideBar } from './modules/SideBar';
+export { default as LineChart } from './modules/LineChart';
 
 // Templates
 export { default as MainTemplate } from './templates/MainTemplate';

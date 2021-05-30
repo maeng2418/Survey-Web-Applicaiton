@@ -1,8 +1,10 @@
 import styled, { css } from 'styled-components';
 import { Container as MaterialContainer, Grid, Paper } from '@material-ui/core';
 
-export const DashboardTemplate = styled.div``;
+export const DashboardTemplate = styled.div`
+  padding-left: 57px;
+`;
 
 export const Container = styled(MaterialContainer)`
-  margin: auto;
+  padding: 32px 24px;
 `;

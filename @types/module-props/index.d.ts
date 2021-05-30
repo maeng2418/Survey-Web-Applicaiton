@@ -13,4 +13,8 @@ declare module 'module-props' {
     isSideBarOpened: boolean;
     onOpenSideBar: () => void;
   }
+
+  interface ILineChartProps {
+    data: { time: string; amount?: number }[];
+  }
 }

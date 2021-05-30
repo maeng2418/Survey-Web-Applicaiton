@@ -8,4 +8,8 @@ declare module 'template-props' {
     data: { [key: string]: string };
     onClickSubmitBtn: (data: { [key: string]: string }) => void;
   }
+
+  interface IDashboardTemplateProps {
+    chartData: { time: string; amount?: number }[];
+  }
 }
