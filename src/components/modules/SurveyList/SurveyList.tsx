@@ -2,6 +2,7 @@ import React from 'react';
 import { ISurveyList } from 'module-props';
 import * as S from './SurveyListStyles';
 import { Typography, Table, TableBody, TableCell, TableHead, TableRow } from '@material-ui/core';
+import { Title } from 'components';
 
 const SurveyList: React.FC<ISurveyList> = ({
   title,
@@ -13,9 +14,7 @@ const SurveyList: React.FC<ISurveyList> = ({
 }) => {
   return (
     <S.SurveyListPaper>
-      <Typography component="h2" variant="h6" gutterBottom>
-        {title}
-      </Typography>
+      <Title>{title}</Title>
       <Table size="small">
         <TableHead>
           <TableRow>

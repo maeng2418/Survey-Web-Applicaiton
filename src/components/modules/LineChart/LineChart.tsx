@@ -1,15 +1,13 @@
 import React from 'react';
 import { ILineChartProps } from 'module-props';
 import * as S from './LineChartStyles';
-import { Typography } from '@material-ui/core';
 import { LineChart as Chart, Line, XAxis, YAxis, Label, ResponsiveContainer } from 'recharts';
+import { Title } from 'components';
 
 const LineChart: React.FC<ILineChartProps> = ({ data }) => {
   return (
     <S.LineChartPaper>
-      <Typography component="h2" variant="h6" gutterBottom>
-        Today
-      </Typography>
+      <Title>Today</Title>
       <ResponsiveContainer>
         <Chart
           data={data}
