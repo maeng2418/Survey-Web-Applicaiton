@@ -42,30 +42,9 @@ const DashboardPage: React.FC = () => {
     },
   ];
 
-  const onClickModify = (idx: number) => {
-    console.log(idx);
-  };
-  const onClickReport = (idx: number) => {
-    console.log(idx);
-  };
-  const onClickLog = (idx: number) => {
-    console.log(idx);
-  };
-  const onClickTitle = (idx: number) => {
-    console.log(idx);
-  };
-
   return (
     <AdminTemplate>
-      <DashboardTemplate
-        chartData={chartData}
-        participationCount={34000}
-        surveyData={surveyData}
-        onClickModify={onClickModify}
-        onClickReport={onClickReport}
-        onClickLog={onClickLog}
-        onClickTitle={onClickTitle}
-      />
+      <DashboardTemplate chartData={chartData} participationCount={34000} surveyData={surveyData} />
     </AdminTemplate>
   );
 };

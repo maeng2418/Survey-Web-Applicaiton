@@ -1,17 +1,10 @@
 import React from 'react';
 import { ISurveyList } from 'module-props';
 import * as S from './SurveyListStyles';
-import { Typography, Table, TableBody, TableCell, TableHead, TableRow } from '@material-ui/core';
+import { Link, Table, TableBody, TableCell, TableHead, TableRow } from '@material-ui/core';
 import { Title } from 'components';
 
-const SurveyList: React.FC<ISurveyList> = ({
-  title,
-  data,
-  onClickModify,
-  onClickReport,
-  onClickLog,
-  onClickTitle,
-}) => {
+const SurveyList: React.FC<ISurveyList> = ({ title, data }) => {
   return (
     <S.SurveyListPaper>
       <Title>{title}</Title>
@@ -28,11 +21,27 @@ const SurveyList: React.FC<ISurveyList> = ({
         <TableBody>
           {data.map((item) => (
             <TableRow key={item.id}>
-              <TableCell onClick={() => onClickTitle(item.id)}>{item.title}</TableCell>
+              <TableCell>
+                <Link href={`#/${item.id}`} color="secondary">
+                  {item.title}
+                </Link>
+              </TableCell>
               <TableCell>{item.count}</TableCell>
-              <TableCell onClick={() => onClickModify(item.id)}>수정하기</TableCell>
-              <TableCell onClick={() => onClickReport(item.id)}>리포트 보기</TableCell>
-              <TableCell onClick={() => onClickLog(item.id)}>로그 보기</TableCell>
+              <TableCell>
+                <Link href={`#/${item.id}`} color="secondary">
+                  수정하기
+                </Link>
+              </TableCell>
+              <TableCell>
+                <Link href={`#/${item.id}`} color="secondary">
+                  리포트 보기
+                </Link>
+              </TableCell>
+              <TableCell>
+                <Link href={`#/${item.id}`} color="secondary">
+                  로그 보기
+                </Link>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

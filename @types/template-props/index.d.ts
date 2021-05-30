@@ -18,9 +18,5 @@ declare module 'template-props' {
       title: string;
       count: number;
     }[];
-    onClickModify: (idx: number) => void;
-    onClickReport: (idx: number) => void;
-    onClickLog: (idx: number) => void;
-    onClickTitle: (idx: number) => void;
   }
 }

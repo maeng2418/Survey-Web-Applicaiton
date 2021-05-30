@@ -8,10 +8,6 @@ const DashboardTemplate: React.FC<IDashboardTemplateProps> = ({
   chartData,
   participationCount,
   surveyData,
-  onClickModify,
-  onClickReport,
-  onClickLog,
-  onClickTitle,
 }) => {
   return (
     <S.DashboardTemplate>
@@ -27,14 +23,7 @@ const DashboardTemplate: React.FC<IDashboardTemplateProps> = ({
           </Grid>
           {/* Recent Orders */}
           <Grid item xs={12}>
-            <SurveyList
-              title={'최근 등록된 설문'}
-              data={surveyData}
-              onClickModify={onClickModify}
-              onClickReport={onClickReport}
-              onClickLog={onClickLog}
-              onClickTitle={onClickTitle}
-            />
+            <SurveyList title={'최근 등록된 설문'} data={surveyData} />
           </Grid>
         </Grid>
       </S.Container>
