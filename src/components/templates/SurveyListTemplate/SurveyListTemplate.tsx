@@ -1,6 +1,6 @@
 import React from 'react';
 import * as S from './SurveyListTemplateStyles';
-import { Grid, Paper } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import { Pwl, SurveyList } from 'components';
 
 const SurveyListTemplate: React.FC = () => {

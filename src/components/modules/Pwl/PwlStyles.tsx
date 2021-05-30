@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { Grid, Paper } from '@material-ui/core';
 
 export const Pwl = styled(Grid)``;
