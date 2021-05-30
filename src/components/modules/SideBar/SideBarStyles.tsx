@@ -1,10 +1,10 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { Theme } from '@material-ui/core/styles';
 import { Drawer } from '@material-ui/core';
 
 export const SideBar = styled(Drawer)<{ open: boolean; theme: Theme }>`
   & > div {
-    width: ${({ open }) => (open ? '18rem' : '4.5rem')};
+    width: ${({ open }) => (open ? '260px' : '57px')};
     transition: ${({ theme, open }) =>
       open
         ? theme.transitions.create('width', {

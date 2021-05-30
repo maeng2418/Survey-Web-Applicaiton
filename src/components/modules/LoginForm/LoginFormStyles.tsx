@@ -1,5 +1,4 @@
-import styled, { css } from 'styled-components';
-import { palette, theme } from 'styled-tools';
+import styled from 'styled-components';
 
 export const LoginForm = styled.form`
   display: flex;
@@ -8,5 +7,5 @@ export const LoginForm = styled.form`
   align-items: 'center';
   gap: 24px;
   width: 100%;
-  padding: 2rem 5rem;
+  padding: 32px 80px;
 `;

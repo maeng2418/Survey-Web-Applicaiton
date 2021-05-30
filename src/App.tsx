@@ -18,7 +18,7 @@ const theme = createMuiTheme({
   },
 });
 
-const App = () => {
+const App: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
       <Normalize />
