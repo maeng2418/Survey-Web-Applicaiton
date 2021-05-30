@@ -1,5 +1,4 @@
-import styled, { css } from 'styled-components';
-import { palette, theme } from 'styled-tools';
+import styled from 'styled-components';
 
 export const LoginForm = styled.form`
   display: flex;
