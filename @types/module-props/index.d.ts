@@ -3,4 +3,14 @@ declare module 'module-props' {
     data: { [key: string]: string };
     onClickSubmitBtn: (data: { [key: string]: string }) => void;
   }
+
+  interface ISideBarProps {
+    open: boolean;
+    onClose: () => void;
+  }
+
+  interface IHeaderProps {
+    isSideBarOpened: boolean;
+    onOpenSideBar: () => void;
+  }
 }
