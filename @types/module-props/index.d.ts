@@ -13,4 +13,22 @@ declare module 'module-props' {
     isSideBarOpened: boolean;
     onOpenSideBar: () => void;
   }
+
+  interface ILineChartProps {
+    data: { time: string; amount?: number }[];
+  }
+
+  interface IParticipationProps {
+    participationCount: number;
+  }
+
+  interface ISurveyList {
+    title: string;
+    data: {
+      id: number;
+      date: string;
+      title: string;
+      count: number;
+    }[];
+  }
 }

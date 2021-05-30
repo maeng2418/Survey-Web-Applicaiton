@@ -6,8 +6,9 @@ import GlobalStyles from 'styles/GlobalStyles';
 import { ThemeProvider } from '@material-ui/styles';
 
 import { CssBaseline, createMuiTheme } from '@material-ui/core';
-import indigo from '@material-ui/core/colors/indigo';
+import { indigo, blue } from '@material-ui/core/colors';
 import { MainPage, LoginPage, DashboardPage } from 'pages';
+import moment from 'moment';
 
 const theme = createMuiTheme({
   palette: {
@@ -15,10 +16,14 @@ const theme = createMuiTheme({
     primary: {
       main: indigo[500],
     },
+    secondary: {
+      main: blue[400],
+    },
   },
 });
 
 const App: React.FC = () => {
+  moment.locale('kr');
   return (
     <ThemeProvider theme={theme}>
       <Normalize />

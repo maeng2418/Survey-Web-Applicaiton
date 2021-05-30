@@ -7,10 +7,11 @@ import MenuIcon from '@material-ui/icons/Menu';
 
 const Header: React.FC<IHeaderProps> = ({ isSideBarOpened, onOpenSideBar }) => {
   const theme = useTheme();
+
   return (
-    <S.Header position="sticky" isSideBarOpened={isSideBarOpened} theme={theme}>
+    <S.Header position="sticky" open={isSideBarOpened} theme={theme}>
       <Toolbar>
-        {isSideBarOpened || (
+        {isSideBarOpened ? null : (
           <IconButton edge="start" color="inherit" aria-label="open drawer" onClick={onOpenSideBar}>
             <MenuIcon />
           </IconButton>

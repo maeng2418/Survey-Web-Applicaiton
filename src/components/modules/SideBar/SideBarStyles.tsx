@@ -5,6 +5,7 @@ import { Drawer } from '@material-ui/core';
 export const SideBar = styled(Drawer)<{ open: boolean; theme: Theme }>`
   & > div {
     width: ${({ open }) => (open ? '260px' : '57px')};
+    overflow: hidden;
     transition: ${({ theme, open }) =>
       open
         ? theme.transitions.create('width', {
