@@ -6,7 +6,7 @@ import GlobalStyles from 'styles/GlobalStyles';
 import { ThemeProvider } from '@material-ui/styles';
 
 import { CssBaseline, createMuiTheme } from '@material-ui/core';
-import { indigo, blue } from '@material-ui/core/colors';
+import { indigo, blue, orange } from '@material-ui/core/colors';
 import { MainPage, LoginPage, DashboardPage, SurveyListPage } from 'pages';
 import moment from 'moment';
 

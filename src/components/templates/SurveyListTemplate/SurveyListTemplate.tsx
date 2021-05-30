@@ -1,6 +1,7 @@
 import React from 'react';
 import * as S from './SurveyListTemplateStyles';
 import { Grid, Paper } from '@material-ui/core';
+import { Pwl, SurveyList } from 'components';
 
 const SurveyListTemplate: React.FC = () => {
   return (
@@ -8,12 +9,10 @@ const SurveyListTemplate: React.FC = () => {
       <S.Container maxWidth="lg">
         <Grid container spacing={5}>
           {/* Chart */}
-          <Grid item xs={12}>
-            <Paper>PWD</Paper>
-          </Grid>
+          <Pwl />
           {/* Recent Deposits */}
           <Grid item xs={12}>
-            <Paper>리스트</Paper>
+            <SurveyList data={[]} />
           </Grid>
         </Grid>
       </S.Container>
