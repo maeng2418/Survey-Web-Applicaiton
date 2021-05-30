@@ -23,7 +23,7 @@ declare module 'module-props' {
   }
 
   interface ISurveyList {
-    title: string;
+    title?: string;
     data: {
       id: number;
       date: string;

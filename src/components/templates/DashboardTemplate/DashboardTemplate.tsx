@@ -17,11 +17,11 @@ const DashboardTemplate: React.FC<IDashboardTemplateProps> = ({
           <Grid item xs={12} md={8}>
             <LineChart data={chartData} />
           </Grid>
-          {/* Recent Deposits */}
+          {/* Total Participation */}
           <Grid item xs={12} md={4}>
             <Participation participationCount={participationCount} />
           </Grid>
-          {/* Recent Orders */}
+          {/* Recent Survey */}
           <Grid item xs={12}>
             <SurveyList title={'최근 등록된 설문'} data={surveyData} />
           </Grid>

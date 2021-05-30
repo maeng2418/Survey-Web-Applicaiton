@@ -7,7 +7,7 @@ import { Title } from 'components';
 const SurveyList: React.FC<ISurveyList> = ({ title, data }) => {
   return (
     <S.SurveyListPaper>
-      <Title>{title}</Title>
+      {title ? <Title>{title}</Title> : null}
       <Table size="small">
         <TableHead>
           <TableRow>
