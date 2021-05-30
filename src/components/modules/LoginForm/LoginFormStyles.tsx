@@ -8,5 +8,5 @@ export const LoginForm = styled.form`
   align-items: 'center';
   gap: 24px;
   width: 100%;
-  padding: 2rem 5rem;
+  padding: 32px 80px;
 `;

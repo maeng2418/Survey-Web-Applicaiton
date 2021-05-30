@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { styled as materialStyled } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import backgroundImg from 'assets/images/intro-bg.jpeg';
 
@@ -25,10 +24,10 @@ export const Header = styled.header`
   padding: 20px 0;
 `;
 
-export const LoginBtn = materialStyled(Button)({
-  marginRight: '2rem',
-  fontSize: '1.5rem',
-});
+export const LoginBtn = styled(Button)`
+  margin-right: 24px;
+  font-size: 24px;
+`;
 
 export const Content = styled.div`
   display: flex;
@@ -37,9 +36,18 @@ export const Content = styled.div`
   width: 65vw;
 `;
 
-export const SurveyBtn = materialStyled(Button)({
-  fontSize: '1.2rem',
-  width: '30rem',
-  marginTop: '4rem',
-  fontWeight: 'bold',
-});
+export const SurveyBtn = styled(Button)`
+  width: 380px;
+  margin-top: 64px;
+  font-weight: bold;
+
+  /* 태블릿 */
+  @media (max-width: 1024px) {
+    width: 280px;
+  }
+
+  /* 모바일 */
+  @media (max-width: 768px) {
+    width: 200px;
+  }
+`;
