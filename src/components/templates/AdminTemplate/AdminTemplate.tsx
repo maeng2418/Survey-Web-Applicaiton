@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import * as S from './AdminTemplateStyles';
-import { Header, SideBar } from 'components';
+import { Header, SideBar, AddSurveyBtn } from 'components';
 
 const AdminTemplate: React.FC = ({ children }) => {
   const [open, setOpen] = useState(false);
@@ -14,6 +14,7 @@ const AdminTemplate: React.FC = ({ children }) => {
       <Header isSideBarOpened={open} onOpenSideBar={() => toggleDrawer(true)} />
       <SideBar open={open} onClose={() => toggleDrawer(false)} />
       {children}
+      <AddSurveyBtn />
     </S.AdminTemplate>
   );
 };
