@@ -10,6 +10,7 @@ declare module 'module-props' {
   }
 
   interface IHeaderProps {
-    onOpen: () => void;
+    isSideBarOpened: boolean;
+    onOpenSideBar: () => void;
   }
 }

@@ -13,7 +13,7 @@ const AdminTemplate: React.FC = ({}) => {
 
   return (
     <S.AdminTemplate>
-      <Header onOpen={() => toggleDrawer(true)} />
+      <Header isSideBarOpened={open} onOpenSideBar={() => toggleDrawer(true)} />
       <SideBar open={open} onClose={() => toggleDrawer(false)} />
     </S.AdminTemplate>
   );
