@@ -16,3 +16,4 @@ export { default as MainTemplate } from './templates/MainTemplate';
 export { default as LoginTemplate } from './templates/LoginTemplate';
 export { default as AdminTemplate } from './templates/AdminTemplate';
 export { default as DashboardTemplate } from './templates/DashboardTemplate';
+export { default as SurveyListTemplate } from './templates/SurveyListTemplate';
