@@ -1,5 +1,6 @@
 import React from 'react';
 import { AdminTemplate, DashboardTemplate } from 'components';
+import moment from 'moment';
 
 const DashboardPage: React.FC = () => {
   const chartData = [
@@ -13,9 +14,58 @@ const DashboardPage: React.FC = () => {
     { time: '21:00', amount: 2400 },
     { time: '24:00' },
   ];
+
+  const surveyData = [
+    {
+      id: 0,
+      date: moment().format('YYYY-MM-DD'),
+      title: '테스트 설문지1',
+      count: 32,
+    },
+    {
+      id: 1,
+      date: moment().format('YYYY-MM-DD'),
+      title: '테스트 설문지2',
+      count: 27,
+    },
+    {
+      id: 2,
+      date: moment().format('YYYY-MM-DD'),
+      title: '테스트 설문지3',
+      count: 12,
+    },
+    {
+      id: 3,
+      date: moment().format('YYYY-MM-DD'),
+      title: '테스트 설문지4',
+      count: 23,
+    },
+  ];
+
+  const onClickModify = (idx: number) => {
+    console.log(idx);
+  };
+  const onClickReport = (idx: number) => {
+    console.log(idx);
+  };
+  const onClickLog = (idx: number) => {
+    console.log(idx);
+  };
+  const onClickTitle = (idx: number) => {
+    console.log(idx);
+  };
+
   return (
     <AdminTemplate>
-      <DashboardTemplate chartData={chartData} participationCount={34000} />
+      <DashboardTemplate
+        chartData={chartData}
+        participationCount={34000}
+        surveyData={surveyData}
+        onClickModify={onClickModify}
+        onClickReport={onClickReport}
+        onClickLog={onClickLog}
+        onClickTitle={onClickTitle}
+      />
     </AdminTemplate>
   );
 };

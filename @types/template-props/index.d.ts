@@ -12,5 +12,15 @@ declare module 'template-props' {
   interface IDashboardTemplateProps {
     chartData: { time: string; amount?: number }[];
     participationCount: number;
+    surveyData: {
+      id: number;
+      date: string;
+      title: string;
+      count: number;
+    }[];
+    onClickModify: (idx: number) => void;
+    onClickReport: (idx: number) => void;
+    onClickLog: (idx: number) => void;
+    onClickTitle: (idx: number) => void;
   }
 }

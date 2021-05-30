@@ -21,4 +21,18 @@ declare module 'module-props' {
   interface IParticipationProps {
     participationCount: number;
   }
+
+  interface ISurveyList {
+    title: string;
+    data: {
+      id: number;
+      date: string;
+      title: string;
+      count: number;
+    }[];
+    onClickModify: (idx: number) => void;
+    onClickReport: (idx: number) => void;
+    onClickLog: (idx: number) => void;
+    onClickTitle: (idx: number) => void;
+  }
 }

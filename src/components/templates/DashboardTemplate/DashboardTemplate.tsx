@@ -2,11 +2,16 @@ import React from 'react';
 import { IDashboardTemplateProps } from 'template-props';
 import * as S from './DashboardTemplateStyles';
 import { Container, Grid, Paper } from '@material-ui/core';
-import { LineChart, Participation } from 'components';
+import { LineChart, Participation, SurveyList } from 'components';
 
 const DashboardTemplate: React.FC<IDashboardTemplateProps> = ({
   chartData,
   participationCount,
+  surveyData,
+  onClickModify,
+  onClickReport,
+  onClickLog,
+  onClickTitle,
 }) => {
   return (
     <S.DashboardTemplate>
@@ -22,7 +27,14 @@ const DashboardTemplate: React.FC<IDashboardTemplateProps> = ({
           </Grid>
           {/* Recent Orders */}
           <Grid item xs={12}>
-            <Paper>최근목록</Paper>
+            <SurveyList
+              title={'최근 등록된 설문'}
+              data={surveyData}
+              onClickModify={onClickModify}
+              onClickReport={onClickReport}
+              onClickLog={onClickLog}
+              onClickTitle={onClickTitle}
+            />
           </Grid>
         </Grid>
       </S.Container>
