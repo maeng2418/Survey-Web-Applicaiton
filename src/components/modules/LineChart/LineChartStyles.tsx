@@ -1,5 +1,5 @@
-import styled, { css } from 'styled-components';
-import { Container, Grid, Paper } from '@material-ui/core';
+import styled from 'styled-components';
+import { Paper } from '@material-ui/core';
 
 export const LineChartPaper = styled(Paper)`
   height: 35vh;

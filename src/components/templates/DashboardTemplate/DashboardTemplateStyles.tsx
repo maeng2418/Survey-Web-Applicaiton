@@ -1,5 +1,5 @@
-import styled, { css } from 'styled-components';
-import { Container as MaterialContainer, Grid, Paper } from '@material-ui/core';
+import styled from 'styled-components';
+import { Container as MaterialContainer } from '@material-ui/core';
 
 export const DashboardTemplate = styled.div`
   padding-left: 57px;

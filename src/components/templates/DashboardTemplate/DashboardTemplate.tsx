@@ -1,7 +1,7 @@
 import React from 'react';
 import { IDashboardTemplateProps } from 'template-props';
 import * as S from './DashboardTemplateStyles';
-import { Container, Grid, Paper } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import { LineChart, Participation, SurveyList } from 'components';
 
 const DashboardTemplate: React.FC<IDashboardTemplateProps> = ({
