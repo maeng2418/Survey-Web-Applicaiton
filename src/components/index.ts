@@ -2,6 +2,7 @@
 export { default as Headline } from './atoms/Headline';
 export { default as ListItemButton } from './atoms/ListItemButton';
 export { default as Title } from './atoms/Title';
+export { default as AddSurveyBtn } from './atoms/AddSurveyBtn';
 
 // Modules
 export { default as LoginForm } from './modules/LoginForm';
