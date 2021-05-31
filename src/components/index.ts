@@ -19,3 +19,4 @@ export { default as LoginTemplate } from './templates/LoginTemplate';
 export { default as AdminTemplate } from './templates/AdminTemplate';
 export { default as DashboardTemplate } from './templates/DashboardTemplate';
 export { default as SurveyListTemplate } from './templates/SurveyListTemplate';
+export { default as AddSurveyTemplate } from './templates/AddSurveyTemplate';
