@@ -3,6 +3,7 @@ export { default as Headline } from './atoms/Headline';
 export { default as ListItemButton } from './atoms/ListItemButton';
 export { default as Title } from './atoms/Title';
 export { default as AddSurveyBtn } from './atoms/AddSurveyBtn';
+export { default as QuestionInput } from './atoms/QuestionInput';
 
 // Modules
 export { default as LoginForm } from './modules/LoginForm';
