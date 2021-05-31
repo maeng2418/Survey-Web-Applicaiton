@@ -5,6 +5,7 @@ export { default as Title } from './atoms/Title';
 export { default as AddSurveyBtn } from './atoms/AddSurveyBtn';
 export { default as QuestionInput } from './atoms/QuestionInput';
 export { default as AnswerTypeSelect } from './atoms/AnswerTypeSelect';
+export { default as SurveyTitleInput } from './atoms/SurveyTitleInput';
 
 // Modules
 export { default as LoginForm } from './modules/LoginForm';
