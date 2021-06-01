@@ -10,41 +10,43 @@ import {
   InputLabel,
 } from '@material-ui/core';
 import AddBoxIcon from '@material-ui/icons/AddBox';
+import IndeterminateCheckBoxRoundedIcon from '@material-ui/icons/IndeterminateCheckBoxRounded';
 
 const SelectItemInput: React.FC = () => {
   const [itemList, setItemList] = useState<
     {
-      start: string;
-      onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+      start?: string;
       adder?: boolean;
+      value: string;
     }[]
   >([]);
 
-  const onChangeInput = (event: React.ChangeEvent<HTMLInputElement>, key: string) => {
-    console.log(key);
-    console.log(event.target.value);
+  const [type] = useState('multi');
+
+  const onChangeInput = (event: React.ChangeEvent<HTMLInputElement>, idx: number) => {
+    const list = itemList;
+    list[idx].value = event.target.value;
+    setItemList([...list]);
   };
 
   useEffect(
     () => {
-      const type = 'boolean';
-      if (type !== 'boolean') {
+      if (type === 'boolean') {
         setItemList([
           {
             start: 'YES',
-            onChange: (event: React.ChangeEvent<HTMLInputElement>) => onChangeInput(event, 'YES'),
+            value: '',
           },
           {
             start: 'NO',
-            onChange: (event: React.ChangeEvent<HTMLInputElement>) => onChangeInput(event, 'NO'),
+            value: '',
           },
         ]);
       } else {
         setItemList([
           {
-            start: '1',
-            onChange: (event: React.ChangeEvent<HTMLInputElement>) => onChangeInput(event, '1'),
             adder: true,
+            value: '',
           },
         ]);
       }
@@ -58,12 +60,16 @@ const SelectItemInput: React.FC = () => {
     setItemList([
       ...itemList,
       {
-        start: `${itemList.length + 1}`,
-        onChange: (event: React.ChangeEvent<HTMLInputElement>) =>
-          onChangeInput(event, `${itemList.length + 1}`),
         adder: true,
+        value: '',
       },
     ]);
+  };
+
+  const onClickRemoveBtn = (idx: number) => {
+    const head = itemList.slice(0, idx);
+    const tail = itemList.slice(idx + 1);
+    setItemList([...head, ...tail]);
   };
 
   return (
@@ -82,23 +88,38 @@ const SelectItemInput: React.FC = () => {
                     id="select-item"
                     type={'text'}
                     startAdornment={
-                      <S.SelectItemName position="start">{item.start}</S.SelectItemName>
+                      <S.SelectItemName position="start">
+                        {type === 'boolean' ? item.start : idx + 1}
+                      </S.SelectItemName>
                     }
                     endAdornment={
                       item.adder ? (
                         <InputAdornment position="end">
-                          <IconButton
-                            aria-label="add select item input"
-                            onClick={onClickAdderBtn}
-                            color="secondary"
-                          >
-                            <AddBoxIcon fontSize="large" />
-                          </IconButton>
+                          {idx === itemList.length - 1 ? (
+                            <IconButton
+                              aria-label="add select item input"
+                              onClick={onClickAdderBtn}
+                              color="secondary"
+                            >
+                              <AddBoxIcon fontSize="large" />
+                            </IconButton>
+                          ) : null}
+                          {idx !== 0 ? (
+                            <IconButton
+                              aria-label="add select item input"
+                              onClick={() => onClickRemoveBtn(idx)}
+                            >
+                              <IndeterminateCheckBoxRoundedIcon fontSize="large" />
+                            </IconButton>
+                          ) : null}
                         </InputAdornment>
                       ) : null
                     }
                     labelWidth={95}
-                    onChange={item.onChange}
+                    value={item.value}
+                    onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+                      onChangeInput(event, idx)
+                    }
                   />
                 </FormControl>
               </Grid>
