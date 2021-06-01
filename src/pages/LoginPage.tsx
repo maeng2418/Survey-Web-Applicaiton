@@ -1,7 +1,7 @@
 import React from 'react';
 import { LoginTemplate } from 'components';
 
-const MainPage: React.FC = () => {
+const LoginPage: React.FC = () => {
   const data = {
     id: 'id',
     password: 'password',
@@ -13,4 +13,4 @@ const MainPage: React.FC = () => {
   return <LoginTemplate onClickSubmitBtn={onClickSubmitBtn} data={data} />;
 };
 
-export default MainPage;
+export default LoginPage;
