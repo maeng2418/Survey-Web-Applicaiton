@@ -3,6 +3,10 @@ import { Grid, InputAdornment, Typography } from '@material-ui/core';
 
 export const SelectItemInput = styled(Grid)`
   justify-content: center;
+
+  & button {
+    padding: 0;
+  }
 `;
 
 export const SelectItemName = styled(InputAdornment)`
