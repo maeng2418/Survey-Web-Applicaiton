@@ -7,6 +7,7 @@ export { default as QuestionInput } from './atoms/QuestionInput';
 export { default as AnswerTypeSelect } from './atoms/AnswerTypeSelect';
 export { default as SurveyTitleInput } from './atoms/SurveyTitleInput';
 export { default as SelectItemInput } from './atoms/SelectItemInput';
+export { default as SaveSurveyBtn } from './atoms/SaveSurveyBtn';
 
 // Modules
 export { default as LoginForm } from './modules/LoginForm';
