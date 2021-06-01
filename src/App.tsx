@@ -7,7 +7,14 @@ import { ThemeProvider } from '@material-ui/styles';
 
 import { CssBaseline, createMuiTheme } from '@material-ui/core';
 import { indigo, blue } from '@material-ui/core/colors';
-import { MainPage, LoginPage, DashboardPage, SurveyListPage, AddSurveyPage } from 'pages';
+import {
+  MainPage,
+  LoginPage,
+  DashboardPage,
+  SurveyListPage,
+  AddSurveyPage,
+  SurveyReportPage,
+} from 'pages';
 import moment from 'moment';
 
 const theme = createMuiTheme({
@@ -35,6 +42,7 @@ const App: React.FC = () => {
           <Route exact path="/dashboard" component={DashboardPage} />
           <Route exact path="/list" component={SurveyListPage} />
           <Route exact path="/list/add" component={AddSurveyPage} />
+          <Route exact path="/list/report" component={SurveyReportPage} />
         </Switch>
       </Router>
       <GlobalStyles />
