@@ -16,6 +16,7 @@ export { default as LineChart } from './modules/LineChart';
 export { default as Participation } from './modules/Participation';
 export { default as SurveyList } from './modules/SurveyList';
 export { default as Pwl } from './modules/Pwl';
+export { default as QuestionFormBox } from './modules/QuestionFormBox';
 
 // Templates
 export { default as MainTemplate } from './templates/MainTemplate';
