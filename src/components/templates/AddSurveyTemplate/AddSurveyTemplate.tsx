@@ -1,7 +1,7 @@
 import React from 'react';
 import * as S from './AddSurveyTemplateStyles';
 import { Grid } from '@material-ui/core';
-import { Pwl } from 'components';
+import { Pwl, QuestionFormBox, SurveyForm } from 'components';
 
 const AddSurveyTemplate: React.FC = () => {
   return (
@@ -11,7 +11,9 @@ const AddSurveyTemplate: React.FC = () => {
           {/* Print Working Location */}
           <Pwl />
           {/* Survey List */}
-          <Grid item xs={12}></Grid>
+          <Grid item xs={12}>
+            <SurveyForm />
+          </Grid>
         </Grid>
       </S.Container>
     </S.AddSurveyTemplate>

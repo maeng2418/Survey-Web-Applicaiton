@@ -17,6 +17,7 @@ export { default as Participation } from './modules/Participation';
 export { default as SurveyList } from './modules/SurveyList';
 export { default as Pwl } from './modules/Pwl';
 export { default as QuestionFormBox } from './modules/QuestionFormBox';
+export { default as SurveyForm } from './modules/SurveyForm';
 
 // Templates
 export { default as MainTemplate } from './templates/MainTemplate';
