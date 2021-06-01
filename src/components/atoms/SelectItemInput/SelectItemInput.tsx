@@ -69,9 +69,7 @@ const SelectItemInput: React.FC = () => {
   return (
     <S.SelectItemInput container spacing={3}>
       <Grid item xs={12} md={1}>
-        <Typography variant="h6" component="h6">
-          선택 항목
-        </Typography>
+        <S.Title variant="h6">선택 항목</S.Title>
       </Grid>
       <Grid item xs={12} md={11}>
         <Grid container spacing={2}>
