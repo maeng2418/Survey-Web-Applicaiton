@@ -9,6 +9,7 @@ export { default as SurveyTitleInput } from './atoms/SurveyTitleInput';
 export { default as SelectItemInput } from './atoms/SelectItemInput';
 export { default as SaveSurveyBtn } from './atoms/SaveSurveyBtn';
 export { default as DeleteQuestionBtn } from './atoms/DeleteQuestionBtn';
+export { default as GraphSelect } from './atoms/GraphSelect';
 
 // Modules
 export { default as LoginForm } from './modules/LoginForm';
