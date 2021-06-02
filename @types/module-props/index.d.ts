@@ -14,8 +14,10 @@ declare module 'module-props' {
     onOpenSideBar: () => void;
   }
 
-  interface ILineChartProps {
+  interface IChartProps {
     title?: string;
+    selector?: string[];
+    type?: 'line' | 'bar' | 'pie';
     data: { time: string; amount?: number }[];
   }
 

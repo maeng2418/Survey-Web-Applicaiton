@@ -2,7 +2,7 @@ import React from 'react';
 import { IDashboardTemplateProps } from 'template-props';
 import * as S from './DashboardTemplateStyles';
 import { Grid } from '@material-ui/core';
-import { LineChart, Participation, SurveyList } from 'components';
+import { Chart, Participation, SurveyList } from 'components';
 
 const DashboardTemplate: React.FC<IDashboardTemplateProps> = ({
   chartData,
@@ -15,7 +15,7 @@ const DashboardTemplate: React.FC<IDashboardTemplateProps> = ({
         <Grid container spacing={3}>
           {/* Chart */}
           <S.UpperGrid item xs={12} md={8}>
-            <LineChart title={'Today'} data={chartData} />
+            <Chart title={'Today'} data={chartData} />
           </S.UpperGrid>
           {/* Total Participation */}
           <S.UpperGrid item xs={12} md={4}>

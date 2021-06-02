@@ -14,5 +14,6 @@ export const UpperGridItem = styled(Grid)`
 `;
 
 export const BottomGridItem = styled(Grid)`
+  position: relative;
   height: 45vh;
 `;
