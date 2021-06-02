@@ -1,7 +1,5 @@
 import styled from 'styled-components';
-import { Grid, Paper } from '@material-ui/core';
-
-export const Pwl = styled(Grid)``;
+import { Paper } from '@material-ui/core';
 
 export const Section = styled(Paper)`
   padding: 10px 24px;

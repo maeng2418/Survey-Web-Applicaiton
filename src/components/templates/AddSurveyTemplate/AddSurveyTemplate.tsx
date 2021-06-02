@@ -9,7 +9,9 @@ const AddSurveyTemplate: React.FC = () => {
       <S.Container maxWidth="lg">
         <Grid container spacing={5}>
           {/* Print Working Location */}
-          <Pwl />
+          <Grid item xs={12}>
+            <Pwl />
+          </Grid>
           {/* Survey List */}
           <Grid item xs={12}>
             <SurveyForm />
