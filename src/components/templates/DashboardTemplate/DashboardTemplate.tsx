@@ -14,17 +14,17 @@ const DashboardTemplate: React.FC<IDashboardTemplateProps> = ({
       <S.Container maxWidth="lg">
         <Grid container spacing={3}>
           {/* Chart */}
-          <Grid item xs={12} md={8}>
-            <LineChart data={chartData} />
-          </Grid>
+          <S.UpperGrid item xs={12} md={8}>
+            <LineChart title={'Today'} data={chartData} />
+          </S.UpperGrid>
           {/* Total Participation */}
-          <Grid item xs={12} md={4}>
-            <Participation participationCount={participationCount} />
-          </Grid>
+          <S.UpperGrid item xs={12} md={4}>
+            <Participation title={'누적 참여자 수'} participationCount={participationCount} />
+          </S.UpperGrid>
           {/* Recent Survey */}
-          <Grid item xs={12}>
+          <S.BottomGrid item xs={12}>
             <SurveyList title={'최근 등록된 설문'} data={surveyData} />
-          </Grid>
+          </S.BottomGrid>
         </Grid>
       </S.Container>
     </S.DashboardTemplate>

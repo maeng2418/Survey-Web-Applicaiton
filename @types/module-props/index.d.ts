@@ -15,10 +15,12 @@ declare module 'module-props' {
   }
 
   interface ILineChartProps {
+    title?: string;
     data: { time: string; amount?: number }[];
   }
 
   interface IParticipationProps {
+    title?: string;
     participationCount: number;
   }
 

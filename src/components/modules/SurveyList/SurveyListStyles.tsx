@@ -6,4 +6,6 @@ export const SurveyListPaper = styled(Paper)`
   overflow: auto;
   flex-direction: column;
   padding: 24px;
+  width: 100%;
+  height: 100%;
 `;

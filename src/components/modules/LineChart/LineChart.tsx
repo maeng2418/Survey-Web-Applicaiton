@@ -4,10 +4,10 @@ import * as S from './LineChartStyles';
 import { LineChart as Chart, Line, XAxis, YAxis, Label, ResponsiveContainer } from 'recharts';
 import { Title } from 'components';
 
-const LineChart: React.FC<ILineChartProps> = ({ data }) => {
+const LineChart: React.FC<ILineChartProps> = ({ title, data }) => {
   return (
     <S.LineChartPaper>
-      <Title>Today</Title>
+      {title ? <Title>{title}</Title> : null}
       <ResponsiveContainer>
         <Chart
           data={data}
