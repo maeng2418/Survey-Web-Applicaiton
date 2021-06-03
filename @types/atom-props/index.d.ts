@@ -4,4 +4,8 @@ declare module 'atom-props' {
     icon: React.ReactNode;
     onClick: () => void;
   }
+
+  interface ILineChartProps {
+    data: { time: string; amount?: number }[];
+  }
 }

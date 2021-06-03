@@ -65,11 +65,7 @@ const Pwl: React.FC = () => {
     }
   });
 
-  return (
-    <S.Pwl item xs={12}>
-      <S.Section>{PwlList}</S.Section>
-    </S.Pwl>
-  );
+  return <S.Section>{PwlList}</S.Section>;
 };
 
 export default Pwl;

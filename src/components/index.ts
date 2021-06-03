@@ -9,17 +9,19 @@ export { default as SurveyTitleInput } from './atoms/SurveyTitleInput';
 export { default as SelectItemInput } from './atoms/SelectItemInput';
 export { default as SaveSurveyBtn } from './atoms/SaveSurveyBtn';
 export { default as DeleteQuestionBtn } from './atoms/DeleteQuestionBtn';
+export { default as GraphSelect } from './atoms/GraphSelect';
+export { default as LineChart } from './atoms/LineChart';
 
 // Modules
 export { default as LoginForm } from './modules/LoginForm';
 export { default as Header } from './modules/Header';
 export { default as SideBar } from './modules/SideBar';
-export { default as LineChart } from './modules/LineChart';
 export { default as Participation } from './modules/Participation';
 export { default as SurveyList } from './modules/SurveyList';
 export { default as Pwl } from './modules/Pwl';
 export { default as QuestionFormBox } from './modules/QuestionFormBox';
 export { default as SurveyForm } from './modules/SurveyForm';
+export { default as Chart } from './modules/Chart';
 
 // Templates
 export { default as MainTemplate } from './templates/MainTemplate';
@@ -28,3 +30,4 @@ export { default as AdminTemplate } from './templates/AdminTemplate';
 export { default as DashboardTemplate } from './templates/DashboardTemplate';
 export { default as SurveyListTemplate } from './templates/SurveyListTemplate';
 export { default as AddSurveyTemplate } from './templates/AddSurveyTemplate';
+export { default as SurveyReportTemplate } from './templates/SurveyReportTemplate';

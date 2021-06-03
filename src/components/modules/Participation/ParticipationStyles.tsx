@@ -3,5 +3,6 @@ import { Paper } from '@material-ui/core';
 
 export const ParticipationPaper = styled(Paper)`
   padding: 24px;
-  height: 35vh;
+  width: 100%;
+  height: 100%;
 `;

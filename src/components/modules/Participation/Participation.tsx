@@ -5,10 +5,10 @@ import { Typography } from '@material-ui/core';
 import { Title } from 'components';
 import moment from 'moment';
 
-const Participation: React.FC<IParticipationProps> = ({ participationCount }) => {
+const Participation: React.FC<IParticipationProps> = ({ title, participationCount }) => {
   return (
     <S.ParticipationPaper>
-      <Title>누적 참여자 수</Title>
+      {title ? <Title>{title}</Title> : null}
       <Typography component="p" variant="h3" gutterBottom>
         {participationCount.toLocaleString()} 명
       </Typography>

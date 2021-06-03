@@ -28,4 +28,10 @@ declare module 'template-props' {
       count: number;
     }[];
   }
+
+  interface ISurveyReportTemplateProps {
+    chartData: { time: string; amount?: number }[];
+    todayParticipationCount: number;
+    totalParticipationCount: number;
+  }
 }
