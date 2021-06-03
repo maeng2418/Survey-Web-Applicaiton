@@ -26,7 +26,7 @@ declare module 'module-props' {
     participationCount: number;
   }
 
-  interface ISurveyList {
+  interface ISurveyListProps {
     title?: string;
     data: {
       id: number;
@@ -34,5 +34,9 @@ declare module 'module-props' {
       title: string;
       count: number;
     }[];
+  }
+
+  interface ISurveyHeaderProps {
+    title: string;
   }
 }

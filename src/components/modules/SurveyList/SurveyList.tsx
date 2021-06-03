@@ -1,10 +1,10 @@
 import React from 'react';
-import { ISurveyList } from 'module-props';
+import { ISurveyListProps } from 'module-props';
 import * as S from './SurveyListStyles';
 import { Link, Table, TableBody, TableCell, TableHead, TableRow } from '@material-ui/core';
 import { Title } from 'components';
 
-const SurveyList: React.FC<ISurveyList> = ({ title, data }) => {
+const SurveyList: React.FC<ISurveyListProps> = ({ title, data }) => {
   return (
     <S.SurveyListPaper>
       {title ? <Title>{title}</Title> : null}
