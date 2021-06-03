@@ -10,7 +10,7 @@ export const Container = styled(MaterialContainer)`
 `;
 
 export const UpperGridItem = styled(Grid)`
-  height: 24vh;
+  height: 240px;
 `;
 
 export const BottomGridItem = styled(Grid)`
