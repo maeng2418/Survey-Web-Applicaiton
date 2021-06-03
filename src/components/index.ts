@@ -31,3 +31,4 @@ export { default as DashboardTemplate } from './templates/DashboardTemplate';
 export { default as SurveyListTemplate } from './templates/SurveyListTemplate';
 export { default as AddSurveyTemplate } from './templates/AddSurveyTemplate';
 export { default as SurveyReportTemplate } from './templates/SurveyReportTemplate';
+export { default as SurveyTemplate } from './templates/SurveyTemplate';
