@@ -14,6 +14,7 @@ import {
   SurveyListPage,
   AddSurveyPage,
   SurveyReportPage,
+  SurveyPage,
 } from 'pages';
 import moment from 'moment';
 
@@ -43,6 +44,7 @@ const App: React.FC = () => {
           <Route exact path="/list" component={SurveyListPage} />
           <Route exact path="/list/add" component={AddSurveyPage} />
           <Route exact path="/list/report" component={SurveyReportPage} />
+          <Route exact path="/survey" component={SurveyPage} />
         </Switch>
       </Router>
       <GlobalStyles />
