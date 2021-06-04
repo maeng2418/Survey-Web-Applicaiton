@@ -39,4 +39,10 @@ declare module 'module-props' {
   interface ISurveyHeaderProps {
     title: string;
   }
+
+  interface IQuestionBoxProps {
+    title: string;
+    type: 'checkbox' | 'radio';
+    list: { [key: string]: string }[];
+  }
 }

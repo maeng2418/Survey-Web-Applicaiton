@@ -23,6 +23,7 @@ export { default as QuestionFormBox } from './modules/QuestionFormBox';
 export { default as SurveyForm } from './modules/SurveyForm';
 export { default as Chart } from './modules/Chart';
 export { default as SurveyHeader } from './modules/SurveyHeader';
+export { default as QuestionBox } from './modules/QuestionBox';
 
 // Templates
 export { default as MainTemplate } from './templates/MainTemplate';
