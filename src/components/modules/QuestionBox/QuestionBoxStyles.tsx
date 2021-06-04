@@ -1,9 +1,7 @@
 import styled, { css } from 'styled-components';
-import { Grid, Paper } from '@material-ui/core';
+import { Paper } from '@material-ui/core';
 
-export const QuestionBox = styled(Grid)``;
-
-export const QuestionPaper = styled(Paper)`
+export const QuestionBox = styled(Paper)`
   padding: 24px;
 `;
 
