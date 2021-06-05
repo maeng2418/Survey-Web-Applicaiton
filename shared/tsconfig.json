@@ -2,8 +2,8 @@
   "compilerOptions": {
     "esModuleInterop": true,
     "strict": true,
-    "target": "es5",
     "moduleResolution": "node",
-    "module": "esnext"
+    "target": "esnext",
+    "module": "commonjs"
   }
 }
