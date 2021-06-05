@@ -1,6 +1,7 @@
 {
   "name": "server",
   "version": "1.0.0",
+  "license": "ISC",
   "scripts": {
     "dev": "nodemon --env=development"
   },
@@ -12,7 +13,9 @@
     "exec": "ts-node -r tsconfig-paths/register ./src"
   },
   "dependencies": {
-    "express": "^4.17.1"
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "http-status-codes": "^2.1.4"
   },
   "devDependencies": {
     "@types/express": "^4.17.12",
