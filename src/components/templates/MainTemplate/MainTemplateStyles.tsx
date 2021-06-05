@@ -14,16 +14,6 @@ export const MainTemplate = styled.div`
   background-size: cover;
 `;
 
-export const Header = styled.header`
-  position: fixed;
-  top: 0;
-  display: flex;
-  justify-content: flex-end;
-  width: 100vw;
-  height: 72px;
-  padding: 20px 0;
-`;
-
 export const LoginBtn = styled(Button)`
   margin-right: 24px;
   font-size: 24px;
@@ -36,7 +26,7 @@ export const Content = styled.div`
   width: 65vw;
 `;
 
-export const SurveyBtn = styled(Button)`
+export const MainButton = styled(Button)`
   width: 380px;
   margin-top: 64px;
   font-weight: bold;
