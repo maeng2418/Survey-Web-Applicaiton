@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { Paper, Button } from '@material-ui/core';
 
 export const QuestionFormBox = styled(Paper)`

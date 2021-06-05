@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { Paper, Grid } from '@material-ui/core';
 
 export const SurveyForm = styled(Paper)`

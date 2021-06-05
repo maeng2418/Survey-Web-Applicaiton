@@ -2,7 +2,7 @@ import React from 'react';
 import { ISurveyReportTemplateProps } from 'template-props';
 import * as S from './SurveyReportTemplateStyles';
 import { Grid } from '@material-ui/core';
-import { Pwl, Participation, Chart, GraphSelect } from 'components';
+import { Pwl, Participation, Chart } from 'components';
 
 const SurveyReportTemplate: React.FC<ISurveyReportTemplateProps> = ({
   chartData,

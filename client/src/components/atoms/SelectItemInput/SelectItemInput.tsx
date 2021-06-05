@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import * as S from './SelectItemInputStyles';
 import {
   Grid,
-  Typography,
   FormControl,
   OutlinedInput,
   IconButton,
@@ -29,32 +28,27 @@ const SelectItemInput: React.FC = () => {
     setItemList([...list]);
   };
 
-  useEffect(
-    () => {
-      if (type === 'boolean') {
-        setItemList([
-          {
-            start: 'YES',
-            value: '',
-          },
-          {
-            start: 'NO',
-            value: '',
-          },
-        ]);
-      } else {
-        setItemList([
-          {
-            adder: true,
-            value: '',
-          },
-        ]);
-      }
-    },
-    [
-      /* type */
-    ]
-  );
+  useEffect(() => {
+    if (type === 'boolean') {
+      setItemList([
+        {
+          start: 'YES',
+          value: '',
+        },
+        {
+          start: 'NO',
+          value: '',
+        },
+      ]);
+    } else {
+      setItemList([
+        {
+          adder: true,
+          value: '',
+        },
+      ]);
+    }
+  }, [type]);
 
   const onClickAdderBtn = () => {
     setItemList([
