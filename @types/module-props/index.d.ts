@@ -45,4 +45,12 @@ declare module 'module-props' {
     type: 'checkbox' | 'radio';
     list: { [key: string]: string }[];
   }
+
+  interface IJoinSurveyFormProps {
+    title: string;
+    description: string;
+    open: boolean;
+    onClickCancelBtn: () => void;
+    onClickJoinBtn: () => void;
+  }
 }
