@@ -1,6 +1,6 @@
 import React from 'react';
 import * as S from './QuestionInputStyles';
-import { Grid, Typography, TextField } from '@material-ui/core';
+import { Grid, TextField } from '@material-ui/core';
 
 const QuestionInput: React.FC = () => {
   return (
