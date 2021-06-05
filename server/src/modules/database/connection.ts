@@ -1,5 +1,4 @@
-import { databaseConfig } from 'config/contants';
-
+import { databaseConfig } from 'config/constants';
 const connection = {
   ...databaseConfig,
   dialect: 'mysql',

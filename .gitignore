@@ -24,3 +24,5 @@ yarn-error.log*
 
 .development.env
 .production.env
+
+server/src/bulk-data/user.json
