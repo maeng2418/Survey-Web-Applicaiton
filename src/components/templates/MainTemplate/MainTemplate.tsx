@@ -1,6 +1,6 @@
 import React from 'react';
 import * as S from './MainTemplateStyles';
-import { Headline } from 'components';
+import { Headline, JoinSurveyForm } from 'components';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import { IMainTemplateProps } from 'template-props';
 
@@ -21,8 +21,15 @@ const MainTemplate: React.FC<IMainTemplateProps> = ({ onClickLoginBtn, onClickSu
           startIcon={<AssignmentIcon />}
           onClick={onClickSurveyBtn}
         >
-          설문 조사
+          설문 조사 시작
         </S.SurveyBtn>
+        <JoinSurveyForm
+          title={'오늘의 야식'}
+          description={'오늘 먹을 야식을 조사합니다.'}
+          onClickCancelBtn={() => console.log('cancel')}
+          onClickJoinBtn={() => console.log('join')}
+          open={true}
+        />
       </S.Content>
     </S.MainTemplate>
   );
