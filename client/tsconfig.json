@@ -2,7 +2,11 @@
   "extends": "../shared/tsconfig.json",
   "compilerOptions": {
     "baseUrl": "src",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
@@ -12,7 +16,13 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "typeRoots": ["../node_modules/@types", "../@types"]
+    "typeRoots": [
+      "../node_modules/@types",
+      "../@types"
+    ],
+    "module": "esnext"
   },
-  "include": ["src"]
+  "include": [
+    "src"
+  ]
 }
