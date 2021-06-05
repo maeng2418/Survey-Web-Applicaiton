@@ -1,7 +1,7 @@
 declare module 'template-props' {
   interface IMainTemplateProps {
-    onClickLoginBtn: () => void;
-    onClickSurveyBtn: () => void;
+    type: 'main' | 'join';
+    onClickMainBtn: () => void;
   }
 
   interface ILoginTemplateProps {

@@ -39,12 +39,13 @@ const App: React.FC = () => {
       <Router>
         <Switch>
           <Route exact path="/" component={MainPage} />
+          <Route exact path="/join/:surveyIdx" component={MainPage} />
+          <Route exact path="/survey/:surveyIdx/" component={SurveyPage} />
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/dashboard" component={DashboardPage} />
           <Route exact path="/list" component={SurveyListPage} />
           <Route exact path="/list/add" component={AddSurveyPage} />
           <Route exact path="/list/report" component={SurveyReportPage} />
-          <Route exact path="/survey" component={SurveyPage} />
         </Switch>
       </Router>
       <GlobalStyles />
