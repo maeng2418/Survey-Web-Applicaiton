@@ -2,9 +2,6 @@
   "extends": "../shared/tsconfig.json",
   "compilerOptions": {
     "baseUrl": "src",
-    "paths": {
-      "@shared/*": ["../../shared/*"]
-    },
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,

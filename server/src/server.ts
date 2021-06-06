@@ -16,7 +16,7 @@ const options = commandLineArgs([
 
 // Set the env file
 const result2 = dotenv.config({
-  path: path.join(__dirname, `../../shared/env/.${options.env}.env`),
+  path: path.join(__dirname, `../env/.env.${options.env}`),
 });
 
 if (result2.error) {

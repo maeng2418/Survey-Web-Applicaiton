@@ -22,7 +22,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-.development.env
-.production.env
+.env.development
+.env.production
 
 server/src/bulk-data/user.json
