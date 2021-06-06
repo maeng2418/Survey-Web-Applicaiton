@@ -49,6 +49,7 @@ const emailSignIn = async (req: Request, res: Response, next: NextFunction): Pro
           success: true,
           username: emailUser.getDataValue('username'),
           email: emailUser.getDataValue('email'),
+          token: emailUser.getDataValue('token'),
         },
       });
   } catch (err) {

@@ -6,6 +6,7 @@ const slice = createSlice({
   initialState: {
     username: null,
     email: null,
+    token: null,
     error: '',
   },
   reducers: {
@@ -13,6 +14,7 @@ const slice = createSlice({
     loginSuccess: (state, action) => {
       state.username = action.payload.username;
       state.email = action.payload.email;
+      state.token = action.payload.token;
     },
     loginFailure: (state, action) => {
       state.error = action.payload;

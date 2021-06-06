@@ -1,4 +1,4 @@
-import { takeEvery, put, call, delay } from 'redux-saga/effects';
+import { put, call, delay, takeLatest } from 'redux-saga/effects';
 import { loginRequest, loginSuccess, loginFailure } from '../slices/user';
 import API from 'utils/api';
 import { PayloadAction } from '@reduxjs/toolkit';
@@ -22,5 +22,5 @@ function* loginUser(action: PayloadAction<{ email: string; password: string }>):
 }
 
 export default function* userSaga() {
-  yield takeEvery(loginRequest.type, loginUser);
+  yield takeLatest(loginRequest.type, loginUser);
 }

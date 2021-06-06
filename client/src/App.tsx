@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import Normalize from 'styles/Nomalize';
 import GlobalStyles from 'styles/GlobalStyles';
 
@@ -17,6 +17,9 @@ import {
   SurveyPage,
 } from 'pages';
 import moment from 'moment';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { State } from 'store';
 
 const theme = createMuiTheme({
   palette: {
@@ -42,14 +45,33 @@ const App: React.FC = () => {
           <Route exact path="/join/:surveyIdx" component={MainPage} />
           <Route exact path="/survey/:surveyIdx/" component={SurveyPage} />
           <Route exact path="/login" component={LoginPage} />
-          <Route exact path="/dashboard" component={DashboardPage} />
-          <Route exact path="/list" component={SurveyListPage} />
-          <Route exact path="/list/add" component={AddSurveyPage} />
-          <Route exact path="/list/report" component={SurveyReportPage} />
+          <RestrictRoute exact path="/dashboard" component={DashboardPage} />
+          <RestrictRoute exact path="/list" component={SurveyListPage} />
+          <RestrictRoute exact path="/list/add" component={AddSurveyPage} />
+          <RestrictRoute exact path="/list/report" component={SurveyReportPage} />
         </Switch>
       </Router>
       <GlobalStyles />
     </ThemeProvider>
+  );
+};
+
+const RestrictRoute: React.FC<any> = ({ component: Component, ...rest }) => {
+  const user = useSelector((state: State) => state.user);
+  const isAuthenticated = user.token ? true : false;
+  return (
+    <Route
+      {...rest}
+      render={(props) => {
+        if (isAuthenticated) {
+          // 권한이 있을 경우
+          return <Component {...props} />;
+        } else {
+          // 권한이 없을 경우
+          return <Redirect to={{ pathname: '/', state: { from: props.location } }} />;
+        }
+      }}
+    />
   );
 };
 
