@@ -7,15 +7,11 @@ import { UserReq } from 'dtos';
 const LoginPage: React.FC = () => {
   const dispatch = useDispatch();
 
-  const data = {
-    id: 'id',
-    password: 'password',
-  };
   const onClickSubmitBtn = (values: UserReq) => {
     dispatch(loginRequest(values));
   };
 
-  return <LoginTemplate onClickSubmitBtn={onClickSubmitBtn} data={data} />;
+  return <LoginTemplate onClickSubmitBtn={onClickSubmitBtn} />;
 };
 
 export default LoginPage;

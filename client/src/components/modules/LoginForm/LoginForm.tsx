@@ -5,7 +5,7 @@ import { FormControlLabel, TextField, Button, Checkbox } from '@material-ui/core
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 
-const LoginForm: React.FC<ILoginFormProps> = ({ onClickSubmitBtn, data }) => {
+const LoginForm: React.FC<ILoginFormProps> = ({ onClickSubmitBtn }) => {
   const initialValues = {
     email: localStorage.getItem('email') || '',
     password: '',
