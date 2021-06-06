@@ -28,7 +28,7 @@ const emailSignIn = async (req: Request, res: Response, next: NextFunction): Pro
         data: {
           id: emailUser.getDataValue('id'),
           username: emailUser.getDataValue('username'),
-          email: emailUser.email,
+          email: emailUser.getDataValue('email'),
         },
       },
       jwtSecret,
@@ -49,7 +49,7 @@ const emailSignIn = async (req: Request, res: Response, next: NextFunction): Pro
           success: true,
           username: emailUser.getDataValue('username'),
           email: emailUser.getDataValue('email'),
-          token: emailUser.getDataValue('token'),
+          token: token,
         },
       });
   } catch (err) {
@@ -67,7 +67,9 @@ const isValidToken = async (req: Request, res: Response, next: NextFunction): Pr
         message: `valificated user ${user.username}`,
         result: {
           success: true,
-          user: user,
+          username: user.username,
+          email: user.email,
+          token: req.cookies.authorization,
         },
       });
     } else throw new CustomError(StatusCodes.BAD_REQUEST, 'not valid token', '');
