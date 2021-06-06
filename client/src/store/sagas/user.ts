@@ -1,5 +1,5 @@
 import { takeEvery, put, call, delay } from 'redux-saga/effects';
-import { loginRequest, loginSuccess, loginFail } from '../slices/user';
+import { loginRequest, loginSuccess, loginFailure } from '../slices/user';
 import API from 'utils/api';
 import { PayloadAction } from '@reduxjs/toolkit';
 
@@ -9,11 +9,15 @@ function loginUserAPI(data: { email: string; password: string }) {
 
 function* loginUser(action: PayloadAction<{ email: string; password: string }>): Generator {
   try {
-    // const result = yield call(loginUserAPI, action.payload);
+    const response: any = yield call(loginUserAPI, action.payload);
     yield delay(1000);
-    yield put(loginSuccess('user'));
+    if (response.data.result.success) {
+      yield put(loginSuccess(response.data.result));
+    } else {
+      yield put(loginFailure(response.data.message));
+    }
   } catch (err) {
-    yield put(loginFail(err.message));
+    yield put(loginFailure(err.message));
   }
 }
 

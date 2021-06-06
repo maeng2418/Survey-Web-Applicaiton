@@ -6,7 +6,7 @@ declare module 'template-props' {
 
   interface ILoginTemplateProps {
     data: { [key: string]: string };
-    onClickSubmitBtn: (data: { [key: string]: string }) => void;
+    onClickSubmitBtn: (data: { email: string; password: string }) => void;
   }
 
   interface IDashboardTemplateProps {

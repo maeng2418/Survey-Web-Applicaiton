@@ -1,14 +1,21 @@
 import { User } from 'models';
 
-// 테스트
-const test = async (): Promise<any> => {
+// 유저 조회
+const findUserByEmail = async (email: string): Promise<User | null> => {
   try {
-    return { id: 'id', password: 'password' };
+    const user = await User.findOne({
+      attributes: ['id', 'email', 'provider', 'password', 'username'],
+      where: {
+        email: email,
+        provider: 'email',
+      },
+    });
+    return user;
   } catch (err) {
     throw Error(err);
   }
 };
 
 export default {
-  test,
+  findUserByEmail,
 };

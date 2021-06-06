@@ -7,7 +7,7 @@ import * as yup from 'yup';
 
 const LoginForm: React.FC<ILoginFormProps> = ({ onClickSubmitBtn, data }) => {
   const initialValues = {
-    email: '',
+    email: localStorage.getItem('email') || '',
     password: '',
     remember: false,
   };
@@ -28,7 +28,12 @@ const LoginForm: React.FC<ILoginFormProps> = ({ onClickSubmitBtn, data }) => {
     initialValues: initialValues,
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      if (values.remember) {
+        localStorage.setItem('email', values.email);
+      } else {
+        localStorage.removeItem('email');
+      }
+      onClickSubmitBtn({ email: values.email, password: values.password });
     },
   });
 
@@ -61,13 +66,7 @@ const LoginForm: React.FC<ILoginFormProps> = ({ onClickSubmitBtn, data }) => {
         label="Remember me"
         onChange={formik.handleChange}
       />
-      <Button
-        onClick={() => onClickSubmitBtn(data)}
-        size="large"
-        variant="contained"
-        color="primary"
-        type="submit"
-      >
+      <Button size="large" variant="contained" color="primary" type="submit">
         SIGN IN
       </Button>
     </S.LoginForm>
