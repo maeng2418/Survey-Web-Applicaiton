@@ -46,6 +46,7 @@ const emailSignIn = async (req: Request, res: Response, next: NextFunction): Pro
         status: StatusCodes.OK,
         message: `Log in success ${body.email}`,
         result: {
+          success: true,
           username: emailUser.getDataValue('username'),
           email: emailUser.getDataValue('email'),
         },
@@ -63,7 +64,10 @@ const isValidToken = async (req: Request, res: Response, next: NextFunction): Pr
       res.status(StatusCodes.OK).json({
         status: StatusCodes.OK,
         message: `valificated user ${user.username}`,
-        result: user,
+        result: {
+          success: true,
+          user: user,
+        },
       });
     } else throw new CustomError(StatusCodes.BAD_REQUEST, 'not valid token', '');
   } catch (err) {
