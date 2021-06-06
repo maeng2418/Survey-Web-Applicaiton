@@ -1,3 +1,4 @@
+import './load-env'; // Must be the first import
 import http from 'http';
 import app from 'server';
 import { dbService } from 'modules/database';
