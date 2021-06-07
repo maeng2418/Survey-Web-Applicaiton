@@ -1,12 +1,11 @@
 declare module 'template-props' {
   interface IMainTemplateProps {
-    onClickLoginBtn: () => void;
-    onClickSurveyBtn: () => void;
+    type: 'main' | 'join';
+    onClickMainBtn: () => void;
   }
 
   interface ILoginTemplateProps {
-    data: { [key: string]: string };
-    onClickSubmitBtn: (data: { [key: string]: string }) => void;
+    onClickSubmitBtn: (data: { email: string; password: string }) => void;
   }
 
   interface IDashboardTemplateProps {

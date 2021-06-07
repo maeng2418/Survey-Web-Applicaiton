@@ -11,6 +11,7 @@ export { default as SaveSurveyBtn } from './atoms/SaveSurveyBtn';
 export { default as DeleteQuestionBtn } from './atoms/DeleteQuestionBtn';
 export { default as GraphSelect } from './atoms/GraphSelect';
 export { default as LineChart } from './atoms/LineChart';
+export { default as Loading } from './atoms/Loading';
 
 // Modules
 export { default as LoginForm } from './modules/LoginForm';

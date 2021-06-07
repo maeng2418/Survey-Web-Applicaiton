@@ -1,5 +1,5 @@
-import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Router, Switch, Route, Redirect } from 'react-router-dom';
 import Normalize from 'styles/Nomalize';
 import GlobalStyles from 'styles/GlobalStyles';
 
@@ -16,7 +16,13 @@ import {
   SurveyReportPage,
   SurveyPage,
 } from 'pages';
+import { Loading } from 'components';
+
 import moment from 'moment';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { customHistory, State } from 'store';
+import { authRequest } from 'store/slices/user';
 
 const theme = createMuiTheme({
   palette: {
@@ -32,23 +38,47 @@ const theme = createMuiTheme({
 
 const App: React.FC = () => {
   moment.locale('kr');
+  const user = useSelector((state: State) => state.user);
   return (
     <ThemeProvider theme={theme}>
       <Normalize />
       <CssBaseline />
-      <Router>
+      <Router history={customHistory}>
         <Switch>
           <Route exact path="/" component={MainPage} />
+          <Route exact path="/join/:surveyIdx" component={MainPage} />
+          <Route exact path="/survey/:surveyIdx/" component={SurveyPage} />
           <Route exact path="/login" component={LoginPage} />
-          <Route exact path="/dashboard" component={DashboardPage} />
-          <Route exact path="/list" component={SurveyListPage} />
-          <Route exact path="/list/add" component={AddSurveyPage} />
-          <Route exact path="/list/report" component={SurveyReportPage} />
-          <Route exact path="/survey" component={SurveyPage} />
+          <RestrictRoute exact path="/dashboard" component={DashboardPage} />
+          <RestrictRoute exact path="/list" component={SurveyListPage} />
+          <RestrictRoute exact path="/list/add" component={AddSurveyPage} />
+          <RestrictRoute exact path="/list/report" component={SurveyReportPage} />
         </Switch>
       </Router>
       <GlobalStyles />
     </ThemeProvider>
+  );
+};
+
+const RestrictRoute: React.FC<any> = ({ component: Component, ...rest }) => {
+  const dispatch = useDispatch();
+  const user = useSelector((state: State) => state.user);
+  useEffect(() => {
+    dispatch(authRequest({}));
+  }, []);
+  return (
+    <Route
+      {...rest}
+      render={(props) =>
+        !user.token && user.isLoading ? (
+          <Loading visible={user.isLoading} />
+        ) : user.token ? (
+          <Component {...props} />
+        ) : (
+          <Redirect to={{ pathname: '/', state: { from: props.location } }} />
+        )
+      }
+    />
   );
 };
 

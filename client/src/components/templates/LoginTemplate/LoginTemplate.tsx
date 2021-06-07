@@ -5,7 +5,7 @@ import { Headline, LoginForm } from 'components';
 import Hidden from '@material-ui/core/Hidden';
 import PersonPinIcon from '@material-ui/icons/PersonPin';
 
-const LoginTemplate: React.FC<ILoginTemplateProps> = ({ onClickSubmitBtn, data }) => {
+const LoginTemplate: React.FC<ILoginTemplateProps> = ({ onClickSubmitBtn }) => {
   return (
     <S.LoginTemplate container>
       <Hidden smDown>
@@ -16,7 +16,7 @@ const LoginTemplate: React.FC<ILoginTemplateProps> = ({ onClickSubmitBtn, data }
       <S.FormContainer item xs={12} md={5}>
         <PersonPinIcon fontSize="large" />
         <S.LoginTypograph variant={'h5'}>Login</S.LoginTypograph>
-        <LoginForm onClickSubmitBtn={onClickSubmitBtn} data={data} />
+        <LoginForm onClickSubmitBtn={onClickSubmitBtn} />
       </S.FormContainer>
     </S.LoginTemplate>
   );

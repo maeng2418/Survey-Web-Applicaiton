@@ -1,7 +1,6 @@
 declare module 'module-props' {
   interface ILoginFormProps {
-    data: { [key: string]: string };
-    onClickSubmitBtn: (data: { [key: string]: string }) => void;
+    onClickSubmitBtn: (data: { email: string; password: string }) => void;
   }
 
   interface ISideBarProps {

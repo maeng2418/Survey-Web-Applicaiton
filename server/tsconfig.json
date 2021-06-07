@@ -2,16 +2,12 @@
   "extends": "../shared/tsconfig.json",
   "compilerOptions": {
     "baseUrl": "src",
-    "paths": {
-      "@shared/*": ["../../shared/*"]
-    },
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
     "removeComments": true,
     "sourceMap": true,
-    "types": ["node"],
-    "typeRoots": ["../node_modules/@types", "../@types"]
+    "typeRoots": ["../node_modules/@types", "../@types", "node"]
   },
   "include": ["src"]
 }

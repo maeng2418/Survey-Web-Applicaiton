@@ -1,6 +1,6 @@
 import { DataTypes, Model } from 'sequelize';
 import { sequelize } from 'modules/database';
-import REGEX from '@shared/validation';
+import REGEX from 'utils/validation';
 
 class User extends Model {
   public id!: string;
