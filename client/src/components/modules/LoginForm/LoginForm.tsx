@@ -9,7 +9,7 @@ const LoginForm: React.FC<ILoginFormProps> = ({ onClickSubmitBtn }) => {
   const initialValues = {
     email: localStorage.getItem('email') || '',
     password: '',
-    remember: false,
+    remember: localStorage.getItem('email') ? true : false,
   };
 
   const validationSchema = yup.object({
@@ -64,6 +64,7 @@ const LoginForm: React.FC<ILoginFormProps> = ({ onClickSubmitBtn }) => {
         control={<Checkbox name="remember" color="primary" />}
         name="remember"
         label="Remember me"
+        checked={formik.values.remember}
         onChange={formik.handleChange}
       />
       <Button size="large" variant="contained" color="primary" type="submit">
