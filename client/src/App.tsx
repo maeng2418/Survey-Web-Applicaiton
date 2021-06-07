@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import { Router, Switch, Route, Redirect } from 'react-router-dom';
 import Normalize from 'styles/Nomalize';
 import GlobalStyles from 'styles/GlobalStyles';
 
@@ -19,7 +19,7 @@ import {
 import moment from 'moment';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { State } from 'store';
+import { customHistory, State } from 'store';
 
 const theme = createMuiTheme({
   palette: {
@@ -39,7 +39,7 @@ const App: React.FC = () => {
     <ThemeProvider theme={theme}>
       <Normalize />
       <CssBaseline />
-      <Router>
+      <Router history={customHistory}>
         <Switch>
           <Route exact path="/" component={MainPage} />
           <Route exact path="/join/:surveyIdx" component={MainPage} />
