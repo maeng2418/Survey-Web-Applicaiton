@@ -38,20 +38,30 @@ const slice = createSlice({
     onHideLoading: (state, action) => {
       state.isLoading = false;
     },
-    logoutSuccess: (state, action) => {},
+    logoutRequest: (state, action) => {},
+    logoutSuccess: (state, action) => {
+      state.username = null;
+      state.email = null;
+      state.token = null;
+    },
+    logoutFailure: (state, action) => {
+      state.error = action.payload;
+    },
   },
 });
 
 export const {
   loginRequest,
   loginSuccess,
-  logoutSuccess,
   loginFailure,
   authRequest,
   authSuccess,
   authFailure,
   onShowLoading,
   onHideLoading,
+  logoutRequest,
+  logoutSuccess,
+  logoutFailure,
 } = slice.actions;
 
 export default slice.reducer;

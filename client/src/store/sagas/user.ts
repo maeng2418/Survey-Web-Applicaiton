@@ -8,6 +8,9 @@ import {
   authFailure,
   onShowLoading,
   onHideLoading,
+  logoutRequest,
+  logoutFailure,
+  logoutSuccess,
 } from '../slices/user';
 import API from 'utils/api';
 import { PayloadAction } from '@reduxjs/toolkit';
@@ -54,7 +57,28 @@ function* authUser(action: PayloadAction): Generator {
   yield put(onHideLoading({}));
 }
 
+// 로그아웃
+function logoutAPI() {
+  return API.delete('/users');
+}
+
+function* logoutUser(action: PayloadAction): Generator {
+  yield put(onShowLoading({}));
+  try {
+    const response: any = yield call(logoutAPI);
+    if (response.data.result.success) {
+      yield put(logoutSuccess({}));
+    } else {
+      yield put(logoutFailure(response.data.message));
+    }
+  } catch (err) {
+    yield put(logoutFailure(err.message));
+  }
+  yield put(onHideLoading({}));
+}
+
 export default function* userSaga() {
   yield takeLatest(loginRequest.type, loginUser);
   yield takeEvery(authRequest.type, authUser);
+  yield takeLatest(logoutRequest.type, logoutUser);
 }
