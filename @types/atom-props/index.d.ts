@@ -8,4 +8,8 @@ declare module 'atom-props' {
   interface ILineChartProps {
     data: { time: string; amount?: number }[];
   }
+
+  interface ILoadingProps {
+    visible: boolean;
+  }
 }

@@ -16,6 +16,8 @@ import {
   SurveyReportPage,
   SurveyPage,
 } from 'pages';
+import { Loading } from 'components';
+
 import moment from 'moment';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -36,7 +38,7 @@ const theme = createMuiTheme({
 
 const App: React.FC = () => {
   moment.locale('kr');
-
+  const user = useSelector((state: State) => state.user);
   return (
     <ThemeProvider theme={theme}>
       <Normalize />
@@ -69,7 +71,7 @@ const RestrictRoute: React.FC<any> = ({ component: Component, ...rest }) => {
       {...rest}
       render={(props) =>
         !user.token && user.isLoading ? (
-          <div>로딩중...</div>
+          <Loading visible={user.isLoading} />
         ) : user.token ? (
           <Component {...props} />
         ) : (

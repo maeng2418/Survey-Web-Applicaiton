@@ -44,6 +44,7 @@ function authUserAPI() {
 
 function* authUser(action: PayloadAction): Generator {
   yield put(onShowLoading({}));
+  yield delay(1000);
   try {
     const response: any = yield call(authUserAPI);
     if (response.data.result.success) {
