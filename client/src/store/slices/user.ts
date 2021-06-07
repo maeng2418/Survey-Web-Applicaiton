@@ -8,6 +8,7 @@ const slice = createSlice({
     email: null,
     token: null,
     error: '',
+    isLoading: true,
   },
   reducers: {
     loginRequest: (state, action) => {},
@@ -31,6 +32,12 @@ const slice = createSlice({
       state.token = null;
       state.error = action.payload;
     },
+    onShowLoading: (state, action) => {
+      state.isLoading = true;
+    },
+    onHideLoading: (state, action) => {
+      state.isLoading = false;
+    },
     logoutSuccess: (state, action) => {},
   },
 });
@@ -43,6 +50,8 @@ export const {
   authRequest,
   authSuccess,
   authFailure,
+  onShowLoading,
+  onHideLoading,
 } = slice.actions;
 
 export default slice.reducer;

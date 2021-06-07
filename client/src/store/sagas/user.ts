@@ -1,4 +1,4 @@
-import { put, call, delay, takeLatest, takeEvery } from 'redux-saga/effects';
+import { put, call, takeLatest, takeEvery, getContext, delay } from 'redux-saga/effects';
 import {
   loginRequest,
   loginSuccess,
@@ -6,6 +6,8 @@ import {
   authRequest,
   authSuccess,
   authFailure,
+  onShowLoading,
+  onHideLoading,
 } from '../slices/user';
 import API from 'utils/api';
 import { PayloadAction } from '@reduxjs/toolkit';
@@ -16,17 +18,20 @@ function loginUserAPI(data: { email: string; password: string }) {
 }
 
 function* loginUser(action: PayloadAction<{ email: string; password: string }>): Generator {
+  yield put(onShowLoading({}));
   try {
     const response: any = yield call(loginUserAPI, action.payload);
-    yield delay(1000);
     if (response.data.result.success) {
       yield put(loginSuccess(response.data.result));
+      const history: any = yield getContext('history');
+      history.push('/dashboard');
     } else {
       yield put(loginFailure(response.data.message));
     }
   } catch (err) {
     yield put(loginFailure(err.message));
   }
+  yield put(onHideLoading({}));
 }
 
 // 유저 인증
@@ -35,6 +40,7 @@ function authUserAPI() {
 }
 
 function* authUser(action: PayloadAction): Generator {
+  yield put(onShowLoading({}));
   try {
     const response: any = yield call(authUserAPI);
     if (response.data.result.success) {
@@ -45,6 +51,7 @@ function* authUser(action: PayloadAction): Generator {
   } catch (err) {
     yield put(authFailure(err.message));
   }
+  yield put(onHideLoading({}));
 }
 
 export default function* userSaga() {

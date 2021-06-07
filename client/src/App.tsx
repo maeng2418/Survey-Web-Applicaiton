@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Router, Switch, Route, Redirect } from 'react-router-dom';
 import Normalize from 'styles/Nomalize';
 import GlobalStyles from 'styles/GlobalStyles';
@@ -20,6 +20,7 @@ import moment from 'moment';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { customHistory, State } from 'store';
+import { authRequest } from 'store/slices/user';
 
 const theme = createMuiTheme({
   palette: {
@@ -35,6 +36,7 @@ const theme = createMuiTheme({
 
 const App: React.FC = () => {
   moment.locale('kr');
+
   return (
     <ThemeProvider theme={theme}>
       <Normalize />
@@ -57,20 +59,23 @@ const App: React.FC = () => {
 };
 
 const RestrictRoute: React.FC<any> = ({ component: Component, ...rest }) => {
+  const dispatch = useDispatch();
   const user = useSelector((state: State) => state.user);
-  const isAuthenticated = user.token ? true : false;
+  useEffect(() => {
+    dispatch(authRequest({}));
+  }, []);
   return (
     <Route
       {...rest}
-      render={(props) => {
-        if (isAuthenticated) {
-          // 권한이 있을 경우
-          return <Component {...props} />;
-        } else {
-          // 권한이 없을 경우
-          return <Redirect to={{ pathname: '/', state: { from: props.location } }} />;
-        }
-      }}
+      render={(props) =>
+        !user.token && user.isLoading ? (
+          <div>로딩중...</div>
+        ) : user.token ? (
+          <Component {...props} />
+        ) : (
+          <Redirect to={{ pathname: '/', state: { from: props.location } }} />
+        )
+      }
     />
   );
 };

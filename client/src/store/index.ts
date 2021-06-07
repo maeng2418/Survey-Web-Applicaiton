@@ -20,7 +20,7 @@ const sagaMiddleware = createSagaMiddleware({
 
 const store = configureStore({
   reducer,
-  middleware: [...getDefaultMiddleware({ thunk: false }), sagaMiddleware], // 미들웨어를 정의해주도록 합니다.
+  middleware: [...getDefaultMiddleware(), sagaMiddleware], // 미들웨어를 정의해주도록 합니다.
   devTools: process.env.NODE_ENV !== 'production', // devTool 의 옵션을 선택합니다.
 });
 
