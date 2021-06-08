@@ -1,1 +1,1 @@
-export { default as UserService } from './users';
+export { default as UserService } from './user';

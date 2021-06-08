@@ -7,7 +7,7 @@ import CustomError from 'modules/exceptions/custom-error';
 const router = Router();
 
 /******************************************************************************
- *                      Auth User - "GET /api/users/"
+ *                      Auth User - "GET /api/user/"
  ******************************************************************************/
 router.get(
   '/',
@@ -27,12 +27,12 @@ router.get(
 );
 
 /******************************************************************************
- *                       SignIn - "POST /api/users/"
+ *                       SignIn - "POST /api/user/"
  ******************************************************************************/
 router.post('/', UserController.emailSignIn);
 
 /******************************************************************************
- *                       SignOut - "DELETE /api/users/"
+ *                       SignOut - "DELETE /api/user/"
  ******************************************************************************/
 router.delete('/', UserController.emailSignOut);
 
