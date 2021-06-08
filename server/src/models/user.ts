@@ -2,8 +2,10 @@ import { DataTypes, Model } from 'sequelize';
 import { sequelize } from 'modules/database';
 import REGEX from 'utils/validation';
 
+import Survey from './survey';
+
 class User extends Model {
-  public id!: string;
+  public id!: number;
   public username!: string;
   public email!: string; // 미리 선언하고 할당안되어도 나중에 반드시 할당될 것을 암시.
   public password?: string; // 자동으로 | undefined를 포함
