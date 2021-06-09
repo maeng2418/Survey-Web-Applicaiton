@@ -5,6 +5,8 @@ const slice = createSlice({
   name: 'survey',
   initialState: {
     idCounter: 0,
+    isSaved: false,
+    title: '',
     questionList: [
       {
         idx: 0,
@@ -25,8 +27,12 @@ const slice = createSlice({
         ],
       },
     ],
+    error: '',
   },
   reducers: {
+    changeTitle: (state, action) => {
+      state.title = action.payload.title;
+    },
     addQuestion: (state, action) => {
       state.questionList = [
         ...state.questionList,
@@ -148,43 +154,13 @@ const slice = createSlice({
       });
       state.questionList[action.payload.idx].optionList = [...result];
     },
-
-    // loginRequest: (state, action) => {},
-    // loginSuccess: (state, action) => {
-    //   state.username = action.payload.username;
-    //   state.email = action.payload.email;
-    //   state.token = action.payload.token;
-    // },
-    // loginFailure: (state, action) => {
-    //   state.error = action.payload;
-    // },
-    // authRequest: (state, action) => {},
-    // authSuccess: (state, action) => {
-    //   state.username = action.payload.username;
-    //   state.email = action.payload.email;
-    //   state.token = action.payload.token;
-    // },
-    // authFailure: (state, action) => {
-    //   state.username = null;
-    //   state.email = null;
-    //   state.token = null;
-    //   state.error = action.payload;
-    // },
-    // onShowLoading: (state, action) => {
-    //   state.isLoading = true;
-    // },
-    // onHideLoading: (state, action) => {
-    //   state.isLoading = false;
-    // },
-    // logoutRequest: (state, action) => {},
-    // logoutSuccess: (state, action) => {
-    //   state.username = null;
-    //   state.email = null;
-    //   state.token = null;
-    // },
-    // logoutFailure: (state, action) => {
-    //   state.error = action.payload;
-    // },
+    saveSurveyRequest: (state, action) => {},
+    saveSurveySuccess: (state, action) => {
+      state.isSaved = true;
+    },
+    saveSurveyFailure: (state, action) => {
+      state.error = action.payload;
+    },
   },
 });
 
@@ -197,17 +173,10 @@ export const {
   addOption,
   removeOption,
   changeOptionValue,
-  // loginRequest,
-  // loginSuccess,
-  // loginFailure,
-  // authRequest,
-  // authSuccess,
-  // authFailure,
-  // onShowLoading,
-  // onHideLoading,
-  // logoutRequest,
-  // logoutSuccess,
-  // logoutFailure,
+  changeTitle,
+  saveSurveyRequest,
+  saveSurveySuccess,
+  saveSurveyFailure,
 } = slice.actions;
 
 export default slice.reducer;

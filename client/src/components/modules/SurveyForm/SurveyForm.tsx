@@ -13,6 +13,7 @@ import {
   changeType,
   deleteQuestion,
   changeOptionValue,
+  changeTitle,
 } from 'store/slices/survey';
 import { State } from 'store';
 
@@ -52,10 +53,13 @@ const SurveyForm: React.FC = () => {
     dispatch(changeOptionValue({ idx: idx, start: start, value: value }));
   };
 
+  const onChangeTitle = (title: string) => {
+    dispatch(changeTitle({ title: title }));
+  };
   return (
     <S.SurveyForm>
       <S.Title>
-        <SurveyTitleInput />
+        <SurveyTitleInput onChangeTitle={onChangeTitle} title={survey.title} />
       </S.Title>
       <S.Content container spacing={3}>
         {survey &&
