@@ -40,11 +40,4 @@ Survey.hasMany(Question, {
   as: 'questions',
 });
 
-Survey.hasMany(SurveyParticipant, {
-  sourceKey: 'id',
-  foreignKey: { name: 'surveyId', allowNull: false },
-  onDelete: 'cascade',
-  as: 'survey_participants',
-});
-
 export default Survey;

@@ -1,22 +1,26 @@
 import { Router } from 'express';
 import passport from 'passport';
-import { UserController } from 'controllers';
+import { ParticipantController } from 'controllers';
 
 const router = Router();
 
 /******************************************************************************
- *                      Auth User - "GET /api/user/"
+ *                Number of participants - "GET /api/participant/all"
  ******************************************************************************/
-router.get('/', passport.authenticate('jwt', { session: false }), UserController.isValidToken);
+router.get('/all', passport.authenticate('jwt', { session: false }), ParticipantController.findAll);
 
 /******************************************************************************
- *                       SignIn - "POST /api/user/"
+ *     Number of participants by type - "GET /api/participant/list/${type}"
  ******************************************************************************/
-router.post('/', UserController.emailSignIn);
+router.get(
+  '/list/:count',
+  passport.authenticate('jwt', { session: false }),
+  ParticipantController.findLastestParticipants
+);
 
 /******************************************************************************
- *                       SignOut - "DELETE /api/user/"
+ *     Create Participation - "POST /api/participant"
  ******************************************************************************/
-router.delete('/', UserController.emailSignOut);
+router.post('/', ParticipantController.create);
 
 export default router;

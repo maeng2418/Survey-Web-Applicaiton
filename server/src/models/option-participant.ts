@@ -22,4 +22,18 @@ OptionParticipant.init(
   { timestamps: true, tableName: 'option_participant', sequelize }
 );
 
+OptionParticipant.belongsTo(Option, {
+  targetKey: 'id',
+  foreignKey: { name: 'optionId', allowNull: false },
+  onDelete: 'cascade',
+  as: 'option',
+});
+
+OptionParticipant.belongsTo(Participant, {
+  targetKey: 'id',
+  foreignKey: { name: 'participantId', allowNull: false },
+  onDelete: 'cascade',
+  as: 'participant',
+});
+
 export default OptionParticipant;
