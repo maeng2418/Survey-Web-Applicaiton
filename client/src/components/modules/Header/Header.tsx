@@ -4,11 +4,13 @@ import * as S from './HeaderStyles';
 import { Toolbar, IconButton } from '@material-ui/core';
 import { useTheme } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logoutRequest } from 'store/slices/user';
+import { State } from 'store';
 
 const Header: React.FC<IHeaderProps> = ({ isSideBarOpened, onOpenSideBar }) => {
   const theme = useTheme();
+  const user = useSelector((state: State) => state.user);
   const dispatch = useDispatch();
 
   const onClickLogoutBtn = () => dispatch(logoutRequest({}));
@@ -24,7 +26,7 @@ const Header: React.FC<IHeaderProps> = ({ isSideBarOpened, onOpenSideBar }) => {
         <S.Title variant="h6" color="inherit" noWrap>
           Dashboard
         </S.Title>
-        <S.Welcome variant="subtitle1">김명성님 환영합니다!</S.Welcome>
+        <S.Welcome variant="subtitle1">{user.username}님 환영합니다!</S.Welcome>
         <S.LogoutBtn size="large" variant="outlined" onClick={onClickLogoutBtn}>
           LOGOUT
         </S.LogoutBtn>
