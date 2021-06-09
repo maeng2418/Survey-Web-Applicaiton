@@ -4,8 +4,8 @@ import Normalize from 'styles/Nomalize';
 import GlobalStyles from 'styles/GlobalStyles';
 
 import { ThemeProvider } from '@material-ui/styles';
-
-import { CssBaseline, createMuiTheme } from '@material-ui/core';
+import { unstable_createMuiStrictModeTheme } from '@material-ui/core/styles';
+import { CssBaseline } from '@material-ui/core';
 import { indigo, blue } from '@material-ui/core/colors';
 import {
   MainPage,
@@ -24,7 +24,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { customHistory, State } from 'store';
 import { authRequest } from 'store/slices/user';
 
-const theme = createMuiTheme({
+const theme = unstable_createMuiStrictModeTheme({
   palette: {
     type: 'dark',
     primary: {
@@ -38,7 +38,7 @@ const theme = createMuiTheme({
 
 const App: React.FC = () => {
   moment.locale('kr');
-  const user = useSelector((state: State) => state.user);
+
   return (
     <ThemeProvider theme={theme}>
       <Normalize />
