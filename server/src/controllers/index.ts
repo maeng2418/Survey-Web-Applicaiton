@@ -1,1 +1,3 @@
-export { default as UserController } from './users';
+export { default as UserController } from './user';
+export { default as SurveyController } from './survey';
+export { default as ParticipantController } from './participant';

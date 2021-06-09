@@ -6,7 +6,7 @@ import OptionParticipant from './option-participant';
 
 class Participant extends Model {
   public id!: number;
-  public username!: string;
+  public name!: string;
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
 }
@@ -29,19 +29,5 @@ Participant.init(
   },
   { timestamps: true, tableName: 'participant', sequelize }
 );
-
-Participant.hasMany(SurveyParticipant, {
-  sourceKey: 'id',
-  foreignKey: { name: 'participantId', allowNull: false },
-  onDelete: 'cascade',
-  as: 'survey_participants',
-});
-
-Participant.hasMany(OptionParticipant, {
-  sourceKey: 'id',
-  foreignKey: { name: 'participantId', allowNull: false },
-  onDelete: 'cascade',
-  as: 'option_participants',
-});
 
 export default Participant;

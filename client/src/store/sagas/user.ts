@@ -17,7 +17,7 @@ import { PayloadAction } from '@reduxjs/toolkit';
 
 // 로그인
 function loginUserAPI(data: { email: string; password: string }) {
-  return API.post('/users', data);
+  return API.post('/user', data);
 }
 
 function* loginUser(action: PayloadAction<{ email: string; password: string }>): Generator {
@@ -39,7 +39,7 @@ function* loginUser(action: PayloadAction<{ email: string; password: string }>):
 
 // 유저 인증
 function authUserAPI() {
-  return API.get('/users');
+  return API.get('/user');
 }
 
 function* authUser(action: PayloadAction): Generator {
@@ -60,7 +60,7 @@ function* authUser(action: PayloadAction): Generator {
 
 // 로그아웃
 function logoutAPI() {
-  return API.delete('/users');
+  return API.delete('/user');
 }
 
 function* logoutUser(action: PayloadAction): Generator {

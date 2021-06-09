@@ -29,13 +29,8 @@ Option.init(
 Option.belongsTo(Question, {
   targetKey: 'id',
   foreignKey: { name: 'questionId', allowNull: false },
+  onDelete: 'cascade',
   as: 'question',
-});
-
-Option.hasMany(OptionParticipant, {
-  sourceKey: 'id',
-  foreignKey: { name: 'optionId', allowNull: false },
-  as: 'option_participants',
 });
 
 export default Option;
