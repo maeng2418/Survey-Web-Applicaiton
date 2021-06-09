@@ -1,22 +1,55 @@
-import React, { useState } from 'react';
+import React from 'react';
 import * as S from './SurveyFormStyles';
 import { QuestionFormBox, SurveyTitleInput } from 'components';
 import { Button, Grid } from '@material-ui/core';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  addOption,
+  removeOption,
+  addQuestion,
+  changePosition,
+  changeQuestion,
+  changeType,
+  deleteQuestion,
+  changeOptionValue,
+} from 'store/slices/survey';
+import { State } from 'store';
 
 const SurveyForm: React.FC = () => {
-  const [questionList, setQuestionList] = useState<React.ReactNode[]>([
-    <Grid item xs={12} key={0}>
-      <QuestionFormBox />
-    </Grid>,
-  ]);
+  const survey = useSelector((state: State) => state.survey);
+  const dispatch = useDispatch();
+
   const onClickAddQuestionBtn = () => {
-    setQuestionList([
-      ...questionList,
-      <Grid item xs={12} key={questionList.length}>
-        <QuestionFormBox />
-      </Grid>,
-    ]);
+    dispatch(addQuestion({}));
+  };
+
+  const onClickDeleteQuestionBtn = (idx: number) => {
+    dispatch(deleteQuestion({ idx: idx }));
+  };
+
+  const onChangeQuestion = (idx: number, question: string) => {
+    dispatch(changeQuestion({ idx: idx, question: question }));
+  };
+
+  const onChangePosition = (idx: number, position: number) => {
+    dispatch(changePosition({ idx: idx, position: position }));
+  };
+
+  const onChangeType = (idx: number, type: string) => {
+    dispatch(changeType({ idx: idx, type: type }));
+  };
+
+  const onClickAddOptionBtn = (idx: number, optionIdx: number) => {
+    dispatch(addOption({ idx: idx, optionIdx: optionIdx }));
+  };
+
+  const onClickRemoveOptionBtn = (idx: number, start: string) => {
+    dispatch(removeOption({ idx: idx, start: start }));
+  };
+
+  const onChangeOptionValue = (idx: number, start: string, value: string) => {
+    dispatch(changeOptionValue({ idx: idx, start: start, value: value }));
   };
 
   return (
@@ -25,11 +58,24 @@ const SurveyForm: React.FC = () => {
         <SurveyTitleInput />
       </S.Title>
       <S.Content container spacing={3}>
-        {questionList.map((_question, idx) => (
-          <Grid item xs={12} key={idx}>
-            <QuestionFormBox />
-          </Grid>
-        ))}
+        {survey &&
+          survey.questionList &&
+          survey.questionList.map((question) =>
+            question ? (
+              <Grid item xs={12} key={question.idx}>
+                <QuestionFormBox
+                  {...question}
+                  onClickDeleteQuestionBtn={onClickDeleteQuestionBtn}
+                  onChangeQuestion={onChangeQuestion}
+                  onChangePosition={onChangePosition}
+                  onChangeType={onChangeType}
+                  onClickAddOptionBtn={onClickAddOptionBtn}
+                  onClickRemoveOptionBtn={onClickRemoveOptionBtn}
+                  onChangeOptionValue={onChangeOptionValue}
+                />
+              </Grid>
+            ) : null
+          )}
       </S.Content>
       <S.Footer>
         <Button size="large" variant="contained" color="primary" onClick={onClickAddQuestionBtn}>

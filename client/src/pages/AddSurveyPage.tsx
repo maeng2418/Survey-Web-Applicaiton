@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { AdminTemplate, AddSurveyTemplate } from 'components';
 
 const AddSurveyPage: React.FC = () => {
