@@ -22,9 +22,6 @@ Participant.init(
     name: {
       type: DataTypes.STRING(45),
       allowNull: false,
-      validate: {
-        is: REGEX.NAME_REGEX,
-      },
     },
   },
   { timestamps: true, tableName: 'participant', sequelize }

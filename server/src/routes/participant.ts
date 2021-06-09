@@ -21,6 +21,11 @@ router.get(
 /******************************************************************************
  *     Create Participation - "POST /api/participant"
  ******************************************************************************/
-router.post('/', ParticipantController.create);
+router.post('/', ParticipantController.createAnswers);
+
+/******************************************************************************
+ *     Create Participation - "POST /api/participant/join/${surveyId}"
+ ******************************************************************************/
+router.post('/join/:surveyId', ParticipantController.join);
 
 export default router;
