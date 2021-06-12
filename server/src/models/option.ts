@@ -1,7 +1,5 @@
 import { DataTypes, Model } from 'sequelize';
 import { sequelize } from 'modules/database';
-import Question from './question';
-import OptionParticipant from './option-participant';
 
 class Option extends Model {
   public id!: number;
@@ -25,12 +23,5 @@ Option.init(
   },
   { timestamps: true, tableName: 'option', sequelize }
 );
-
-Option.belongsTo(Question, {
-  targetKey: 'id',
-  foreignKey: { name: 'questionId', allowNull: false },
-  onDelete: 'cascade',
-  as: 'question',
-});
 
 export default Option;

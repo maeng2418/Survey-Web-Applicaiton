@@ -1,8 +1,5 @@
 import { DataTypes, Model } from 'sequelize';
 import { sequelize } from 'modules/database';
-import REGEX from 'utils/validation';
-import SurveyParticipant from './survey-participant';
-import OptionParticipant from './option-participant';
 
 class Participant extends Model {
   public id!: number;

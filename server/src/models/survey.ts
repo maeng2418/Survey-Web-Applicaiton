@@ -2,7 +2,6 @@ import { DataTypes, Model } from 'sequelize';
 import { sequelize } from 'modules/database';
 import Question from './question';
 import User from './user';
-import SurveyParticipant from './survey-participant';
 
 class Survey extends Model {
   public id!: number;
