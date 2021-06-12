@@ -69,17 +69,18 @@ const findInfo = async (req: Request, res: Response, next: NextFunction): Promis
   }
 };
 
-// 생성 {title, writerId, questionList: [{questionTitle, questionPos, questionType, optionList:[{optionTitle}]}]}
+// 생성 {title, writerId, questionList: [{question, position, type, optionList:[{value}]}]}
 const create = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   const { body } = req;
   try {
-    await SurveyService.create(body);
+    const surveyId = await SurveyService.create(body);
 
     res.status(StatusCodes.CREATED).json({
       status: StatusCodes.CREATED,
       message: `설문지를 생성하였습니다.`,
       result: {
         success: true,
+        surveyId: surveyId,
       },
     });
   } catch (err) {

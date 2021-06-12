@@ -1,6 +1,14 @@
 import bodyParser from 'body-parser';
 import { StatusCodes } from 'http-status-codes';
-import { Survey, Question, Option, User, SurveyParticipant, Participant } from 'models';
+import {
+  Survey,
+  Question,
+  Option,
+  User,
+  SurveyParticipant,
+  Participant,
+  QuestionOption,
+} from 'models';
 import CustomError from 'modules/exceptions/custom-error';
 const { Op } = require('sequelize');
 
@@ -72,24 +80,29 @@ const create = async (data: any): Promise<any> => {
     userId: data.writerId,
   });
   if (!survey) throw new CustomError(StatusCodes.BAD_REQUEST, `설문지 생성 실패`, '');
-  data.questionList.forEach(async (question: any) => {
+  data.questionList.forEach(async ({ question, position, type, optionList }: any) => {
     const questionData = await Question.create({
-      question: question.questionTitle,
-      type: question.questionType,
-      position: question.questionPos,
+      question: question,
+      type: type,
+      position: position,
       surveyId: survey.id,
     });
     if (!questionData) throw new CustomError(StatusCodes.BAD_REQUEST, `질문 생성 실패`, '');
-    question.optionList.forEach(async (option: any) => {
+    optionList.forEach(async ({ value }: any) => {
       const optionData = await Option.create({
-        title: option.optionTitle,
-        questionId: questionData.id,
+        title: value,
       });
       if (!optionData) throw new CustomError(StatusCodes.BAD_REQUEST, `옵션 생성 실패`, '');
+      const questionOptionData = await QuestionOption.create({
+        questionId: questionData.id,
+        optionId: optionData.id,
+      });
+      if (!questionOptionData)
+        throw new CustomError(StatusCodes.BAD_REQUEST, `질문-옵션 생성 실패`, '');
     });
   });
 
-  return;
+  return survey.id;
 };
 
 // 설문 삭제
