@@ -48,8 +48,8 @@ const findByName = async (name: string): Promise<any> => {
 };
 
 // 조인
-const join = async (name: string, surveyId: number): Promise<any> => {
-  let surveyParticipant = await Participant.findOrCreate({
+const join = async (surveyId: number, name: string): Promise<any> => {
+  const participant = await Participant.findOrCreate({
     attributes: ['id', 'name'],
     where: {
       name: name,
@@ -57,7 +57,15 @@ const join = async (name: string, surveyId: number): Promise<any> => {
     defaults: { name: name },
   });
 
-  return { ...surveyParticipant };
+  const surveyParticipant = await SurveyParticipant.findOrCreate({
+    attributes: ['id', 'participantId', 'surveyId'],
+    where: {
+      participantId: participant[0].id,
+    },
+    defaults: { participantId: participant[0].id, surveyId: surveyId },
+  });
+
+  return surveyParticipant[1];
 };
 
 // 결과 생성

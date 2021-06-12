@@ -67,19 +67,10 @@ const join = async (req: Request, res: Response, next: NextFunction): Promise<vo
   const { body, params } = req;
 
   try {
-    let participant = await ParticipantService.findByName(body.name);
-    if (!participant) {
-      await ParticipantService.create(body.name);
-      participant = await ParticipantService.findByName(body.name);
-    }
+    const isJoined = await ParticipantService.join(parseInt(params.surveyId), body.name);
 
-    const surveyParticipant = await ParticipantService.join(
-      participant.getDataValue('id'),
-      parseInt(params.surveyId)
-    );
-
-    if (!surveyParticipant) {
-      throw new CustomError(StatusCodes.ACCEPTED, `이미 참여하였습니다.`, '');
+    if (!isJoined) {
+      throw new CustomError(StatusCodes.BAD_REQUEST, '이미 설문에 참여하였습니다.', '');
     }
 
     res.status(StatusCodes.CREATED).json({
@@ -87,7 +78,6 @@ const join = async (req: Request, res: Response, next: NextFunction): Promise<vo
       message: `성공적으로 참여하였습니다.`,
       result: {
         success: true,
-        participant: participant,
       },
     });
   } catch (err) {
