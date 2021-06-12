@@ -66,10 +66,12 @@ const createAnswers = async (req: Request, res: Response, next: NextFunction): P
 const join = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   const { body, params } = req;
 
-  try {
-    const isJoined = await ParticipantService.join(parseInt(params.surveyId), body.name);
+  console.log(body, params);
 
-    if (!isJoined) {
+  try {
+    const participant = await ParticipantService.join(parseInt(params.surveyId), body.name);
+
+    if (!participant[1]) {
       throw new CustomError(StatusCodes.BAD_REQUEST, '이미 설문에 참여하였습니다.', '');
     }
 
@@ -78,6 +80,7 @@ const join = async (req: Request, res: Response, next: NextFunction): Promise<vo
       message: `성공적으로 참여하였습니다.`,
       result: {
         success: true,
+        participantId: participant[0].id,
       },
     });
   } catch (err) {

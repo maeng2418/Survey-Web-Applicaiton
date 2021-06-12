@@ -17,11 +17,11 @@ const JoinSurveyForm: React.FC<IJoinSurveyFormProps> = ({
   description,
   onClickCancelBtn,
   onClickJoinBtn,
+  onChangeName,
   open,
 }) => {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
-
   return (
     <>
       <S.JoinSurveyForm
@@ -43,6 +43,7 @@ const JoinSurveyForm: React.FC<IJoinSurveyFormProps> = ({
             color="secondary"
             variant="standard"
             placeholder="이름을 입력해주세요."
+            onChange={(event) => onChangeName(event.target.value)}
             fullWidth
           />
         </DialogContent>

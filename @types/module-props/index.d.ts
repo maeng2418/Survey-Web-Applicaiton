@@ -51,5 +51,6 @@ declare module 'module-props' {
     open: boolean;
     onClickCancelBtn: () => void;
     onClickJoinBtn: () => void;
+    onChangeName: (name: string) => void;
   }
 }

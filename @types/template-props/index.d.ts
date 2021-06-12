@@ -2,6 +2,10 @@ declare module 'template-props' {
   interface IMainTemplateProps {
     type: 'main' | 'join';
     onClickMainBtn: () => void;
+    onClickCancelBtn: () => void;
+    onChangeName: (name: string) => void;
+    onClickJoinBtn: () => void;
+    open: boolean;
   }
 
   interface ILoginTemplateProps {

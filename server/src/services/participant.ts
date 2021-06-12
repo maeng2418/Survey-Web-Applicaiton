@@ -65,7 +65,7 @@ const join = async (surveyId: number, name: string): Promise<any> => {
     defaults: { participantId: participant[0].id, surveyId: surveyId },
   });
 
-  return surveyParticipant[1];
+  return surveyParticipant;
 };
 
 // 결과 생성
