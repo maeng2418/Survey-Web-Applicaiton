@@ -6,6 +6,7 @@ const slice = createSlice({
   initialState: {
     id: null,
     name: null,
+    writer: null,
     surveyId: null,
     title: '',
     questionList: [
@@ -20,9 +21,6 @@ const slice = createSlice({
     error: '',
   },
   reducers: {
-    init: (state, action) => {
-      state.surveyId = action.payload.surveyId;
-    },
     changeName: (state, action) => {
       state.name = action.payload.name;
     },
@@ -30,10 +28,29 @@ const slice = createSlice({
     joinSuccess: (state, action) => {
       state.id = action.payload.id;
     },
-    joinFailure: (state, action) => {},
+    joinFailure: (state, action) => {
+      state.error = action.payload;
+    },
+    loadSurveyInfoRequest: (state, action) => {},
+    loadSurveyInfoSuccess: (state, action) => {
+      state.surveyId = action.payload.surveyId;
+      state.writer = action.payload.writer;
+      state.title = action.payload.title;
+    },
+    loadSurveyInfoFailure: (state, action) => {
+      state.error = action.payload;
+    },
   },
 });
 
-export const { init, changeName, joinRequest, joinSuccess, joinFailure } = slice.actions;
+export const {
+  changeName,
+  joinRequest,
+  joinSuccess,
+  joinFailure,
+  loadSurveyInfoRequest,
+  loadSurveyInfoSuccess,
+  loadSurveyInfoFailure,
+} = slice.actions;
 
 export default slice.reducer;

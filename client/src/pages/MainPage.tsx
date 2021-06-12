@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { MainTemplate } from 'components';
 import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeName, init, joinRequest } from 'store/slices/participant';
+import { changeName, loadSurveyInfoRequest, joinRequest } from 'store/slices/participant';
 import { State } from 'store';
 
 const MainPage: React.FC = () => {
@@ -16,7 +16,7 @@ const MainPage: React.FC = () => {
   useEffect(() => {
     if (history.location.pathname.includes('/join')) {
       setType('join');
-      dispatch(init({ surveyId: parseInt(surveyIdx) }));
+      dispatch(loadSurveyInfoRequest({ surveyId: parseInt(surveyIdx) }));
     } else {
       history.replace('/');
     }
@@ -50,6 +50,7 @@ const MainPage: React.FC = () => {
       onClickCancelBtn={onClickCancelBtn}
       onChangeName={onChangeName}
       onClickJoinBtn={onClickJoinBtn}
+      surveyTitle={participant.title}
       open={open}
     />
   );

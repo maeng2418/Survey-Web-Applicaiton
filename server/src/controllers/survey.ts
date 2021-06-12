@@ -43,13 +43,13 @@ const findDetail = async (req: Request, res: Response, next: NextFunction): Prom
   }
 };
 
-// 설문 정보 info: {surveyId, surveyTitle, writer, participants, todayParticipants, questionCounts}
+// 설문 정보 info: {surveyId, title, writer}
 const findInfo = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   const { surveyId } = req.params;
   try {
-    const surveyParticipantInfo = await SurveyService.findInfo(parseInt(surveyId));
+    const survey = await SurveyService.findInfo(parseInt(surveyId));
 
-    if (!surveyParticipantInfo)
+    if (!survey)
       throw new CustomError(
         StatusCodes.BAD_REQUEST,
         `해당 설문지 정보를 가져오는데 실패하였습니다.`,
@@ -61,7 +61,11 @@ const findInfo = async (req: Request, res: Response, next: NextFunction): Promis
       message: `설문지 정보를 가져오는데 성공하였습니다.`,
       result: {
         success: true,
-        info: surveyParticipantInfo,
+        info: {
+          surveyId: survey.id,
+          writer: survey.user.username,
+          title: survey.title,
+        },
       },
     });
   } catch (err) {

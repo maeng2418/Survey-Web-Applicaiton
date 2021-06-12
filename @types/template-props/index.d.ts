@@ -5,6 +5,7 @@ declare module 'template-props' {
     onClickCancelBtn: () => void;
     onChangeName: (name: string) => void;
     onClickJoinBtn: () => void;
+    surveyTitle: string;
     open: boolean;
   }
 

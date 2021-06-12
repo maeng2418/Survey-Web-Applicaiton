@@ -59,13 +59,10 @@ const findQuestions = async (questionIdList: Question[]): Promise<Option[]> => {
 };
 
 // 설문 정보
-const findInfo = async (surveyId: number): Promise<SurveyParticipant | null> => {
-  const survey = await SurveyParticipant.findOne({
-    attributes: ['id', 'participantId', 'surveyId'],
-    include: [
-      { model: Participant, as: 'participant' },
-      { model: Survey, as: 'survey' },
-    ],
+const findInfo = async (surveyId: number): Promise<any> => {
+  const survey = await Survey.findOne({
+    attributes: ['id', 'title'],
+    include: [{ model: User, as: 'user' }],
     where: {
       id: surveyId,
     },

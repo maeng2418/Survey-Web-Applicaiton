@@ -7,6 +7,7 @@ import { IMainTemplateProps } from 'template-props';
 
 const MainTemplate: React.FC<IMainTemplateProps> = ({
   type,
+  surveyTitle,
   onClickMainBtn,
   onClickCancelBtn,
   onChangeName,
@@ -40,8 +41,8 @@ const MainTemplate: React.FC<IMainTemplateProps> = ({
               설문 조사 시작
             </S.MainButton>
             <JoinSurveyForm
-              title={'오늘의 야식'}
-              description={'오늘 먹을 야식을 조사합니다.'}
+              title={surveyTitle}
+              description={'이름을 입력하시고 [JOIN] 버튼을 누르면 설문이 시작됩니다.'}
               onClickCancelBtn={onClickCancelBtn}
               onClickJoinBtn={onClickJoinBtn}
               onChangeName={onChangeName}

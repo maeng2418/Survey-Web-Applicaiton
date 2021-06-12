@@ -25,11 +25,7 @@ router.get(
 /******************************************************************************
  *                   Survey Info - "GET /api/survey/info"
  ******************************************************************************/
-router.get(
-  '/info/:surveyId',
-  passport.authenticate('jwt', { session: false }),
-  SurveyController.findInfo
-);
+router.get('/info/:surveyId', SurveyController.findInfo);
 
 /******************************************************************************
  *                    Create Survey - "POST /api/survey/"
