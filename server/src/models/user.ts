@@ -2,8 +2,6 @@ import { DataTypes, Model } from 'sequelize';
 import { sequelize } from 'modules/database';
 import REGEX from 'utils/validation';
 
-import Survey from './survey';
-
 class User extends Model {
   public id!: number;
   public username!: string;
