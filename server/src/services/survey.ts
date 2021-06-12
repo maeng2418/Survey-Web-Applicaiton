@@ -25,34 +25,24 @@ const findList = async (page: number): Promise<Survey[]> => {
   return surveyList;
 };
 
-// 설문 상세 - 질문 ID 리스트
-const findQuestionIds = async (id: number, page: number): Promise<Question[]> => {
-  const questions = await Question.findAll({
-    attributes: ['id'],
+// 설문 상세
+const findQuestionOptionList = async (id: number, page: number): Promise<QuestionOption[]> => {
+  const questions = await QuestionOption.findAll({
+    attributes: ['id', 'surveyId', 'questionId', 'optionId'],
+    include: [
+      { model: Question, as: 'question' },
+      { model: Option, as: 'option' },
+    ],
     where: {
       // surveyId: id,
       [Op.and]: [
         { surveyId: id },
         {
-          id: {
+          questionId: {
             [Op.between]: [page * 10, (page + 1) * 10],
           },
         },
       ],
-    },
-  });
-  return questions;
-};
-
-// 설문 상세 - 질문 및 옵션 리스트
-const findQuestions = async (questionIdList: Question[]): Promise<Option[]> => {
-  const questions = await Option.findAll({
-    attributes: ['id', 'title', 'questionId'],
-    include: { model: Question, as: 'question' },
-    where: {
-      questionId: {
-        [Op.in]: questionIdList.map((question) => question.getDataValue('id')),
-      },
     },
   });
   return questions;
@@ -82,7 +72,6 @@ const create = async (data: any): Promise<any> => {
       question: question,
       type: type,
       position: position,
-      surveyId: survey.id,
     });
     if (!questionData) throw new CustomError(StatusCodes.BAD_REQUEST, `질문 생성 실패`, '');
     optionList.forEach(async ({ value }: any) => {
@@ -91,6 +80,7 @@ const create = async (data: any): Promise<any> => {
       });
       if (!optionData) throw new CustomError(StatusCodes.BAD_REQUEST, `옵션 생성 실패`, '');
       const questionOptionData = await QuestionOption.create({
+        surveyId: survey.id,
         questionId: questionData.id,
         optionId: optionData.id,
       });
@@ -157,8 +147,7 @@ const editSurvey = async (data: any): Promise<any> => {
 
 export default {
   findList,
-  findQuestionIds,
-  findQuestions,
+  findQuestionOptionList,
   findInfo,
   create,
   remove,

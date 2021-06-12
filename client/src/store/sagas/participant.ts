@@ -6,6 +6,9 @@ import {
   loadSurveyInfoSuccess,
   loadSurveyInfoFailure,
   loadSurveyInfoRequest,
+  loadSurveyDetailRequest,
+  loadSurveyDetailSuccess,
+  loadSurveyDetailFailure,
 } from '../slices/participant';
 import API from 'utils/api';
 import { PayloadAction } from '@reduxjs/toolkit';
@@ -20,6 +23,7 @@ function* joinSurvey(action: PayloadAction<{ surveyId: number; name: string }>):
     const response: any = yield call(joinSurveyAPI, action.payload.surveyId, action.payload.name);
     if (response.data.result.success) {
       yield put(joinSuccess({ id: response.data.result.participantId }));
+      yield put(loadSurveyDetailRequest({ surveyId: action.payload.surveyId, pageCount: 0 }));
       const history: any = yield getContext('history');
       history.push(`/survey/detail/${action.payload.surveyId}`);
     } else {
@@ -54,7 +58,36 @@ function* loadSurveyInfo(action: PayloadAction<{ surveyId: number }>): Generator
   }
 }
 
+// 설문 상세
+function loadSurveyDetailAPI(surveyId: number, pageCount: number) {
+  return API.get(`/survey/detail?id=${surveyId}&page=${pageCount}`);
+}
+
+function* loadSurveyDetail(
+  action: PayloadAction<{ surveyId: number; pageCount: number }>
+): Generator {
+  try {
+    const response: any = yield call(
+      loadSurveyDetailAPI,
+      action.payload.surveyId,
+      action.payload.pageCount
+    );
+    if (response.data.result.success) {
+      yield put(
+        loadSurveyDetailSuccess({
+          questionList: Object.values(response.data.result.questionList),
+        })
+      );
+    } else {
+      yield put(loadSurveyDetailFailure(response.data.message));
+    }
+  } catch (err) {
+    yield put(loadSurveyDetailFailure(err.message));
+  }
+}
+
 export default function* userSaga() {
   yield takeLatest(joinRequest.type, joinSurvey);
   yield takeEvery(loadSurveyInfoRequest.type, loadSurveyInfo);
+  yield takeLatest(loadSurveyDetailRequest.type, loadSurveyDetail);
 }

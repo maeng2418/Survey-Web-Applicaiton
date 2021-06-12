@@ -9,6 +9,7 @@ const slice = createSlice({
     writer: null,
     surveyId: null,
     title: '',
+    page: 0,
     questionList: [
       {
         idx: 0,
@@ -40,6 +41,13 @@ const slice = createSlice({
     loadSurveyInfoFailure: (state, action) => {
       state.error = action.payload;
     },
+    loadSurveyDetailRequest: (state, action) => {},
+    loadSurveyDetailSuccess: (state, action) => {
+      state.questionList = action.payload.questionList;
+    },
+    loadSurveyDetailFailure: (state, action) => {
+      state.error = action.payload;
+    },
   },
 });
 
@@ -51,6 +59,9 @@ export const {
   loadSurveyInfoRequest,
   loadSurveyInfoSuccess,
   loadSurveyInfoFailure,
+  loadSurveyDetailRequest,
+  loadSurveyDetailSuccess,
+  loadSurveyDetailFailure,
 } = slice.actions;
 
 export default slice.reducer;

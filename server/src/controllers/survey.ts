@@ -23,19 +23,54 @@ const findList = async (req: Request, res: Response, next: NextFunction): Promis
   }
 };
 
-// 설문 상세 - 질문리스트 questionList: [{questionId, questionTitle, questionPos, questionType, answerCountList:[{optionId, count}]}]
+// 설문 상세 - questionList: [ questionId: {question, position, type, optionList:[{optionId, count}]}]
 const findDetail = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   const { id, page }: any = req.query;
   try {
-    const questionIdList = await SurveyService.findQuestionIds(parseInt(id), parseInt(page));
-    const questionList = await SurveyService.findQuestions(questionIdList);
+    const questionOptionListData: any = await SurveyService.findQuestionOptionList(
+      parseInt(id),
+      parseInt(page)
+    );
+
+    if (questionOptionListData.length < 0) {
+      throw new CustomError(
+        StatusCodes.BAD_REQUEST,
+        `설문지 질문과 옵션을 가져오는데 실패하였습니다.`,
+        ''
+      );
+    }
+
+    const questionOptionDataList = questionOptionListData.map((item: any) => {
+      return {
+        id: item.questionId,
+        question: item.question.question,
+        type: item.question.type,
+        position: item.question.position,
+        option: { id: item.optionId, title: item.option.title },
+      };
+    });
+
+    const result = questionOptionDataList.reduce((acc: any, cur: any) => {
+      if (acc.hasOwnProperty(cur.id)) {
+        acc[cur.id]['optionList'].push(cur.option);
+      } else {
+        acc[cur.id] = {
+          idx: cur.id,
+          question: cur.question,
+          type: cur.type,
+          position: cur.position,
+          optionList: [cur.option],
+        };
+      }
+      return acc;
+    }, {});
 
     res.status(StatusCodes.OK).json({
       status: StatusCodes.OK,
       message: `설문지 상세정보를 가져오는데 성공하였습니다.`,
       result: {
         success: true,
-        questionList: questionList,
+        questionList: result,
       },
     });
   } catch (err) {
