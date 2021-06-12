@@ -25,7 +25,7 @@ function* joinSurvey(action: PayloadAction<{ surveyId: number; name: string }>):
       yield put(joinSuccess({ id: response.data.result.participantId }));
       yield put(loadSurveyDetailRequest({ surveyId: action.payload.surveyId, pageCount: 0 }));
       const history: any = yield getContext('history');
-      history.push(`/survey/detail/${action.payload.surveyId}`);
+      history.push(`/survey/${action.payload.surveyId}`);
     } else {
       yield put(joinFailure(response.data.message));
     }

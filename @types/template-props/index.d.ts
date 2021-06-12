@@ -38,4 +38,15 @@ declare module 'template-props' {
     todayParticipationCount: number;
     totalParticipationCount: number;
   }
+
+  interface ISurveyTemplateProps {
+    surveyTitle: string;
+    questionList: {
+      idx: number;
+      question: string;
+      position: number;
+      type: string;
+      optionList: { id: number; title: string }[];
+    }[];
+  }
 }
