@@ -9,33 +9,39 @@ const Pwl: React.FC = () => {
   const locationList = history.location.pathname
     .split('/')
     .filter((path) => path)
-    .map((path) => {
-      switch (path) {
-        case 'add':
-          return {
-            title: '설문지 추가',
-            url: '/list/add',
-          };
-        case 'edit':
-          return {
-            title: '설문지 수정',
-            url: `/list/edit/${history.location.hash}`,
-          };
-        case 'report':
-          return {
-            title: '설문지 리포트',
-            url: `/list/report/${history.location.hash}`,
-          };
-        case 'log':
-          return {
-            title: '참여자 로그',
-            url: `/list/log/${history.location.hash}`,
-          };
-        case 'list':
-        default:
-          return { title: '설문지 목록', url: '/list' };
+    .reduce((acc: { title: string; url: string }[], path) => {
+      if (path === 'list') {
+        acc.push({
+          title: '설문지 목록',
+          url: '/list',
+        });
       }
-    });
+      if (path === 'add') {
+        acc.push({
+          title: '설문지 추가',
+          url: '/list/add',
+        });
+      }
+      if (path === 'edit') {
+        acc.push({
+          title: '설문지 수정',
+          url: `/list/edit/${history.location.hash}`,
+        });
+      }
+      if (path === 'report') {
+        acc.push({
+          title: '설문지 리포트',
+          url: `/list/report/${history.location.hash}`,
+        });
+      }
+      if (path === 'log') {
+        acc.push({
+          title: '참여자 로그',
+          url: `/list/log/${history.location.hash}`,
+        });
+      }
+      return acc;
+    }, []);
 
   const PwlList = locationList.map((item, idx) => {
     if (locationList.length === 1) {

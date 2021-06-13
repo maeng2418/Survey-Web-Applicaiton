@@ -1,25 +1,34 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { AdminTemplate, SurveyReportTemplate } from 'components';
+import { useDispatch, useSelector } from 'react-redux';
+import { loadParticipantsRequest, loadReportRequest } from 'store/slices/report';
+import { State } from 'store';
+import { useParams } from 'react-router-dom';
 
 const SurveyReportPage: React.FC = () => {
-  const chartData = [
-    { label: '00:00', amount: 0 },
-    { label: '03:00', amount: 300 },
-    { label: '06:00', amount: 600 },
-    { label: '09:00', amount: 800 },
-    { label: '12:00', amount: 1500 },
-    { label: '15:00', amount: 2000 },
-    { label: '18:00', amount: 2400 },
-    { label: '21:00', amount: 2400 },
-    { label: '24:00' },
-  ];
+  const { surveyIdx } = useParams<{ surveyIdx: string }>();
+  const dispatch = useDispatch();
+  const reportData = useSelector((state: State) => state.report);
+
+  useEffect(() => {
+    dispatch(loadReportRequest({ surveyId: parseInt(surveyIdx), page: 0 }));
+    dispatch(loadParticipantsRequest({ surveyId: parseInt(surveyIdx) }));
+  }, []);
+
+  const createChart = (optionList: { optionId: number; option: string; selector: string[] }[]) => {
+    return optionList.map((item: { option: string; selector: string[] }) => {
+      return { label: item.option, amount: item.selector.length };
+    });
+  };
 
   return (
     <AdminTemplate>
       <SurveyReportTemplate
-        todayParticipationCount={32}
+        surveyTitle={reportData.title}
         totalParticipationCount={1024}
-        chartData={chartData}
+        createChart={createChart}
+        questionList={reportData.questionList}
+        participants={reportData.totalParticipant}
       />
     </AdminTemplate>
   );

@@ -1,0 +1,15 @@
+import React from 'react';
+import '@testing-library/jest-dom/extend-expect';
+import { render, fireEvent } from '@testing-library/react';
+import LogTable from './LogTable';
+describe('<LogTable />', () => {
+  it('matches snapshot', () => {
+    const { container } = render(<LogTable />);
+    expect(container).toMatchSnapshot();
+  });
+  it('shows the elemnts correctly', () => {
+    const { getByText } = render(<LogTable />);
+    getByText('');
+  });
+});
+

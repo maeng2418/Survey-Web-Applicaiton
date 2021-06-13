@@ -6,10 +6,26 @@ declare module 'atom-props' {
   }
 
   interface ILineChartProps {
-    data: { label: string; amount?: number }[];
+    xTitle: string;
+    yTitle: stirng;
+    data: { label: string; amount: number }[];
   }
 
   interface ILoadingProps {
     visible: boolean;
+  }
+
+  interface IBarChartProps {
+    xTitle: string;
+    yTitle: stirng;
+    data: { label: string; amount: number }[];
+  }
+
+  interface IPieChartProps {
+    data: { label: string; amount: number }[];
+  }
+
+  interface ILogTableProps {
+    data: { label: string; amount: number }[];
   }
 }

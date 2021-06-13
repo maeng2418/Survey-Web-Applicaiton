@@ -175,6 +175,46 @@ const edit = async (req: Request, res: Response, next: NextFunction): Promise<vo
   }
 };
 
+// 설문 리포트 - {surveyId, title, questionList: [questionId:{question: '', position: 0, optionList: []}]}
+const findReport = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+  const { id, page }: any = req.query;
+  try {
+    const reportData = await SurveyService.findReport(parseInt(id), parseInt(page));
+
+    res.status(StatusCodes.OK).json({
+      status: StatusCodes.OK,
+      message: `리포트 데이터를 불러오는데 성공하였습니다.`,
+      result: {
+        success: true,
+        surveyId: id,
+        title: reportData.surveyTitle,
+        questionList: Object.values(reportData.questionData),
+      },
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+// 설문 참여리스트 - {totalParticipant}
+const findParticipant = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+  const { id }: any = req.query;
+  try {
+    const totalParticipant = await SurveyService.findParticipant(parseInt(id));
+
+    res.status(StatusCodes.OK).json({
+      status: StatusCodes.OK,
+      message: `참여자 리스트를 불러오는데 성공하였습니다.`,
+      result: {
+        success: true,
+        totalParticipant: totalParticipant,
+      },
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
 export default {
   findList,
   findDetail,
@@ -182,4 +222,6 @@ export default {
   create,
   remove,
   edit,
+  findReport,
+  findParticipant,
 };

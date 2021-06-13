@@ -73,12 +73,14 @@ const join = async (req: Request, res: Response, next: NextFunction): Promise<vo
       throw new CustomError(StatusCodes.BAD_REQUEST, '이미 설문에 참여하였습니다.', '');
     }
 
+    console.log(participant);
+
     res.status(StatusCodes.CREATED).json({
       status: StatusCodes.CREATED,
       message: `성공적으로 참여하였습니다.`,
       result: {
         success: true,
-        participantId: participant[0].id,
+        participantId: participant[0].participantId,
       },
     });
   } catch (err) {
