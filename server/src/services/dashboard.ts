@@ -36,14 +36,12 @@ const findLastestSurvey = async (): Promise<{ [id: string]: number }> => {
     }
   }, {});
 
-  console.log(lastestSurveyParticipants);
-
   return lastestSurveyParticipants;
 };
 
 // 총 참여자 수
 const findTotalParticipants = async (): Promise<number> => {
-  const total = await Participant.count({
+  const total = await SurveyParticipant.count({
     col: 'id',
     distinct: true,
   });

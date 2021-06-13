@@ -15,18 +15,18 @@ const slice = createSlice({
     error: '',
   },
   reducers: {
-    loadDashbaordRequest: (state, action) => {},
-    loadDashbaordSuccess: (state, action) => {
+    loadDashboardRequest: (state, action) => {},
+    loadDashboardSuccess: (state, action) => {
       state.lastestSurvey = action.payload.lastestSurvey;
       state.totalParticipants = action.payload.totalParticipants;
       state.weeklyParticipantsList = action.payload.weeklyParticipantsList;
     },
-    loadDashbaordFailure: (state, action) => {
+    loadDashboardFailure: (state, action) => {
       state.error = action.payload;
     },
   },
 });
 
-export const { loadDashbaordRequest, loadDashbaordSuccess, loadDashbaordFailure } = slice.actions;
+export const { loadDashboardRequest, loadDashboardSuccess, loadDashboardFailure } = slice.actions;
 
 export default slice.reducer;

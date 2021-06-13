@@ -1,38 +1,35 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { AdminTemplate, SurveyListTemplate } from 'components';
 import moment from 'moment';
+import { useDispatch, useSelector } from 'react-redux';
+import { loadListRequest } from 'store/slices/list';
+import { State } from 'store';
 
 const SurveyListPage: React.FC = () => {
-  const surveyData = [
-    {
-      id: 0,
-      date: moment().format('YYYY-MM-DD'),
-      title: '테스트 설문지1',
-      count: 32,
-    },
-    {
-      id: 1,
-      date: moment().format('YYYY-MM-DD'),
-      title: '테스트 설문지2',
-      count: 27,
-    },
-    {
-      id: 2,
-      date: moment().format('YYYY-MM-DD'),
-      title: '테스트 설문지3',
-      count: 12,
-    },
-    {
-      id: 3,
-      date: moment().format('YYYY-MM-DD'),
-      title: '테스트 설문지4',
-      count: 23,
-    },
-  ];
+  const dispatch = useDispatch();
+  const listData = useSelector((state: State) => state.list);
+
+  useEffect(() => {
+    dispatch(loadListRequest(0));
+  }, []);
+
+  const getSurveyData = () => {
+    const survey: any = listData.survey;
+    const result = [];
+    for (const key in survey) {
+      result.push({
+        id: parseInt(key),
+        date: moment().format('YYYY-MM-DD'),
+        title: survey[key]['title'],
+        count: survey[key]['count'],
+      });
+    }
+    return result;
+  };
 
   return (
     <AdminTemplate>
-      <SurveyListTemplate surveyData={surveyData} />
+      <SurveyListTemplate surveyData={getSurveyData()} />
     </AdminTemplate>
   );
 };
