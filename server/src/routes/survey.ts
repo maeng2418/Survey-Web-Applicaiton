@@ -19,6 +19,16 @@ router.get(
 router.get('/detail', SurveyController.findDetail);
 
 /******************************************************************************
+ *   Survey Reprot - "GET /api/survey/report?id={surveyId}&page=${pageCount}"
+ ******************************************************************************/
+router.get('/report', SurveyController.findReport);
+
+/******************************************************************************
+ *        Survey Participant - "GET /api/survey/participant?id={surveyId}"
+ ******************************************************************************/
+router.get('/participant', SurveyController.findParticipant);
+
+/******************************************************************************
  *                   Survey Info - "GET /api/survey/info"
  ******************************************************************************/
 router.get('/info/:surveyId', SurveyController.findInfo);

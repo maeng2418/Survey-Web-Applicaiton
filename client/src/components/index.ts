@@ -26,6 +26,7 @@ export { default as Chart } from './modules/Chart';
 export { default as SurveyHeader } from './modules/SurveyHeader';
 export { default as QuestionBox } from './modules/QuestionBox';
 export { default as JoinSurveyForm } from './modules/JoinSurveyForm';
+export { default as ReportSurveyTitle } from './modules/ReportSurveyTitle';
 
 // Templates
 export { default as MainTemplate } from './templates/MainTemplate';

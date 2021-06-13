@@ -34,9 +34,29 @@ declare module 'template-props' {
   }
 
   interface ISurveyReportTemplateProps {
-    chartData: { label: string; amount?: number }[];
-    todayParticipationCount: number;
+    surveyTitle: string;
     totalParticipationCount: number;
+    createChart: (
+      optionList: {
+        optionId: number;
+        option: string;
+        selector: string[];
+      }[]
+    ) => {
+      label: string;
+      amount: number;
+    }[];
+    questionList: {
+      questionId: number;
+      question: string;
+      position: number;
+      optionList: {
+        optionId: number;
+        option: string;
+        selector: string[];
+      }[];
+    }[];
+    participants: number;
   }
 
   interface ISurveyTemplateProps {

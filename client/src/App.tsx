@@ -47,12 +47,12 @@ const App: React.FC = () => {
         <Switch>
           <Route exact path="/" component={MainPage} />
           <Route exact path="/join/:surveyIdx" component={MainPage} />
-          <Route exact path="/survey/:surveyIdx/" component={SurveyPage} />
+          <Route exact path="/survey/:surveyIdx" component={SurveyPage} />
           <Route exact path="/login" component={LoginPage} />
           <RestrictRoute exact path="/dashboard" component={DashboardPage} />
           <RestrictRoute exact path="/list" component={SurveyListPage} />
           <RestrictRoute exact path="/list/add" component={AddSurveyPage} />
-          <RestrictRoute exact path="/list/report" component={SurveyReportPage} />
+          <RestrictRoute exact path="/list/report/:surveyIdx" component={SurveyReportPage} />
         </Switch>
       </Router>
       <GlobalStyles />

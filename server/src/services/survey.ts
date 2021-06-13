@@ -8,6 +8,7 @@ import {
   SurveyParticipant,
   Participant,
   QuestionOption,
+  OptionParticipant,
 } from 'models';
 import CustomError from 'modules/exceptions/custom-error';
 import { Op } from 'sequelize';
@@ -58,17 +59,12 @@ const findQuestionOptionList = async (id: number, page: number): Promise<Questio
       { model: Option, as: 'option' },
     ],
     where: {
-      // surveyId: id,
-      [Op.and]: [
-        { surveyId: id },
-        {
-          questionId: {
-            [Op.between]: [page * 10, (page + 1) * 10],
-          },
-        },
-      ],
+      surveyId: id,
     },
+    offset: page,
+    limit: 10,
   });
+
   return questions;
 };
 
@@ -169,6 +165,84 @@ const editSurvey = async (data: any): Promise<any> => {
   return survey;
 };
 
+// 설문 리포트
+const findReport = async (id: number, page: number): Promise<any> => {
+  const survey = await Survey.findOne({
+    attributes: ['id', 'title'],
+    where: {
+      id: id,
+    },
+  });
+
+  const questionList = await QuestionOption.findAll({
+    attributes: ['id', 'surveyId', 'questionId', 'optionId'],
+    include: [
+      { model: Question, as: 'question' },
+      { model: Option, as: 'option' },
+    ],
+    where: {
+      [Op.and]: [{ surveyId: id }],
+    },
+    offset: page,
+    limit: 10,
+  });
+
+  const participantOptionList = await OptionParticipant.findAll({
+    attributes: ['optionId'],
+    include: { model: Participant, as: 'participant' },
+    where: {
+      optionId: {
+        [Op.in]: questionList.map((question: any) => question.optionId),
+      },
+    },
+  });
+
+  const questionData = questionList.reduce((acc: any, cur: any): any => {
+    if (acc.hasOwnProperty(cur.questionId)) {
+      acc[cur.questionId]['optionList'].push({
+        optionId: cur.optionId,
+        option: cur.option.title,
+        selector: participantOptionList
+          .filter((selector: any) => selector.optionId === cur.optionId)
+          .map((selector: any) => selector.participant.name),
+      });
+      return acc;
+    } else {
+      acc[cur.questionId] = {};
+      acc[cur.questionId]['questionId'] = cur.questionId;
+      acc[cur.questionId]['question'] = cur.question.question;
+      acc[cur.questionId]['position'] = cur.question.position;
+      acc[cur.questionId]['optionList'] = [
+        {
+          optionId: cur.optionId,
+          option: cur.option.title,
+          selector: participantOptionList
+            .filter((selector: any) => selector.optionId === cur.optionId)
+            .map((selector: any) => selector.participant.name),
+        },
+      ];
+      return acc;
+    }
+  }, {});
+
+  return {
+    surveyTitle: survey ? survey.title : '',
+    questionData: questionData,
+  };
+};
+
+// 설문 참여 수
+const findParticipant = async (surveyId: number): Promise<any> => {
+  const participants: any = await SurveyParticipant.findAll({
+    attributes: ['id'],
+    where: {
+      surveyId: surveyId,
+    },
+  });
+
+  return participants.length;
+};
+
 export default {
   findList,
   findQuestionOptionList,
@@ -176,4 +250,6 @@ export default {
   create,
   remove,
   editSurvey,
+  findReport,
+  findParticipant,
 };

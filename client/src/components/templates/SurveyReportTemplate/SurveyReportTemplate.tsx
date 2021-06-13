@@ -2,12 +2,14 @@ import React from 'react';
 import { ISurveyReportTemplateProps } from 'template-props';
 import * as S from './SurveyReportTemplateStyles';
 import { Grid } from '@material-ui/core';
-import { Pwl, Participation, Chart } from 'components';
+import { Pwl, Participation, Chart, ReportSurveyTitle } from 'components';
 
 const SurveyReportTemplate: React.FC<ISurveyReportTemplateProps> = ({
-  chartData,
-  todayParticipationCount,
+  surveyTitle,
   totalParticipationCount,
+  questionList,
+  createChart,
+  participants,
 }) => {
   return (
     <S.SurveyReportTemplate>
@@ -19,17 +21,23 @@ const SurveyReportTemplate: React.FC<ISurveyReportTemplateProps> = ({
           <Grid item xs={12}>
             <Grid container spacing={5}>
               <S.UpperGridItem item xs={12} md={6}>
-                {/* TOTAL */}
-                <Participation title="Total" participationCount={totalParticipationCount} />
+                {/* TITLE */}
+                <ReportSurveyTitle title={surveyTitle} />
               </S.UpperGridItem>
               <S.UpperGridItem item xs={12} md={6}>
-                {/* TODAY */}
-                <Participation title="Today" participationCount={todayParticipationCount} />
+                {/* TOTAL */}
+                <Participation title="Total" participationCount={participants} />
               </S.UpperGridItem>
-              <S.BottomGridItem item xs={12}>
-                {/* CHART */}
-                <Chart data={chartData} title="Graph" />
-              </S.BottomGridItem>
+              {questionList.map((question, idx) => (
+                <S.BottomGridItem item xs={12} key={idx}>
+                  {/* CHART */}
+                  <Chart
+                    data={createChart(question.optionList)}
+                    title={question.question}
+                    selector
+                  />
+                </S.BottomGridItem>
+              ))}
             </Grid>
           </Grid>
         </Grid>

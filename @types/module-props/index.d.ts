@@ -15,7 +15,7 @@ declare module 'module-props' {
 
   interface IChartProps {
     title?: string;
-    selector?: string[];
+    selector?: boolean;
     type?: 'line' | 'bar' | 'pie';
     data: { label: string; amount?: number }[];
   }
@@ -58,5 +58,9 @@ declare module 'module-props' {
     onClickCancelBtn: () => void;
     onClickJoinBtn: () => void;
     onChangeName: (name: string) => void;
+  }
+
+  interface IReportSurveyTitleProps {
+    title: string;
   }
 }
