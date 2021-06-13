@@ -11,7 +11,14 @@ import {
   FormGroup,
 } from '@material-ui/core';
 
-const QuestionBox: React.FC<IQuestionBoxProps> = ({ title, type, list }) => {
+const QuestionBox: React.FC<IQuestionBoxProps> = ({
+  title,
+  idx,
+  type,
+  list,
+  onSelectCheckboxOption,
+  onSelectRadioOption,
+}) => {
   return (
     <S.QuestionBox>
       <Title>{title}</Title>
@@ -19,23 +26,28 @@ const QuestionBox: React.FC<IQuestionBoxProps> = ({ title, type, list }) => {
         <FormControl component="fieldset">
           {type === 'radio' && (
             <RadioGroup aria-label="answer-group" name="answer">
-              {list.map((option, idx) => (
+              {list.map((option, optionIdx) => (
                 <FormControlLabel
-                  key={idx}
+                  key={optionIdx}
                   value={option.value}
-                  control={<Radio />}
-                  label={option.label}
+                  control={<Radio onChange={(event) => onSelectRadioOption(idx, event)} />}
+                  label={`${idx} ${option.label}`}
                 />
               ))}
             </RadioGroup>
           )}
           {type === 'checkbox' && (
             <FormGroup aria-label="answer-group">
-              {list.map((option, idx) => (
+              {list.map((option, optionIdx) => (
                 <FormControlLabel
-                  key={idx}
-                  control={<Checkbox name={option.value} />}
-                  label={option.label}
+                  key={optionIdx}
+                  control={
+                    <Checkbox
+                      name={option.value}
+                      onChange={(event) => onSelectCheckboxOption(idx, event)}
+                    />
+                  }
+                  label={`${idx} ${option.label}`}
                 />
               ))}
             </FormGroup>

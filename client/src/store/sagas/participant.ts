@@ -9,6 +9,9 @@ import {
   loadSurveyDetailRequest,
   loadSurveyDetailSuccess,
   loadSurveyDetailFailure,
+  submitSurveyRequest,
+  submitSurveySuccess,
+  submitSurveyFailure,
 } from '../slices/participant';
 import API from 'utils/api';
 import { PayloadAction } from '@reduxjs/toolkit';
@@ -86,8 +89,38 @@ function* loadSurveyDetail(
   }
 }
 
+// 설문 상세
+function submitSurveyAPI(data: { participantId: number; optionList: string[] }) {
+  return API.post(`/participant`, data);
+}
+
+function* submitSurvey(
+  action: PayloadAction<{ participantId: number; options: { [id: string]: string[] } }>
+): Generator {
+  try {
+    const optionList = [];
+    for (const key in action.payload.options) {
+      optionList.push(...action.payload.options[key]);
+    }
+    const response: any = yield call(submitSurveyAPI, {
+      participantId: action.payload.participantId,
+      optionList: optionList,
+    });
+    if (response.data.result.success) {
+      yield put(submitSurveySuccess({}));
+      const history: any = yield getContext('history');
+      history.go(-1);
+    } else {
+      yield put(submitSurveyFailure(response.data.message));
+    }
+  } catch (err) {
+    yield put(submitSurveyFailure(err.message));
+  }
+}
+
 export default function* userSaga() {
   yield takeLatest(joinRequest.type, joinSurvey);
   yield takeEvery(loadSurveyInfoRequest.type, loadSurveyInfo);
   yield takeLatest(loadSurveyDetailRequest.type, loadSurveyDetail);
+  yield takeLatest(submitSurveyRequest.type, submitSurvey);
 }

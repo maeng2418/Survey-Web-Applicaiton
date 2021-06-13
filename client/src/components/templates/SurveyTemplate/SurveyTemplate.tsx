@@ -4,7 +4,13 @@ import * as S from './SurveyTemplateStyles';
 import { Grid, Button } from '@material-ui/core';
 import { SurveyHeader, QuestionBox } from 'components';
 
-const SurveyTemplate: React.FC<ISurveyTemplateProps> = ({ surveyTitle, questionList }) => {
+const SurveyTemplate: React.FC<ISurveyTemplateProps> = ({
+  surveyTitle,
+  questionList,
+  onSelectCheckboxOption,
+  onSelectRadioOption,
+  onClickSubmitBtn,
+}) => {
   return (
     <S.SurveyTemplate>
       <SurveyHeader title={surveyTitle} />
@@ -15,17 +21,20 @@ const SurveyTemplate: React.FC<ISurveyTemplateProps> = ({ surveyTitle, questionL
             <Grid item xs={12} key={idx}>
               <QuestionBox
                 title={question.question}
+                idx={`${question.idx}`}
                 type={question.type === 'radio' ? 'radio' : 'checkbox'}
                 list={question.optionList.map((option) => {
                   return { label: option.title, value: `${option.id}` };
                 })}
+                onSelectCheckboxOption={onSelectCheckboxOption}
+                onSelectRadioOption={onSelectRadioOption}
               />
             </Grid>
           ))}
         </Grid>
       </S.Content>
       <S.Footer>
-        <Button size="large" variant="contained" color="primary">
+        <Button size="large" variant="contained" color="primary" onClick={onClickSubmitBtn}>
           제출하기
         </Button>
       </S.Footer>

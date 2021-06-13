@@ -48,6 +48,11 @@ const slice = createSlice({
     loadSurveyDetailFailure: (state, action) => {
       state.error = action.payload;
     },
+    submitSurveyRequest: (state, action) => {},
+    submitSurveySuccess: (state, action) => {},
+    submitSurveyFailure: (state, action) => {
+      state.error = action.payload;
+    },
   },
 });
 
@@ -62,6 +67,9 @@ export const {
   loadSurveyDetailRequest,
   loadSurveyDetailSuccess,
   loadSurveyDetailFailure,
+  submitSurveyRequest,
+  submitSurveySuccess,
+  submitSurveyFailure,
 } = slice.actions;
 
 export default slice.reducer;

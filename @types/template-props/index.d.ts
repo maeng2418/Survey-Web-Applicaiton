@@ -48,5 +48,11 @@ declare module 'template-props' {
       type: string;
       optionList: { id: number; title: string }[];
     }[];
+    onSelectCheckboxOption: (
+      questionId: string,
+      event: React.ChangeEvent<HTMLInputElement>
+    ) => void;
+    onSelectRadioOption: (questionId: string, event: React.ChangeEvent<HTMLInputElement>) => void;
+    onClickSubmitBtn: () => void;
   }
 }

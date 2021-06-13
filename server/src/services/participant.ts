@@ -71,9 +71,9 @@ const join = async (surveyId: number, name: string): Promise<any> => {
 // 결과 생성
 const createAnswers = async (data: any): Promise<any> => {
   await OptionParticipant.bulkCreate(
-    data.optionList.map((id: number) => {
+    data.optionList.map((id: string) => {
       return {
-        optionId: id,
+        optionId: parseInt(id),
         participantId: data.participantId,
       };
     })
