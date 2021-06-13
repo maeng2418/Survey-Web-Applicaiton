@@ -1,50 +1,44 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { AdminTemplate, DashboardTemplate } from 'components';
 import moment from 'moment';
+import { useDispatch, useSelector } from 'react-redux';
+import { loadDashbaordRequest } from 'store/slices/dashboard';
+import { State } from 'store';
 
 const DashboardPage: React.FC = () => {
-  const chartData = [
-    { time: '00:00', amount: 0 },
-    { time: '03:00', amount: 300 },
-    { time: '06:00', amount: 600 },
-    { time: '09:00', amount: 800 },
-    { time: '12:00', amount: 1500 },
-    { time: '15:00', amount: 2000 },
-    { time: '18:00', amount: 2400 },
-    { time: '21:00', amount: 2400 },
-    { time: '24:00' },
-  ];
+  const dispatch = useDispatch();
+  const dashboardData = useSelector((state: State) => state.dashboard);
 
-  const surveyData = [
-    {
-      id: 0,
-      date: moment().format('YYYY-MM-DD'),
-      title: '테스트 설문지1',
-      count: 32,
-    },
-    {
-      id: 1,
-      date: moment().format('YYYY-MM-DD'),
-      title: '테스트 설문지2',
-      count: 27,
-    },
-    {
-      id: 2,
-      date: moment().format('YYYY-MM-DD'),
-      title: '테스트 설문지3',
-      count: 12,
-    },
-    {
-      id: 3,
-      date: moment().format('YYYY-MM-DD'),
-      title: '테스트 설문지4',
-      count: 23,
-    },
-  ];
+  useEffect(() => {
+    dispatch(loadDashbaordRequest({}));
+  }, []);
+
+  const chartData = dashboardData.weeklyParticipantsList.map((day: number, idx: number) => {
+    const dayList = ['일', '월', '화', '수', '목', '금', '토'];
+    return { label: dayList[idx], amount: day };
+  });
+
+  const getSurveyData = () => {
+    const lastestSurvey: any = dashboardData.lastestSurvey;
+    const result = [];
+    for (const key in lastestSurvey) {
+      result.push({
+        id: parseInt(key),
+        date: moment().format('YYYY-MM-DD'),
+        title: lastestSurvey[key]['title'],
+        count: lastestSurvey[key]['count'],
+      });
+    }
+    return result;
+  };
 
   return (
     <AdminTemplate>
-      <DashboardTemplate chartData={chartData} participationCount={34000} surveyData={surveyData} />
+      <DashboardTemplate
+        chartData={chartData}
+        participationCount={dashboardData.totalParticipants}
+        surveyData={getSurveyData()}
+      />
     </AdminTemplate>
   );
 };

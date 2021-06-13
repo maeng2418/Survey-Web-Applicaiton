@@ -1,7 +1,7 @@
 import { Participant, OptionParticipant, SurveyParticipant } from 'models';
 import moment from 'moment';
 
-const { Op } = require('sequelize');
+import { Op } from 'sequelize';
 
 // 총 참여자 수
 const findAll = async (): Promise<number> => {
@@ -60,7 +60,7 @@ const join = async (surveyId: number, name: string): Promise<any> => {
   const surveyParticipant = await SurveyParticipant.findOrCreate({
     attributes: ['id', 'participantId', 'surveyId'],
     where: {
-      participantId: participant[0].id,
+      [Op.and]: [{ participantId: participant[0].id }, { surveyId: surveyId }],
     },
     defaults: { participantId: participant[0].id, surveyId: surveyId },
   });

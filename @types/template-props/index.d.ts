@@ -14,7 +14,7 @@ declare module 'template-props' {
   }
 
   interface IDashboardTemplateProps {
-    chartData: { time: string; amount?: number }[];
+    chartData: { label: string; amount?: number }[];
     participationCount: number;
     surveyData: {
       id: number;
@@ -34,7 +34,7 @@ declare module 'template-props' {
   }
 
   interface ISurveyReportTemplateProps {
-    chartData: { time: string; amount?: number }[];
+    chartData: { label: string; amount?: number }[];
     todayParticipationCount: number;
     totalParticipationCount: number;
   }

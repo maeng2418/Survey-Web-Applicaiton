@@ -6,7 +6,7 @@ declare module 'atom-props' {
   }
 
   interface ILineChartProps {
-    data: { time: string; amount?: number }[];
+    data: { label: string; amount?: number }[];
   }
 
   interface ILoadingProps {

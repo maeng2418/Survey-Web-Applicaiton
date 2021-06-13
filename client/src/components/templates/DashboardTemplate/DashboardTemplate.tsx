@@ -15,7 +15,7 @@ const DashboardTemplate: React.FC<IDashboardTemplateProps> = ({
         <Grid container spacing={3}>
           {/* Chart */}
           <S.UpperGrid item xs={12} md={8}>
-            <Chart title={'Today'} data={chartData} />
+            <Chart title={'주간 참여자 수'} data={chartData} />
           </S.UpperGrid>
           {/* Total Participation */}
           <S.UpperGrid item xs={12} md={4}>
