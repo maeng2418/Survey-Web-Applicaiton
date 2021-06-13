@@ -22,23 +22,23 @@ const SurveyList: React.FC<ISurveyListProps> = ({ title, data }) => {
           {data.map((item) => (
             <TableRow key={item.id}>
               <TableCell>
-                <Link href={`#/${item.id}`} color="secondary">
+                <Link href={`/join/${item.id}`} color="secondary">
                   {item.title}
                 </Link>
               </TableCell>
               <TableCell>{item.count}</TableCell>
               <TableCell>
-                <Link href={`#/${item.id}`} color="secondary">
+                <Link href={`/list/edit/${item.id}`} color="secondary">
                   수정하기
                 </Link>
               </TableCell>
               <TableCell>
-                <Link href={`#/${item.id}`} color="secondary">
+                <Link href={`/list/report/${item.id}`} color="secondary">
                   리포트 보기
                 </Link>
               </TableCell>
               <TableCell>
-                <Link href={`#/${item.id}`} color="secondary">
+                <Link href={`/list/log/${item.id}`} color="secondary">
                   로그 보기
                 </Link>
               </TableCell>

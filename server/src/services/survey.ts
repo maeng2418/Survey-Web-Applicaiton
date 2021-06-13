@@ -10,7 +10,7 @@ import {
   QuestionOption,
 } from 'models';
 import CustomError from 'modules/exceptions/custom-error';
-const { Op } = require('sequelize');
+import { Op } from 'sequelize';
 
 // 설문 리스트
 const findList = async (page: number): Promise<Survey[]> => {

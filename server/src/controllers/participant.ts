@@ -66,8 +66,6 @@ const createAnswers = async (req: Request, res: Response, next: NextFunction): P
 const join = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   const { body, params } = req;
 
-  console.log(body, params);
-
   try {
     const participant = await ParticipantService.join(parseInt(params.surveyId), body.name);
 

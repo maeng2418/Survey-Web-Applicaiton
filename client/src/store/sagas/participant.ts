@@ -89,7 +89,7 @@ function* loadSurveyDetail(
   }
 }
 
-// 설문 상세
+// 설문 응답 제출
 function submitSurveyAPI(data: { participantId: number; optionList: string[] }) {
   return API.post(`/participant`, data);
 }

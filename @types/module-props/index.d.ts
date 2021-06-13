@@ -17,7 +17,7 @@ declare module 'module-props' {
     title?: string;
     selector?: string[];
     type?: 'line' | 'bar' | 'pie';
-    data: { time: string; amount?: number }[];
+    data: { label: string; amount?: number }[];
   }
 
   interface IParticipationProps {

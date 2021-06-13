@@ -14,9 +14,9 @@ const LineChart: React.FC<ILineChartProps> = ({ data }) => {
           left: 24,
         }}
       >
-        <XAxis dataKey="time" stroke={'#bdbdbd'}>
+        <XAxis dataKey="label" stroke={'#bdbdbd'}>
           <Label angle={0} position="bottom" style={{ textAnchor: 'middle', fill: '#ffffff' }}>
-            Time
+            Day
           </Label>
         </XAxis>
         <YAxis stroke={'#bdbdbd'}>
