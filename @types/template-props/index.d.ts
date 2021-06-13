@@ -14,7 +14,7 @@ declare module 'template-props' {
   }
 
   interface IDashboardTemplateProps {
-    chartData: { label: string; amount?: number }[];
+    chartData: { label: string; amount: number }[];
     participationCount: number;
     surveyData: {
       id: number;

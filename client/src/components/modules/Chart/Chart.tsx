@@ -1,7 +1,7 @@
 import React from 'react';
 import { IChartProps } from 'module-props';
 import * as S from './ChartStyles';
-import { Title, LineChart, BarChart, GraphSelect, PieChart } from 'components';
+import { Title, LineChart, BarChart, GraphSelect, PieChart, LogTable } from 'components';
 
 const Chart: React.FC<IChartProps> = ({ title, xTitle, yTitle, data, selector, type = 'line' }) => {
   return (
@@ -15,6 +15,7 @@ const Chart: React.FC<IChartProps> = ({ title, xTitle, yTitle, data, selector, t
       {type === 'line' && <LineChart xTitle={xTitle} yTitle={yTitle} data={data} />}
       {type === 'bar' && <BarChart xTitle={xTitle} yTitle={yTitle} data={data} />}
       {type === 'pie' && <PieChart data={data} />}
+      {type === 'log' && <LogTable data={data} />}
     </S.Chart>
   );
 };

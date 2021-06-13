@@ -14,6 +14,7 @@ export { default as LineChart } from './atoms/LineChart';
 export { default as Loading } from './atoms/Loading';
 export { default as BarChart } from './atoms/BarChart';
 export { default as PieChart } from './atoms/PieChart';
+export { default as LogTable } from './atoms/LogTable';
 
 // Modules
 export { default as LoginForm } from './modules/LoginForm';

@@ -6,6 +6,7 @@ export const Chart = styled(Paper)`
   padding: 24px;
   width: 100%;
   height: 100%;
+  overflow: auto;
 `;
 
 export const Selector = styled.div`

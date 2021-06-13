@@ -8,7 +8,7 @@ declare module 'atom-props' {
   interface ILineChartProps {
     xTitle: string;
     yTitle: stirng;
-    data: { label: string; amount?: number }[];
+    data: { label: string; amount: number }[];
   }
 
   interface ILoadingProps {
@@ -18,10 +18,14 @@ declare module 'atom-props' {
   interface IBarChartProps {
     xTitle: string;
     yTitle: stirng;
-    data: { label: string; amount?: number }[];
+    data: { label: string; amount: number }[];
   }
 
   interface IPieChartProps {
-    data: { label: string; amount?: number }[];
+    data: { label: string; amount: number }[];
+  }
+
+  interface ILogTableProps {
+    data: { label: string; amount: number }[];
   }
 }

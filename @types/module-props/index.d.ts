@@ -18,8 +18,8 @@ declare module 'module-props' {
     xTitle: string;
     yTitle: string;
     selector?: boolean;
-    type?: 'line' | 'bar' | 'pie';
-    data: { label: string; amount?: number }[];
+    type?: 'line' | 'bar' | 'pie' | 'log';
+    data: { label: string; amount: number }[];
   }
 
   interface IParticipationProps {
