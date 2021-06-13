@@ -37,7 +37,7 @@ const SurveyReportTemplate: React.FC<ISurveyReportTemplateProps> = ({
                     xTitle={'옵션'}
                     yTitle={'응답 수'}
                     selector
-                    type={'bar'}
+                    type={'pie'}
                   />
                 </S.BottomGridItem>
               ))}

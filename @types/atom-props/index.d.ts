@@ -20,4 +20,8 @@ declare module 'atom-props' {
     yTitle: stirng;
     data: { label: string; amount?: number }[];
   }
+
+  interface IPieChartProps {
+    data: { label: string; amount?: number }[];
+  }
 }
