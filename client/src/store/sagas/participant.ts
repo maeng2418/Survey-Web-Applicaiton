@@ -118,7 +118,7 @@ function* submitSurvey(
   }
 }
 
-export default function* userSaga() {
+export default function* participantSaga() {
   yield takeLatest(joinRequest.type, joinSurvey);
   yield takeEvery(loadSurveyInfoRequest.type, loadSurveyInfo);
   yield takeLatest(loadSurveyDetailRequest.type, loadSurveyDetail);

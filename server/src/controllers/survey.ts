@@ -4,18 +4,18 @@ import { StatusCodes } from 'http-status-codes';
 import CustomError from 'modules/exceptions/custom-error';
 import { Participant } from 'models';
 
-// 설문 리스트 surveyList: [{surveyId, surveyTitle}]
+// 설문 리스트 surveyData: {id: {title, count}}
 const findList = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   const { page } = req.params;
   try {
-    const surveyList = await SurveyService.findList(parseInt(page));
+    const surveyData = await SurveyService.findList(parseInt(page));
 
     res.status(StatusCodes.OK).json({
       status: StatusCodes.OK,
-      message: `설문리스트를 불러오는데 성공하였습니다.`,
+      message: `설문 리스트를 불러오는데 성공하였습니다.`,
       result: {
         success: true,
-        surveyList: surveyList,
+        surveyData: surveyData,
       },
     });
   } catch (err) {

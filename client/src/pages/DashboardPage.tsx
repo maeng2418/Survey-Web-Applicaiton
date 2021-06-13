@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { AdminTemplate, DashboardTemplate } from 'components';
 import moment from 'moment';
 import { useDispatch, useSelector } from 'react-redux';
-import { loadDashbaordRequest } from 'store/slices/dashboard';
+import { loadDashboardRequest } from 'store/slices/dashboard';
 import { State } from 'store';
 
 const DashboardPage: React.FC = () => {
@@ -10,7 +10,7 @@ const DashboardPage: React.FC = () => {
   const dashboardData = useSelector((state: State) => state.dashboard);
 
   useEffect(() => {
-    dispatch(loadDashbaordRequest({}));
+    dispatch(loadDashboardRequest({}));
   }, []);
 
   const chartData = dashboardData.weeklyParticipantsList.map((day: number, idx: number) => {

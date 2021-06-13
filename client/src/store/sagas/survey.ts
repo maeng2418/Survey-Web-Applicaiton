@@ -23,6 +23,6 @@ function* saveSurvey(action: PayloadAction<{ data: any }>): Generator {
   }
 }
 
-export default function* userSaga() {
+export default function* surveySaga() {
   yield takeLatest(saveSurveyRequest.type, saveSurvey);
 }

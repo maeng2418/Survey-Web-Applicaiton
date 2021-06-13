@@ -12,8 +12,8 @@ import {
 import CustomError from 'modules/exceptions/custom-error';
 import { Op } from 'sequelize';
 
-// 설문 리스트
-const findList = async (page: number): Promise<Survey[]> => {
+// 설문리스트
+const findList = async (page: number): Promise<{ [id: string]: number }> => {
   const surveyList = await Survey.findAll({
     attributes: ['id', 'title'],
     where: {
@@ -21,8 +21,32 @@ const findList = async (page: number): Promise<Survey[]> => {
         [Op.between]: [page * 10, (page + 1) * 10],
       },
     },
+    order: [['createdAt', 'DESC']],
   });
-  return surveyList;
+
+  const surveyParticipantList = await SurveyParticipant.findAll({
+    attributes: ['id', 'participantId', 'surveyId'],
+    include: { model: Survey, as: 'survey' },
+    where: {
+      surveyId: {
+        [Op.in]: surveyList.map((survey) => survey.id),
+      },
+    },
+  });
+
+  const surveyParticipants = surveyParticipantList.reduce((acc: any, cur: any): any => {
+    if (acc.hasOwnProperty(cur.surveyId)) {
+      acc[cur.surveyId]['count'] += 1;
+      return acc;
+    } else {
+      acc[cur.surveyId] = {};
+      acc[cur.surveyId]['title'] = cur.survey.title;
+      acc[cur.surveyId]['count'] = 1;
+      return acc;
+    }
+  }, {});
+
+  return surveyParticipants;
 };
 
 // 설문 상세

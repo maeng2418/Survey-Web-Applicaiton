@@ -1,8 +1,8 @@
 import { put, call, takeLatest, getContext, takeEvery } from 'redux-saga/effects';
 import {
-  loadDashbaordRequest,
-  loadDashbaordSuccess,
-  loadDashbaordFailure,
+  loadDashboardRequest,
+  loadDashboardSuccess,
+  loadDashboardFailure,
 } from '../slices/dashboard';
 import API from 'utils/api';
 import { PayloadAction } from '@reduxjs/toolkit';
@@ -17,20 +17,20 @@ function* loadDashboard(action: PayloadAction<{ data: any }>): Generator {
     const response: any = yield call(loadDashboardAPI);
     if (response.data.result.success) {
       yield put(
-        loadDashbaordSuccess({
+        loadDashboardSuccess({
           lastestSurvey: response.data.result.lastestSurvey,
           totalParticipants: response.data.result.totalParticipants,
           weeklyParticipantsList: response.data.result.weeklyParticipantsList,
         })
       );
     } else {
-      yield put(loadDashbaordFailure(response.data.message));
+      yield put(loadDashboardFailure(response.data.message));
     }
   } catch (err) {
-    yield put(loadDashbaordFailure(err.message));
+    yield put(loadDashboardFailure(err.message));
   }
 }
 
-export default function* userSaga() {
-  yield takeEvery(loadDashbaordRequest.type, loadDashboard);
+export default function* dashboardSaga() {
+  yield takeEvery(loadDashboardRequest.type, loadDashboard);
 }
