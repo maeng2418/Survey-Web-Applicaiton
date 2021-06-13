@@ -15,6 +15,8 @@ declare module 'module-props' {
 
   interface IChartProps {
     title?: string;
+    xTitle: string;
+    yTitle: string;
     selector?: boolean;
     type?: 'line' | 'bar' | 'pie';
     data: { label: string; amount?: number }[];

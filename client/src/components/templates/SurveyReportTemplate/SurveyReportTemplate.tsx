@@ -34,7 +34,10 @@ const SurveyReportTemplate: React.FC<ISurveyReportTemplateProps> = ({
                   <Chart
                     data={createChart(question.optionList)}
                     title={question.question}
+                    xTitle={'옵션'}
+                    yTitle={'응답 수'}
                     selector
+                    type={'bar'}
                   />
                 </S.BottomGridItem>
               ))}

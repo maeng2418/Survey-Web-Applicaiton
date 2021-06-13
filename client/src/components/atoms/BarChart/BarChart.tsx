@@ -1,8 +1,8 @@
 import React from 'react';
-import { ILineChartProps } from 'atom-props';
-import { ResponsiveContainer, LineChart as Chart, Line, XAxis, YAxis, Label } from 'recharts';
+import { IBarChartProps } from 'atom-props';
+import { ResponsiveContainer, BarChart as Chart, Bar, XAxis, YAxis, Label } from 'recharts';
 
-const LineChart: React.FC<ILineChartProps> = ({ xTitle, yTitle, data }) => {
+const BarChart: React.FC<IBarChartProps> = ({ xTitle, yTitle, data }) => {
   return (
     <ResponsiveContainer>
       <Chart
@@ -24,10 +24,10 @@ const LineChart: React.FC<ILineChartProps> = ({ xTitle, yTitle, data }) => {
             {yTitle}
           </Label>
         </YAxis>
-        <Line type="monotone" dataKey="amount" stroke={'#ff9800'} dot={false} />
+        <Bar type="monotone" dataKey="amount" fill={'#ff9800'} />
       </Chart>
     </ResponsiveContainer>
   );
 };
 
-export default LineChart;
+export default BarChart;

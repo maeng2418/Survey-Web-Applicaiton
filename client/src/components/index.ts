@@ -12,6 +12,7 @@ export { default as DeleteQuestionBtn } from './atoms/DeleteQuestionBtn';
 export { default as GraphSelect } from './atoms/GraphSelect';
 export { default as LineChart } from './atoms/LineChart';
 export { default as Loading } from './atoms/Loading';
+export { default as BarChart } from './atoms/BarChart';
 
 // Modules
 export { default as LoginForm } from './modules/LoginForm';
