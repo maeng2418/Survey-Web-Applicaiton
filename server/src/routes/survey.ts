@@ -16,20 +16,12 @@ router.get(
 /******************************************************************************
  *   Survey Detail - "GET /api/survey/detail?id={surveyId}&page=${pageCount}"
  ******************************************************************************/
-router.get(
-  '/detail',
-  passport.authenticate('jwt', { session: false }),
-  SurveyController.findDetail
-);
+router.get('/detail', SurveyController.findDetail);
 
 /******************************************************************************
  *                   Survey Info - "GET /api/survey/info"
  ******************************************************************************/
-router.get(
-  '/info/:surveyId',
-  passport.authenticate('jwt', { session: false }),
-  SurveyController.findInfo
-);
+router.get('/info/:surveyId', SurveyController.findInfo);
 
 /******************************************************************************
  *                    Create Survey - "POST /api/survey/"

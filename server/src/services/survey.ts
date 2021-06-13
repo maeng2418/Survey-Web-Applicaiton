@@ -1,6 +1,14 @@
 import bodyParser from 'body-parser';
 import { StatusCodes } from 'http-status-codes';
-import { Survey, Question, Option, User, SurveyParticipant, Participant } from 'models';
+import {
+  Survey,
+  Question,
+  Option,
+  User,
+  SurveyParticipant,
+  Participant,
+  QuestionOption,
+} from 'models';
 import CustomError from 'modules/exceptions/custom-error';
 const { Op } = require('sequelize');
 
@@ -17,16 +25,20 @@ const findList = async (page: number): Promise<Survey[]> => {
   return surveyList;
 };
 
-// 설문 상세 - 질문 ID 리스트
-const findQuestionIds = async (id: number, page: number): Promise<Question[]> => {
-  const questions = await Question.findAll({
-    attributes: ['id'],
+// 설문 상세
+const findQuestionOptionList = async (id: number, page: number): Promise<QuestionOption[]> => {
+  const questions = await QuestionOption.findAll({
+    attributes: ['id', 'surveyId', 'questionId', 'optionId'],
+    include: [
+      { model: Question, as: 'question' },
+      { model: Option, as: 'option' },
+    ],
     where: {
       // surveyId: id,
       [Op.and]: [
         { surveyId: id },
         {
-          id: {
+          questionId: {
             [Op.between]: [page * 10, (page + 1) * 10],
           },
         },
@@ -36,28 +48,11 @@ const findQuestionIds = async (id: number, page: number): Promise<Question[]> =>
   return questions;
 };
 
-// 설문 상세 - 질문 및 옵션 리스트
-const findQuestions = async (questionIdList: Question[]): Promise<Option[]> => {
-  const questions = await Option.findAll({
-    attributes: ['id', 'title', 'questionId'],
-    include: { model: Question, as: 'question' },
-    where: {
-      questionId: {
-        [Op.in]: questionIdList.map((question) => question.getDataValue('id')),
-      },
-    },
-  });
-  return questions;
-};
-
 // 설문 정보
-const findInfo = async (surveyId: number): Promise<SurveyParticipant | null> => {
-  const survey = await SurveyParticipant.findOne({
-    attributes: ['id', 'participantId', 'surveyId'],
-    include: [
-      { model: Participant, as: 'participant' },
-      { model: Survey, as: 'survey' },
-    ],
+const findInfo = async (surveyId: number): Promise<any> => {
+  const survey = await Survey.findOne({
+    attributes: ['id', 'title'],
+    include: [{ model: User, as: 'user' }],
     where: {
       id: surveyId,
     },
@@ -72,24 +67,29 @@ const create = async (data: any): Promise<any> => {
     userId: data.writerId,
   });
   if (!survey) throw new CustomError(StatusCodes.BAD_REQUEST, `설문지 생성 실패`, '');
-  data.questionList.forEach(async (question: any) => {
+  data.questionList.forEach(async ({ question, position, type, optionList }: any) => {
     const questionData = await Question.create({
-      question: question.questionTitle,
-      type: question.questionType,
-      position: question.questionPos,
-      surveyId: survey.id,
+      question: question,
+      type: type,
+      position: position,
     });
     if (!questionData) throw new CustomError(StatusCodes.BAD_REQUEST, `질문 생성 실패`, '');
-    question.optionList.forEach(async (option: any) => {
+    optionList.forEach(async ({ value }: any) => {
       const optionData = await Option.create({
-        title: option.optionTitle,
-        questionId: questionData.id,
+        title: value,
       });
       if (!optionData) throw new CustomError(StatusCodes.BAD_REQUEST, `옵션 생성 실패`, '');
+      const questionOptionData = await QuestionOption.create({
+        surveyId: survey.id,
+        questionId: questionData.id,
+        optionId: optionData.id,
+      });
+      if (!questionOptionData)
+        throw new CustomError(StatusCodes.BAD_REQUEST, `질문-옵션 생성 실패`, '');
     });
   });
 
-  return;
+  return survey.id;
 };
 
 // 설문 삭제
@@ -147,8 +147,7 @@ const editSurvey = async (data: any): Promise<any> => {
 
 export default {
   findList,
-  findQuestionIds,
-  findQuestions,
+  findQuestionOptionList,
   findInfo,
   create,
   remove,

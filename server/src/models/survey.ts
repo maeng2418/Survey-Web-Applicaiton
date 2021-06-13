@@ -2,6 +2,7 @@ import { DataTypes, Model } from 'sequelize';
 import { sequelize } from 'modules/database';
 import Question from './question';
 import User from './user';
+import QuestionOption from './question-option';
 
 class Survey extends Model {
   public id!: number;
@@ -32,11 +33,11 @@ Survey.belongsTo(User, {
   as: 'user',
 });
 
-Survey.hasMany(Question, {
+Survey.hasMany(QuestionOption, {
   sourceKey: 'id',
   foreignKey: { name: 'surveyId', allowNull: false },
   onDelete: 'cascade',
-  as: 'questions',
+  as: 'question_options',
 });
 
 export default Survey;

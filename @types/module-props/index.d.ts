@@ -41,8 +41,14 @@ declare module 'module-props' {
 
   interface IQuestionBoxProps {
     title: string;
+    idx: string;
     type: 'checkbox' | 'radio';
     list: { [key: string]: string }[];
+    onSelectCheckboxOption: (
+      questionId: string,
+      event: React.ChangeEvent<HTMLInputElement>
+    ) => void;
+    onSelectRadioOption: (questionId: string, event: React.ChangeEvent<HTMLInputElement>) => void;
   }
 
   interface IJoinSurveyFormProps {
@@ -51,5 +57,6 @@ declare module 'module-props' {
     open: boolean;
     onClickCancelBtn: () => void;
     onClickJoinBtn: () => void;
+    onChangeName: (name: string) => void;
   }
 }

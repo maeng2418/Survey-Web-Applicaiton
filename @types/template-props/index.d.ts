@@ -2,6 +2,11 @@ declare module 'template-props' {
   interface IMainTemplateProps {
     type: 'main' | 'join';
     onClickMainBtn: () => void;
+    onClickCancelBtn: () => void;
+    onChangeName: (name: string) => void;
+    onClickJoinBtn: () => void;
+    surveyTitle: string;
+    open: boolean;
   }
 
   interface ILoginTemplateProps {
@@ -32,5 +37,22 @@ declare module 'template-props' {
     chartData: { time: string; amount?: number }[];
     todayParticipationCount: number;
     totalParticipationCount: number;
+  }
+
+  interface ISurveyTemplateProps {
+    surveyTitle: string;
+    questionList: {
+      idx: number;
+      question: string;
+      position: number;
+      type: string;
+      optionList: { id: number; title: string }[];
+    }[];
+    onSelectCheckboxOption: (
+      questionId: string,
+      event: React.ChangeEvent<HTMLInputElement>
+    ) => void;
+    onSelectRadioOption: (questionId: string, event: React.ChangeEvent<HTMLInputElement>) => void;
+    onClickSubmitBtn: () => void;
   }
 }

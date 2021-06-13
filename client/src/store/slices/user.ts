@@ -4,6 +4,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const slice = createSlice({
   name: 'user',
   initialState: {
+    id: null,
     username: null,
     email: null,
     token: null,
@@ -13,6 +14,7 @@ const slice = createSlice({
   reducers: {
     loginRequest: (state, action) => {},
     loginSuccess: (state, action) => {
+      state.id = action.payload.id;
       state.username = action.payload.username;
       state.email = action.payload.email;
       state.token = action.payload.token;
@@ -22,11 +24,13 @@ const slice = createSlice({
     },
     authRequest: (state, action) => {},
     authSuccess: (state, action) => {
+      state.id = action.payload.id;
       state.username = action.payload.username;
       state.email = action.payload.email;
       state.token = action.payload.token;
     },
     authFailure: (state, action) => {
+      state.id = null;
       state.username = null;
       state.email = null;
       state.token = null;
@@ -40,6 +44,7 @@ const slice = createSlice({
     },
     logoutRequest: (state, action) => {},
     logoutSuccess: (state, action) => {
+      state.id = null;
       state.username = null;
       state.email = null;
       state.token = null;

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Container } from '@material-ui/core';
 
-export const SurveyTemplate = styled.div``;
+export const SurveyTemplate = styled.form``;
 
 export const Content = styled(Container)`
   padding: 32px 24px;

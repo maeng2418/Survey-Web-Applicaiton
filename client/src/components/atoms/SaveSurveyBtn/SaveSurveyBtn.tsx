@@ -12,17 +12,8 @@ const SaveSurveyBtn: React.FC = () => {
     dispatch(
       saveSurveyRequest({
         title: survey.title,
-        writerId: 1,
-        questionList: survey.questionList.map((item) => {
-          return {
-            questionTitle: item.question,
-            questionType: item.type,
-            questionPos: item.position,
-            optionList: item.optionList.map((option) => {
-              return { optionTitle: option.value };
-            }),
-          };
-        }),
+        writerId: user.id,
+        questionList: survey.questionList,
       })
     );
   };

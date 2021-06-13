@@ -47,6 +47,7 @@ const emailSignIn = async (req: Request, res: Response, next: NextFunction): Pro
         message: `Log in success ${body.email}`,
         result: {
           success: true,
+          id: emailUser.getDataValue('id'),
           username: emailUser.getDataValue('username'),
           email: emailUser.getDataValue('email'),
           token: token,
@@ -67,6 +68,7 @@ const isValidToken = async (req: Request, res: Response, next: NextFunction): Pr
         message: `valificated user ${user.username}`,
         result: {
           success: true,
+          id: user.id,
           username: user.username,
           email: user.email,
           token: req.cookies.authorization,
