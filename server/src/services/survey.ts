@@ -47,7 +47,19 @@ const findList = async (page: number): Promise<{ [id: string]: number }> => {
     }
   }, {});
 
-  return surveyParticipants;
+  const surveys = surveyList.reduce((acc: any, cur: any) => {
+    if (acc.hasOwnProperty(cur.id)) {
+      acc[cur.id]['count'] = 0;
+      return acc;
+    } else {
+      acc[cur.id] = {};
+      acc[cur.id]['title'] = cur.title;
+      acc[cur.id]['count'] = 0;
+      return acc;
+    }
+  }, {});
+
+  return { ...surveys, ...surveyParticipants };
 };
 
 // 설문 상세
