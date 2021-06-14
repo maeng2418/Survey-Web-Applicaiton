@@ -16,7 +16,7 @@ import {
   SurveyReportPage,
   SurveyPage,
 } from 'pages';
-import { Loading } from 'components';
+import { Loading, SystemMsgDialog } from 'components';
 
 import moment from 'moment';
 
@@ -54,6 +54,7 @@ const App: React.FC = () => {
           <RestrictRoute exact path="/list/add" component={AddSurveyPage} />
           <RestrictRoute exact path="/list/report/:surveyIdx" component={SurveyReportPage} />
         </Switch>
+        <SystemMsgDialog />
       </Router>
       <GlobalStyles />
     </ThemeProvider>

@@ -14,6 +14,7 @@ import {
 } from '../slices/user';
 import API from 'utils/api';
 import { PayloadAction } from '@reduxjs/toolkit';
+import { onShowSystemMsg } from 'store/slices/systemMsg';
 
 // 로그인
 function loginUserAPI(data: { email: string; password: string }) {
@@ -30,9 +31,11 @@ function* loginUser(action: PayloadAction<{ email: string; password: string }>):
       history.push('/dashboard');
     } else {
       yield put(loginFailure(response.data.message));
+      yield put(onShowSystemMsg({ message: response.data.message }));
     }
   } catch (err) {
     yield put(loginFailure(err.message));
+    yield put(onShowSystemMsg({ message: err.data.message }));
   }
   yield put(onHideLoading({}));
 }
@@ -51,9 +54,11 @@ function* authUser(action: PayloadAction): Generator {
       yield put(authSuccess(response.data.result));
     } else {
       yield put(authFailure(response.data.message));
+      yield put(onShowSystemMsg({ message: response.data.message }));
     }
   } catch (err) {
     yield put(authFailure(err.message));
+    yield put(onShowSystemMsg({ message: err.data.message }));
   }
   yield put(onHideLoading({}));
 }
@@ -71,9 +76,11 @@ function* logoutUser(action: PayloadAction): Generator {
       yield put(logoutSuccess({}));
     } else {
       yield put(logoutFailure(response.data.message));
+      yield put(onShowSystemMsg({ message: response.data.message }));
     }
   } catch (err) {
     yield put(logoutFailure(err.message));
+    yield put(onShowSystemMsg({ message: err.data.message }));
   }
   yield put(onHideLoading({}));
 }

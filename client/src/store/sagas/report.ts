@@ -10,6 +10,7 @@ import {
 import API from 'utils/api';
 import { PayloadAction } from '@reduxjs/toolkit';
 import { State } from 'store';
+import { onShowSystemMsg } from 'store/slices/systemMsg';
 
 // 리포트 데이터 로드
 function loadReportAPI(surveyId: number, page: number) {
@@ -30,9 +31,11 @@ function* loadReport(): Generator {
       );
     } else {
       yield put(loadReportFailure(response.data.message));
+      yield put(onShowSystemMsg({ message: response.data.message }));
     }
   } catch (err) {
     yield put(loadReportFailure(err.message));
+    yield put(onShowSystemMsg({ message: err.data.message }));
   }
 }
 
@@ -52,9 +55,11 @@ function* loadParticiapnt(action: PayloadAction<{ surveyId: number }>): Generato
       );
     } else {
       yield put(loadParticipantsFailure(response.data.message));
+      yield put(onShowSystemMsg({ message: response.data.message }));
     }
   } catch (err) {
     yield put(loadParticipantsFailure(err.message));
+    yield put(onShowSystemMsg({ message: err.data.message }));
   }
 }
 
