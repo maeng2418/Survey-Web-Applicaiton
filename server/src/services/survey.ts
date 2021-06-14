@@ -61,7 +61,7 @@ const findQuestionOptionList = async (id: number, page: number): Promise<Questio
     where: {
       surveyId: id,
     },
-    offset: page,
+    offset: page * 10,
     limit: 10,
   });
 
@@ -183,7 +183,7 @@ const findReport = async (id: number, page: number): Promise<any> => {
     where: {
       [Op.and]: [{ surveyId: id }],
     },
-    offset: page,
+    offset: page * 10,
     limit: 10,
   });
 
