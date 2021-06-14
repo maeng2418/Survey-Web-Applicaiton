@@ -181,6 +181,9 @@ const slice = createSlice({
     saveSurveyFailure: (state, action) => {
       state.error = action.payload;
     },
+    changePositionSurveyQuestions: (state, action) => {
+      state.questionList = action.payload;
+    },
   },
 });
 
@@ -197,6 +200,7 @@ export const {
   saveSurveyRequest,
   saveSurveySuccess,
   saveSurveyFailure,
+  changePositionSurveyQuestions,
 } = slice.actions;
 
 export default slice.reducer;
