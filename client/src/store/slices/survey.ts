@@ -5,7 +5,6 @@ const slice = createSlice({
   name: 'survey',
   initialState: {
     idCounter: 0,
-    isSaved: false,
     title: '',
     questionList: [
       {
@@ -155,8 +154,29 @@ const slice = createSlice({
       state.questionList[action.payload.idx].optionList = [...result];
     },
     saveSurveyRequest: (state, action) => {},
-    saveSurveySuccess: (state, action) => {
-      state.isSaved = true;
+    saveSurveySuccess: (state) => {
+      state.idCounter = 0;
+      state.title = '';
+      state.questionList = [
+        {
+          idx: 0,
+          question: '',
+          position: 0,
+          type: 'boolean',
+          optionList: [
+            {
+              adder: false,
+              start: 'YES',
+              value: '',
+            },
+            {
+              adder: false,
+              start: 'NO',
+              value: '',
+            },
+          ],
+        },
+      ];
     },
     saveSurveyFailure: (state, action) => {
       state.error = action.payload;

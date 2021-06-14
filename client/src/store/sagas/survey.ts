@@ -12,7 +12,7 @@ function* saveSurvey(action: PayloadAction<{ data: any }>): Generator {
   try {
     const response: any = yield call(saveSurveyAPI, action.payload);
     if (response.data.result.success) {
-      yield put(saveSurveySuccess({}));
+      yield put(saveSurveySuccess());
       const history: any = yield getContext('history');
       history.push('/dashboard');
     } else {
