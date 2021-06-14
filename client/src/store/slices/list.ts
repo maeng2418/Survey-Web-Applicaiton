@@ -5,18 +5,16 @@ const slice = createSlice({
   name: 'list',
   initialState: {
     page: 0,
-    survey: {
-      '1': {
-        title: '1번째 설문조사',
-        count: 1,
-      },
-    },
+    survey: {},
     error: '',
   },
   reducers: {
-    loadListRequest: (state, action) => {},
+    loadListRequest: (state) => {},
     loadListSuccess: (state, action) => {
-      state.survey = action.payload.survey;
+      if (Object.keys(action.payload.survey).length > 0) {
+        state.page = state.page + 1;
+      }
+      state.survey = { ...state.survey, ...action.payload.survey };
     },
     loadListFailure: (state, action) => {
       state.error = action.payload;

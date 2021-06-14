@@ -14,11 +14,13 @@ declare module 'module-props' {
   }
 
   interface IChartProps {
+    idx?: number;
     title?: string;
     xTitle: string;
     yTitle: string;
     selector?: boolean;
-    type?: 'line' | 'bar' | 'pie' | 'log';
+    type?: string;
+    onSelectType?: (event: React.ChangeEvent<{ value: unknown }>, idx: number) => void;
     data: { label: string; amount: number }[];
   }
 

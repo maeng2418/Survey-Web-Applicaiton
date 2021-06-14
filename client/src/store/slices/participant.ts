@@ -10,15 +10,7 @@ const slice = createSlice({
     surveyId: null,
     title: '',
     page: 0,
-    questionList: [
-      {
-        idx: 0,
-        question: '',
-        position: 0,
-        type: 'boolean',
-        optionList: [],
-      },
-    ],
+    questionList: [],
     error: '',
   },
   reducers: {
@@ -41,15 +33,27 @@ const slice = createSlice({
     loadSurveyInfoFailure: (state, action) => {
       state.error = action.payload;
     },
-    loadSurveyDetailRequest: (state, action) => {},
-    loadSurveyDetailSuccess: (state, action) => {
-      state.questionList = action.payload.questionList;
+    loadSurveyDetailRequest: () => {},
+    loadSurveyDetailSuccess: (state: any, action) => {
+      if (action.payload.questionList.length > 0) {
+        state.page = state.page + 1;
+      }
+      state.questionList = [...state.questionList, ...action.payload.questionList];
     },
     loadSurveyDetailFailure: (state, action) => {
       state.error = action.payload;
     },
     submitSurveyRequest: (state, action) => {},
-    submitSurveySuccess: (state, action) => {},
+    submitSurveySuccess: (state: any, action) => {
+      state.id = null;
+      state.name = null;
+      state.writer = null;
+      state.surveyId = null;
+      state.title = '';
+      state.page = 0;
+      state.questionList = [];
+      state.error = '';
+    },
     submitSurveyFailure: (state, action) => {
       state.error = action.payload;
     },

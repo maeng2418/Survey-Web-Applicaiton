@@ -10,9 +10,10 @@ const SurveyTemplate: React.FC<ISurveyTemplateProps> = ({
   onSelectCheckboxOption,
   onSelectRadioOption,
   onClickSubmitBtn,
+  onInfiniteScroll,
 }) => {
   return (
-    <S.SurveyTemplate>
+    <S.SurveyTemplate onScroll={onInfiniteScroll}>
       <SurveyHeader title={surveyTitle} />
       <S.Content maxWidth="lg">
         <Grid container spacing={5}>

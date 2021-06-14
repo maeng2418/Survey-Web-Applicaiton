@@ -12,6 +12,12 @@ const GlobalStyles = createGlobalStyle`
     width: 100vw;
     height: 100vh;
   }
+  
+  #root {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
 `;
 
 export default GlobalStyles;

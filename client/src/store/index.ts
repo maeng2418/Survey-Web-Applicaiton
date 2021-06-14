@@ -3,7 +3,7 @@ import { combineReducers } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import saga from './sagas';
 import { createBrowserHistory } from 'history';
-import { user, survey, participant, dashboard, list, report } from './slices';
+import { user, survey, participant, dashboard, list, report, systemMsg } from './slices';
 
 export const customHistory = createBrowserHistory();
 
@@ -15,6 +15,7 @@ const reducer = combineReducers({
   dashboard,
   list,
   report,
+  systemMsg,
 });
 
 const sagaMiddleware = createSagaMiddleware({

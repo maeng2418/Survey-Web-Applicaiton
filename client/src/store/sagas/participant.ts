@@ -1,4 +1,4 @@
-import { put, call, takeLatest, getContext, takeEvery } from 'redux-saga/effects';
+import { put, call, takeLatest, getContext, takeEvery, select } from 'redux-saga/effects';
 import {
   joinRequest,
   joinSuccess,
@@ -15,6 +15,8 @@ import {
 } from '../slices/participant';
 import API from 'utils/api';
 import { PayloadAction } from '@reduxjs/toolkit';
+import { State } from 'store';
+import { onShowSystemMsg } from 'store/slices/systemMsg';
 
 // 설문 참여
 function joinSurveyAPI(surveyId: number, name: string) {
@@ -26,14 +28,16 @@ function* joinSurvey(action: PayloadAction<{ surveyId: number; name: string }>):
     const response: any = yield call(joinSurveyAPI, action.payload.surveyId, action.payload.name);
     if (response.data.result.success) {
       yield put(joinSuccess({ id: response.data.result.participantId }));
-      yield put(loadSurveyDetailRequest({ surveyId: action.payload.surveyId, pageCount: 0 }));
+      yield put(loadSurveyDetailRequest());
       const history: any = yield getContext('history');
       history.push(`/survey/${action.payload.surveyId}`);
     } else {
       yield put(joinFailure(response.data.message));
+      yield put(onShowSystemMsg({ message: response.data.message }));
     }
   } catch (err) {
     yield put(joinFailure(err.message));
+    yield put(onShowSystemMsg({ message: err.message }));
   }
 }
 
@@ -55,9 +59,11 @@ function* loadSurveyInfo(action: PayloadAction<{ surveyId: number }>): Generator
       );
     } else {
       yield put(loadSurveyInfoFailure(response.data.message));
+      yield put(onShowSystemMsg({ message: response.data.message }));
     }
   } catch (err) {
     yield put(loadSurveyInfoFailure(err.message));
+    yield put(onShowSystemMsg({ message: err.data.message }));
   }
 }
 
@@ -66,14 +72,13 @@ function loadSurveyDetailAPI(surveyId: number, pageCount: number) {
   return API.get(`/survey/detail?id=${surveyId}&page=${pageCount}`);
 }
 
-function* loadSurveyDetail(
-  action: PayloadAction<{ surveyId: number; pageCount: number }>
-): Generator {
+function* loadSurveyDetail(): Generator {
   try {
+    const participantData: any = yield select((state: State) => state.participant);
     const response: any = yield call(
       loadSurveyDetailAPI,
-      action.payload.surveyId,
-      action.payload.pageCount
+      participantData.surveyId,
+      participantData.page
     );
     if (response.data.result.success) {
       yield put(
@@ -108,6 +113,7 @@ function* submitSurvey(
     });
     if (response.data.result.success) {
       yield put(submitSurveySuccess({}));
+      yield put(onShowSystemMsg({ message: '응답을 제출하였습니다.' }));
       const history: any = yield getContext('history');
       history.go(-1);
     } else {
