@@ -16,6 +16,7 @@ import {
 import API from 'utils/api';
 import { PayloadAction } from '@reduxjs/toolkit';
 import { State } from 'store';
+import { onShowSystemMsg } from 'store/slices/systemMsg';
 
 // 설문 참여
 function joinSurveyAPI(surveyId: number, name: string) {
@@ -32,9 +33,11 @@ function* joinSurvey(action: PayloadAction<{ surveyId: number; name: string }>):
       history.push(`/survey/${action.payload.surveyId}`);
     } else {
       yield put(joinFailure(response.data.message));
+      yield put(onShowSystemMsg({ message: response.data.message }));
     }
   } catch (err) {
     yield put(joinFailure(err.message));
+    yield put(onShowSystemMsg({ message: err.message }));
   }
 }
 
@@ -56,9 +59,11 @@ function* loadSurveyInfo(action: PayloadAction<{ surveyId: number }>): Generator
       );
     } else {
       yield put(loadSurveyInfoFailure(response.data.message));
+      yield put(onShowSystemMsg({ message: response.data.message }));
     }
   } catch (err) {
     yield put(loadSurveyInfoFailure(err.message));
+    yield put(onShowSystemMsg({ message: err.data.message }));
   }
 }
 
@@ -108,6 +113,7 @@ function* submitSurvey(
     });
     if (response.data.result.success) {
       yield put(submitSurveySuccess({}));
+      yield put(onShowSystemMsg({ message: '응답을 제출하였습니다.' }));
       const history: any = yield getContext('history');
       history.go(-1);
     } else {

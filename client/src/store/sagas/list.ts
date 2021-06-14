@@ -3,6 +3,7 @@ import { loadListRequest, loadListSuccess, loadListFailure } from '../slices/lis
 import API from 'utils/api';
 import { PayloadAction } from '@reduxjs/toolkit';
 import { State } from 'store';
+import { onShowSystemMsg } from 'store/slices/systemMsg';
 
 // 리스트 데이터 로드
 function loadListAPI(page: number) {
@@ -21,9 +22,11 @@ function* loadList(action: PayloadAction<number>): Generator {
       );
     } else {
       yield put(loadListFailure(response.data.message));
+      yield put(onShowSystemMsg({ message: response.data.message }));
     }
   } catch (err) {
     yield put(loadListFailure(err.message));
+    yield put(onShowSystemMsg({ message: err.message }));
   }
 }
 

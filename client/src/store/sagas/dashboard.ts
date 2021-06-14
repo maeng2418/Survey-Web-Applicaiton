@@ -6,6 +6,7 @@ import {
 } from '../slices/dashboard';
 import API from 'utils/api';
 import { PayloadAction } from '@reduxjs/toolkit';
+import { onShowSystemMsg } from 'store/slices/systemMsg';
 
 // 대시보드 데이터 로드
 function loadDashboardAPI() {
@@ -25,9 +26,11 @@ function* loadDashboard(action: PayloadAction<{ data: any }>): Generator {
       );
     } else {
       yield put(loadDashboardFailure(response.data.message));
+      yield put(onShowSystemMsg({ message: response.data.message }));
     }
   } catch (err) {
     yield put(loadDashboardFailure(err.message));
+    yield put(onShowSystemMsg({ message: err.message }));
   }
 }
 
