@@ -10,8 +10,14 @@ const SurveyListPage: React.FC = () => {
   const listData = useSelector((state: State) => state.list);
 
   useEffect(() => {
-    dispatch(loadListRequest(0));
+    dispatch(loadListRequest());
   }, []);
+
+  const onInfiniteScroll = (event: any) => {
+    if (event.target.scrollTop + event.target.clientHeight + 50 > event.target.scrollHeight) {
+      dispatch(loadListRequest());
+    }
+  };
 
   const getSurveyData = () => {
     const survey: any = listData.survey;
@@ -29,7 +35,7 @@ const SurveyListPage: React.FC = () => {
 
   return (
     <AdminTemplate>
-      <SurveyListTemplate surveyData={getSurveyData()} />
+      <SurveyListTemplate surveyData={getSurveyData()} onInfiniteScroll={onInfiniteScroll} />
     </AdminTemplate>
   );
 };

@@ -6,29 +6,21 @@ const slice = createSlice({
   initialState: {
     surveyId: 0,
     title: '',
-    questionList: [
-      {
-        questionId: 1,
-        question: '질문',
-        position: 0,
-        optionList: [
-          {
-            optionId: 1,
-            option: '옵션',
-            selector: ['김명성'],
-          },
-        ],
-      },
-    ],
+    page: 0,
+    questionList: [],
     totalParticipant: 0,
     error: '',
   },
   reducers: {
-    loadReportRequest: (state, action) => {},
-    loadReportSuccess: (state, action) => {
+    loadReportRequest: (state, action) => {
       state.surveyId = action.payload.surveyId;
+    },
+    loadReportSuccess: (state: any, action) => {
       state.title = action.payload.title;
-      state.questionList = action.payload.questionList;
+      state.questionList = [...state.questionList, ...action.payload.questionList];
+      if (action.payload.questionList.length > 0) {
+        state.page = state.page + 1;
+      }
     },
     loadReportFailure: (state, action) => {
       state.error = action.payload;

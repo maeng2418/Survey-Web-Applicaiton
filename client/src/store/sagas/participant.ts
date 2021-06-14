@@ -1,4 +1,4 @@
-import { put, call, takeLatest, getContext, takeEvery } from 'redux-saga/effects';
+import { put, call, takeLatest, getContext, takeEvery, select } from 'redux-saga/effects';
 import {
   joinRequest,
   joinSuccess,
@@ -15,6 +15,7 @@ import {
 } from '../slices/participant';
 import API from 'utils/api';
 import { PayloadAction } from '@reduxjs/toolkit';
+import { State } from 'store';
 
 // 설문 참여
 function joinSurveyAPI(surveyId: number, name: string) {
@@ -26,7 +27,7 @@ function* joinSurvey(action: PayloadAction<{ surveyId: number; name: string }>):
     const response: any = yield call(joinSurveyAPI, action.payload.surveyId, action.payload.name);
     if (response.data.result.success) {
       yield put(joinSuccess({ id: response.data.result.participantId }));
-      yield put(loadSurveyDetailRequest({ surveyId: action.payload.surveyId, pageCount: 0 }));
+      yield put(loadSurveyDetailRequest());
       const history: any = yield getContext('history');
       history.push(`/survey/${action.payload.surveyId}`);
     } else {
@@ -66,14 +67,13 @@ function loadSurveyDetailAPI(surveyId: number, pageCount: number) {
   return API.get(`/survey/detail?id=${surveyId}&page=${pageCount}`);
 }
 
-function* loadSurveyDetail(
-  action: PayloadAction<{ surveyId: number; pageCount: number }>
-): Generator {
+function* loadSurveyDetail(): Generator {
   try {
+    const participantData: any = yield select((state: State) => state.participant);
     const response: any = yield call(
       loadSurveyDetailAPI,
-      action.payload.surveyId,
-      action.payload.pageCount
+      participantData.surveyId,
+      participantData.page
     );
     if (response.data.result.success) {
       yield put(

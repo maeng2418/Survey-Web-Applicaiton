@@ -11,9 +11,10 @@ const SurveyReportTemplate: React.FC<ISurveyReportTemplateProps> = ({
   participants,
   type,
   onSelectType,
+  onInfiniteScroll,
 }) => {
   return (
-    <S.SurveyReportTemplate>
+    <S.SurveyReportTemplate onScroll={onInfiniteScroll}>
       <S.Container maxWidth="lg">
         <Grid container spacing={5}>
           <Grid item xs={12}>
@@ -39,7 +40,7 @@ const SurveyReportTemplate: React.FC<ISurveyReportTemplateProps> = ({
                     xTitle={'옵션'}
                     yTitle={'응답 수'}
                     selector
-                    type={type[idx]}
+                    type={type[idx] || 'bar'}
                     onSelectType={onSelectType}
                   />
                 </S.BottomGridItem>

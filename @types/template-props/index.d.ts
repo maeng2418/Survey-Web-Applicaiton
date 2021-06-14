@@ -31,6 +31,7 @@ declare module 'template-props' {
       title: string;
       count: number;
     }[];
+    onInfiniteScroll: (event: any) => void;
   }
 
   interface ISurveyReportTemplateProps {
@@ -59,6 +60,7 @@ declare module 'template-props' {
     participants: number;
     type: string[];
     onSelectType: (event: React.ChangeEvent<{ value: unknown }>, idx: number) => void;
+    onInfiniteScroll: (event: any) => void;
   }
 
   interface ISurveyTemplateProps {
@@ -76,5 +78,6 @@ declare module 'template-props' {
     ) => void;
     onSelectRadioOption: (questionId: string, event: React.ChangeEvent<HTMLInputElement>) => void;
     onClickSubmitBtn: () => void;
+    onInfiniteScroll: (event: any) => void;
   }
 }
