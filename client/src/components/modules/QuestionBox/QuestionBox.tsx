@@ -31,7 +31,7 @@ const QuestionBox: React.FC<IQuestionBoxProps> = ({
                   key={optionIdx}
                   value={option.value}
                   control={<Radio onChange={(event) => onSelectRadioOption(idx, event)} />}
-                  label={`${idx} ${option.label}`}
+                  label={`${option.label}`}
                 />
               ))}
             </RadioGroup>
@@ -47,7 +47,7 @@ const QuestionBox: React.FC<IQuestionBoxProps> = ({
                       onChange={(event) => onSelectCheckboxOption(idx, event)}
                     />
                   }
-                  label={`${idx} ${option.label}`}
+                  label={`${option.label}`}
                 />
               ))}
             </FormGroup>

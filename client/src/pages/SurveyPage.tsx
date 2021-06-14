@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { SurveyTemplate } from 'components';
 import { useDispatch, useSelector } from 'react-redux';
 import { State } from 'store';
-import { submitSurveyRequest } from 'store/slices/participant';
+import { loadSurveyDetailRequest, submitSurveyRequest } from 'store/slices/participant';
 
 const SurveyPage: React.FC = () => {
   const dispatch = useDispatch();
@@ -42,6 +42,12 @@ const SurveyPage: React.FC = () => {
     dispatch(submitSurveyRequest({ participantId: participant.id, options: selectedOptions }));
   };
 
+  const onInfiniteScroll = (event: any) => {
+    if (event.target.scrollTop + event.target.clientHeight + 50 > event.target.scrollHeight) {
+      dispatch(loadSurveyDetailRequest());
+    }
+  };
+
   return (
     <SurveyTemplate
       questionList={participant.questionList}
@@ -49,6 +55,7 @@ const SurveyPage: React.FC = () => {
       onSelectCheckboxOption={onSelectCheckboxOption}
       onSelectRadioOption={onSelectRadioOption}
       onClickSubmitBtn={onClickSubmitBtn}
+      onInfiniteScroll={onInfiniteScroll}
     />
   );
 };

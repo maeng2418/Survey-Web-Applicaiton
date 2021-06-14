@@ -19,7 +19,7 @@ const slice = createSlice({
       if (Object.keys(action.payload.survey).length > 0) {
         state.page = state.page + 1;
       }
-      state.survey = { ...action.payload.survey };
+      state.survey = { ...state.survey, ...action.payload.survey };
     },
     loadListFailure: (state, action) => {
       state.error = action.payload;

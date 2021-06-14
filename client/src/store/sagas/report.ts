@@ -1,4 +1,4 @@
-import { put, call, takeLatest, getContext, takeEvery } from 'redux-saga/effects';
+import { put, call, takeEvery } from 'redux-saga/effects';
 import {
   loadReportRequest,
   loadReportSuccess,
@@ -41,7 +41,6 @@ function loadParticipantAPI(surveyId: number) {
 
 function* loadParticiapnt(action: PayloadAction<{ surveyId: number }>): Generator {
   try {
-    console.log(action.payload);
     const response: any = yield call(loadParticipantAPI, action.payload.surveyId);
     if (response.data.result.success) {
       yield put(

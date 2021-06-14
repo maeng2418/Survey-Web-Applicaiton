@@ -1,4 +1,4 @@
-import { put, call, takeLatest, getContext, takeEvery, select } from 'redux-saga/effects';
+import { put, call, takeLatest, select } from 'redux-saga/effects';
 import { loadListRequest, loadListSuccess, loadListFailure } from '../slices/list';
 import API from 'utils/api';
 import { PayloadAction } from '@reduxjs/toolkit';

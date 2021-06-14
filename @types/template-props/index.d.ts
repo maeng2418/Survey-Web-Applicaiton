@@ -77,5 +77,6 @@ declare module 'template-props' {
     ) => void;
     onSelectRadioOption: (questionId: string, event: React.ChangeEvent<HTMLInputElement>) => void;
     onClickSubmitBtn: () => void;
+    onInfiniteScroll: (event: any) => void;
   }
 }
