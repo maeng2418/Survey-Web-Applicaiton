@@ -49,12 +49,12 @@ https://documenter.getpostman.com/view/7502378/TzeRoVUS
 <br/>
 <br/>
 <b>설문지 작성 화면</b><br/><br/>
-<img src="https://user-images.githubusercontent.com/46251629121445942-71d20500-c9cd-11eb-8615-c1bfb9565700.png" width="600px"/>
+<img src="https://user-images.githubusercontent.com/46251629/121445942-71d20500-c9cd-11eb-8615-c1bfb9565700.png" width="600px"/>
 <br/>
 <br/>
 <b>설문 목록 화면</b><br/><br/>
-<img src="https://user-images.githubusercontent.com/46251629121445996-91692d80-c9cd-11eb-9182-f86f8fde181a.png" width="600px"/>
+<img src="https://user-images.githubusercontent.com/46251629/121445996-91692d80-c9cd-11eb-9182-f86f8fde181a.png" width="600px"/>
 <br/>
 <br/>
 <b>설문 리포트 화면</b><br/><br/>
-<img src="https://user-images.githubusercontent.com/46251629121446099-c4abbc80-c9cd-11eb-9970-86e57fb25860.png" width="600px"/>
+<img src="https://user-images.githubusercontent.com/46251629/121446099-c4abbc80-c9cd-11eb-9970-86e57fb25860.png" width="600px"/>
