@@ -28,4 +28,10 @@ declare module 'atom-props' {
   interface ILogTableProps {
     data: { label: string; amount: number }[];
   }
+
+  interface IGraphSelect {
+    idx: number;
+    type: string;
+    onSelectType: (event: React.ChangeEvent<{ value: unknown }>, idx: number) => void;
+  }
 }
