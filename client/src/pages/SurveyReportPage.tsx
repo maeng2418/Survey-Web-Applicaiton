@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { AdminTemplate, SurveyReportTemplate } from 'components';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadParticipantsRequest, loadReportRequest } from 'store/slices/report';
@@ -9,6 +9,7 @@ const SurveyReportPage: React.FC = () => {
   const { surveyIdx } = useParams<{ surveyIdx: string }>();
   const dispatch = useDispatch();
   const reportData = useSelector((state: State) => state.report);
+  const [type, setType] = useState(new Array(reportData.questionList.length).fill('bar'));
 
   useEffect(() => {
     dispatch(loadReportRequest({ surveyId: parseInt(surveyIdx), page: 0 }));
@@ -21,6 +22,12 @@ const SurveyReportPage: React.FC = () => {
     });
   };
 
+  const onSelectType = (event: React.ChangeEvent<{ value: unknown }>, idx: number) => {
+    const copiedType = [...type];
+    copiedType[idx] = event.target.value as string;
+    setType([...copiedType]);
+  };
+
   return (
     <AdminTemplate>
       <SurveyReportTemplate
@@ -29,6 +36,8 @@ const SurveyReportPage: React.FC = () => {
         createChart={createChart}
         questionList={reportData.questionList}
         participants={reportData.totalParticipant}
+        type={type}
+        onSelectType={onSelectType}
       />
     </AdminTemplate>
   );

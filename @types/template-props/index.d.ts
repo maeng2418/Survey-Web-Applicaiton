@@ -57,6 +57,8 @@ declare module 'template-props' {
       }[];
     }[];
     participants: number;
+    type: string[];
+    onSelectType: (event: React.ChangeEvent<{ value: unknown }>, idx: number) => void;
   }
 
   interface ISurveyTemplateProps {

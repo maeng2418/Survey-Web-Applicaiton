@@ -6,10 +6,11 @@ import { Pwl, Participation, Chart, ReportSurveyTitle } from 'components';
 
 const SurveyReportTemplate: React.FC<ISurveyReportTemplateProps> = ({
   surveyTitle,
-  totalParticipationCount,
   questionList,
   createChart,
   participants,
+  type,
+  onSelectType,
 }) => {
   return (
     <S.SurveyReportTemplate>
@@ -32,12 +33,14 @@ const SurveyReportTemplate: React.FC<ISurveyReportTemplateProps> = ({
                 <S.BottomGridItem item xs={12} key={idx}>
                   {/* CHART */}
                   <Chart
+                    idx={idx}
                     data={createChart(question.optionList)}
                     title={question.question}
                     xTitle={'옵션'}
                     yTitle={'응답 수'}
                     selector
-                    type={'log'}
+                    type={type[idx]}
+                    onSelectType={onSelectType}
                   />
                 </S.BottomGridItem>
               ))}
