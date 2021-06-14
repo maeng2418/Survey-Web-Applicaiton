@@ -14,8 +14,10 @@ import {
   deleteQuestion,
   changeOptionValue,
   changeTitle,
+  changePositionSurveyQuestions,
 } from 'store/slices/survey';
 import { State } from 'store';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 const SurveyForm: React.FC = () => {
   const survey = useSelector((state: State) => state.survey);
@@ -56,31 +58,62 @@ const SurveyForm: React.FC = () => {
   const onChangeTitle = (title: string) => {
     dispatch(changeTitle({ title: title }));
   };
+
+  const handleOnDragEnd = (result: any) => {
+    if (!result.destination) return;
+
+    const currentItems = [...survey.questionList];
+    const draggingItemIndex = result.source.index;
+    const afterDragItemIndex = result.destination.index;
+    const removeItem = currentItems.splice(draggingItemIndex, 1);
+
+    currentItems.splice(afterDragItemIndex, 0, removeItem[0]);
+    dispatch(changePositionSurveyQuestions(currentItems));
+  };
+
   return (
     <S.SurveyForm>
       <S.Title>
         <SurveyTitleInput onChangeTitle={onChangeTitle} title={survey.title} />
       </S.Title>
-      <S.Content container spacing={3}>
-        {survey &&
-          survey.questionList &&
-          survey.questionList.map((question) =>
-            question ? (
-              <Grid item xs={12} key={question.idx}>
-                <QuestionFormBox
-                  {...question}
-                  onClickDeleteQuestionBtn={onClickDeleteQuestionBtn}
-                  onChangeQuestion={onChangeQuestion}
-                  onChangePosition={onChangePosition}
-                  onChangeType={onChangeType}
-                  onClickAddOptionBtn={onClickAddOptionBtn}
-                  onClickRemoveOptionBtn={onClickRemoveOptionBtn}
-                  onChangeOptionValue={onChangeOptionValue}
-                />
-              </Grid>
-            ) : null
+      <DragDropContext onDragEnd={handleOnDragEnd}>
+        <Droppable droppableId="tags" direction="vertical">
+          {(provided) => (
+            <S.Content container spacing={3} {...provided.droppableProps} ref={provided.innerRef}>
+              {survey &&
+                survey.questionList &&
+                survey.questionList.map((question, idx) =>
+                  question ? (
+                    <Draggable key={idx} draggableId={`${idx}`} index={idx}>
+                      {(provided) => (
+                        <Grid
+                          item
+                          xs={12}
+                          key={question.idx}
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                        >
+                          <QuestionFormBox
+                            {...question}
+                            onClickDeleteQuestionBtn={onClickDeleteQuestionBtn}
+                            onChangeQuestion={onChangeQuestion}
+                            onChangePosition={onChangePosition}
+                            onChangeType={onChangeType}
+                            onClickAddOptionBtn={onClickAddOptionBtn}
+                            onClickRemoveOptionBtn={onClickRemoveOptionBtn}
+                            onChangeOptionValue={onChangeOptionValue}
+                          />
+                        </Grid>
+                      )}
+                    </Draggable>
+                  ) : null
+                )}
+              {provided.placeholder}
+            </S.Content>
           )}
-      </S.Content>
+        </Droppable>
+      </DragDropContext>
       <S.Footer>
         <Button size="large" variant="contained" color="primary" onClick={onClickAddQuestionBtn}>
           <AddCircleIcon /> 질문 추가하기

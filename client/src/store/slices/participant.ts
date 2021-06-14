@@ -44,22 +44,14 @@ const slice = createSlice({
       state.error = action.payload;
     },
     submitSurveyRequest: (state, action) => {},
-    submitSurveySuccess: (state, action) => {
+    submitSurveySuccess: (state: any, action) => {
       state.id = null;
       state.name = null;
       state.writer = null;
       state.surveyId = null;
       state.title = '';
       state.page = 0;
-      state.questionList = [
-        {
-          idx: 0,
-          question: '',
-          position: 0,
-          type: 'boolean',
-          optionList: [],
-        },
-      ];
+      state.questionList = [];
       state.error = '';
     },
     submitSurveyFailure: (state, action) => {
