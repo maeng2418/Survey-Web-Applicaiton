@@ -36,21 +36,19 @@ const findLastestSurvey = async (): Promise<{ [id: string]: number }> => {
     }
   }, {});
 
-  if (Object.keys(lastestSurveyParticipants).length <= 0) {
-    return surveyList.reduce((acc: any, cur: any) => {
-      if (acc.hasOwnProperty(cur.id)) {
-        acc[cur.id]['count'] = 0;
-        return acc;
-      } else {
-        acc[cur.id] = {};
-        acc[cur.id]['title'] = cur.title;
-        acc[cur.id]['count'] = 0;
-        return acc;
-      }
-    }, {});
-  }
+  const surveys = surveyList.reduce((acc: any, cur: any) => {
+    if (acc.hasOwnProperty(cur.id)) {
+      acc[cur.id]['count'] = 0;
+      return acc;
+    } else {
+      acc[cur.id] = {};
+      acc[cur.id]['title'] = cur.title;
+      acc[cur.id]['count'] = 0;
+      return acc;
+    }
+  }, {});
 
-  return lastestSurveyParticipants;
+  return { ...surveys, ...lastestSurveyParticipants };
 };
 
 // 총 참여자 수
