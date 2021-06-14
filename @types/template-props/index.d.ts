@@ -31,6 +31,7 @@ declare module 'template-props' {
       title: string;
       count: number;
     }[];
+    onInfiniteScroll: (event: any) => void;
   }
 
   interface ISurveyReportTemplateProps {

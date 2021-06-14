@@ -14,9 +14,12 @@ const slice = createSlice({
     error: '',
   },
   reducers: {
-    loadListRequest: (state, action) => {},
+    loadListRequest: (state) => {},
     loadListSuccess: (state, action) => {
-      state.survey = action.payload.survey;
+      if (Object.keys(action.payload.survey).length > 0) {
+        state.page = state.page + 1;
+      }
+      state.survey = { ...action.payload.survey };
     },
     loadListFailure: (state, action) => {
       state.error = action.payload;

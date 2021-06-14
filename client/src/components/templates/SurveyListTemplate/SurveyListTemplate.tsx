@@ -4,9 +4,12 @@ import * as S from './SurveyListTemplateStyles';
 import { Grid } from '@material-ui/core';
 import { Pwl, SurveyList } from 'components';
 
-const SurveyListTemplate: React.FC<ISurveyListTemplateProps> = ({ surveyData }) => {
+const SurveyListTemplate: React.FC<ISurveyListTemplateProps> = ({
+  surveyData,
+  onInfiniteScroll,
+}) => {
   return (
-    <S.SurveyListTemplate>
+    <S.SurveyListTemplate onScroll={onInfiniteScroll}>
       <S.Container maxWidth="lg">
         <Grid container spacing={5}>
           {/* Print Working Location */}
