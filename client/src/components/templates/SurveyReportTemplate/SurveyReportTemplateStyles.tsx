@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import { Container as MaterialContainer, Grid } from '@material-ui/core';
 
 export const SurveyReportTemplate = styled.div`
+  flex: 1;
+  overflow: auto;
   padding-left: 57px;
 `;
 

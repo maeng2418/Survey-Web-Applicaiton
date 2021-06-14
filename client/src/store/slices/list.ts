@@ -5,12 +5,7 @@ const slice = createSlice({
   name: 'list',
   initialState: {
     page: 0,
-    survey: {
-      '1': {
-        title: '1번째 설문조사',
-        count: 1,
-      },
-    },
+    survey: {},
     error: '',
   },
   reducers: {

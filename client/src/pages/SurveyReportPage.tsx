@@ -12,7 +12,7 @@ const SurveyReportPage: React.FC = () => {
   const [type, setType] = useState(new Array(reportData.questionList.length).fill('bar'));
 
   useEffect(() => {
-    dispatch(loadReportRequest({ surveyId: parseInt(surveyIdx), page: 0 }));
+    dispatch(loadReportRequest({ surveyId: surveyIdx }));
     dispatch(loadParticipantsRequest({ surveyId: parseInt(surveyIdx) }));
   }, []);
 
@@ -28,6 +28,12 @@ const SurveyReportPage: React.FC = () => {
     setType([...copiedType]);
   };
 
+  const onInfiniteScroll = (event: any) => {
+    if (event.target.scrollTop + event.target.clientHeight + 50 > event.target.scrollHeight) {
+      dispatch(loadReportRequest({ surveyId: surveyIdx }));
+    }
+  };
+
   return (
     <AdminTemplate>
       <SurveyReportTemplate
@@ -38,6 +44,7 @@ const SurveyReportPage: React.FC = () => {
         participants={reportData.totalParticipant}
         type={type}
         onSelectType={onSelectType}
+        onInfiniteScroll={onInfiniteScroll}
       />
     </AdminTemplate>
   );
