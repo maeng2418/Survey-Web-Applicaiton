@@ -7,12 +7,14 @@ const slice = createSlice({
     surveyId: 0,
     title: '',
     page: 0,
+    load: false,
     questionList: [],
     totalParticipant: 0,
     error: '',
   },
   reducers: {
     loadReportRequest: (state, action) => {
+      state.load = true;
       state.surveyId = action.payload.surveyId;
     },
     loadReportSuccess: (state: any, action) => {
@@ -20,6 +22,7 @@ const slice = createSlice({
       state.questionList = [...state.questionList, ...action.payload.questionList];
       if (action.payload.questionList.length > 0) {
         state.page = state.page + 1;
+        state.load = false;
       }
     },
     loadReportFailure: (state, action) => {

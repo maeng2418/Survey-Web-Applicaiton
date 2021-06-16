@@ -10,6 +10,7 @@ const slice = createSlice({
     surveyId: null,
     title: '',
     page: 0,
+    load: false,
     questionList: [],
     error: '',
   },
@@ -33,9 +34,12 @@ const slice = createSlice({
     loadSurveyInfoFailure: (state, action) => {
       state.error = action.payload;
     },
-    loadSurveyDetailRequest: () => {},
+    loadSurveyDetailRequest: (state) => {
+      state.load = true;
+    },
     loadSurveyDetailSuccess: (state: any, action) => {
       if (action.payload.questionList.length > 0) {
+        state.load = false;
         state.page = state.page + 1;
       }
       state.questionList = [...state.questionList, ...action.payload.questionList];
