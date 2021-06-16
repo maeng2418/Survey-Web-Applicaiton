@@ -5,13 +5,17 @@ const slice = createSlice({
   name: 'list',
   initialState: {
     page: 0,
+    load: false,
     survey: {},
     error: '',
   },
   reducers: {
-    loadListRequest: (state) => {},
+    loadListRequest: (state) => {
+      state.load = true;
+    },
     loadListSuccess: (state, action) => {
       if (Object.keys(action.payload.survey).length > 0) {
+        state.load = false;
         state.page = state.page + 1;
       }
       state.survey = { ...state.survey, ...action.payload.survey };
