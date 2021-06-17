@@ -15,7 +15,9 @@ const SurveyListPage: React.FC = () => {
 
   const onInfiniteScroll = (event: any) => {
     if (event.target.scrollTop + event.target.clientHeight + 50 > event.target.scrollHeight) {
-      dispatch(loadListRequest());
+      if (listData.load === false) {
+        dispatch(loadListRequest());
+      }
     }
   };
 
